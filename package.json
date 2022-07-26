@@ -1,20 +1,16 @@
 {
-  "name": "protoc-gen-ts",
-  "description": "Compile protocol buffers descriptors to Typescript.",
-  "version": "0.8.5",
+  "name": "protoc-gen-ts-strict",
+  "description": "Compile protocol buffers descriptors to Typescript. Stricter version.",
+  "version": "0.8.6",
   "license": "MIT",
   "author": {
-    "email": "thesayyn@gmail.com",
-    "name": "thesayyn",
-    "url": "https://github.com/thesayyn"
-  },
-  "funding": {
-    "type": "individual",
-    "url": "https://www.buymeacoffee.com/thesayyn"
+    "email": "santalov.stas@gmail.com",
+    "name": "Santalov",
+    "url": "https://github.com/Santalov"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/thesayyn/protoc-gen-ts"
+    "url": "https://github.com/Santalov/protoc-gen-ts"
   },
   "scripts": {
     "test": "bazel test //...",
