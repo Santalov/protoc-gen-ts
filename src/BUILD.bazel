@@ -30,7 +30,7 @@ ts_project(
         "@npm//google-protobuf",
         "@npm//typescript"
     ],
-    tsc = "//typescript/bin:tsc",
+    tsc = "@npm//typescript",
 )
 
 js_library(
