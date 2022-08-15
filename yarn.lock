@@ -7,10 +7,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.9.0.tgz#e55cc5394b838d85651bceb06abdc95a28c44e2f"
   integrity sha512-IHCKlMBHd7VMt3Za7rpTJA8O1WI8TUes5nDjdYv1MM/4OZQQFbM85Zb8ugQaKvy3CzxLpXgxYZUiq7b2TdhQnw==
 
-"@bazel/jasmine@^5.0.0":
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-5.0.0.tgz#c51f9bc8ca5b83a363c45db4856ceacc48ac345f"
-  integrity sha512-Lb6Vq+S+fFhXG3YPIP+VJcMvBiCExjZy6p6JlaMD0MAxiskQtB2NH3pD8RR52pPM/dR91xluZz7Le+vbPQWV6g==
+"@bazel/jasmine@^5.5.3":
+  version "5.5.3"
+  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-5.5.3.tgz#90aa34218287ce1cc79e08274f4aa63460a4a1b2"
+  integrity sha512-dEgppnYPPot9c5EudnsaMKQHi8Su7rpKO5ENXWOqRxwuGCm1TvkyDvJghUbxpq9TpFqn7L39mJ+LB7IPYNF9TQ==
   dependencies:
     c8 "~7.5.0"
     jasmine-reporters "~2.5.0"
