@@ -26,9 +26,6 @@ export class NoOptionalValues extends pb_1.Message {
     get has_test() {
         return pb_1.Message.getField(this, 1) != null;
     }
-    clear_test(): void {
-        this.test = undefined!;
-    }
     get test2() {
         return pb_1.Message.getField(this, 2) as string | undefined;
     }
@@ -37,9 +34,6 @@ export class NoOptionalValues extends pb_1.Message {
     }
     get has_test2() {
         return pb_1.Message.getField(this, 2) != null;
-    }
-    clear_test2(): void {
-        this.test2 = undefined!;
     }
     static fromObject(data?: NoOptionalValues.AsObjectPartial): NoOptionalValues {
         if (!data) {

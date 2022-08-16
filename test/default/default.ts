@@ -34,9 +34,6 @@ export class MessageWithDefault extends pb_1.Message {
     get has_bool_field() {
         return pb_1.Message.getField(this, 1) != null;
     }
-    clear_bool_field(): void {
-        this.bool_field = undefined!;
-    }
     get string_field() {
         return pb_1.Message.getFieldWithDefault(this, 2, "default value") as string;
     }
@@ -46,9 +43,6 @@ export class MessageWithDefault extends pb_1.Message {
     get has_string_field() {
         return pb_1.Message.getField(this, 2) != null;
     }
-    clear_string_field(): void {
-        this.string_field = undefined!;
-    }
     get int32_field() {
         return pb_1.Message.getFieldWithDefault(this, 3, 12) as number;
     }
@@ -57,9 +51,6 @@ export class MessageWithDefault extends pb_1.Message {
     }
     get has_int32_field() {
         return pb_1.Message.getField(this, 3) != null;
-    }
-    clear_int32_field(): void {
-        this.int32_field = undefined!;
     }
     static fromObject(data?: MessageWithDefault.AsObjectPartial): MessageWithDefault {
         if (!data) {
@@ -167,9 +158,6 @@ export class MessageWithImplicitDefault extends pb_1.Message {
     get has_bool_field() {
         return pb_1.Message.getField(this, 1) != null;
     }
-    clear_bool_field(): void {
-        this.bool_field = undefined!;
-    }
     get string_field() {
         return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
     }
@@ -179,9 +167,6 @@ export class MessageWithImplicitDefault extends pb_1.Message {
     get has_string_field() {
         return pb_1.Message.getField(this, 2) != null;
     }
-    clear_string_field(): void {
-        this.string_field = undefined!;
-    }
     get int32_field() {
         return pb_1.Message.getFieldWithDefault(this, 3, 0) as number;
     }
@@ -190,9 +175,6 @@ export class MessageWithImplicitDefault extends pb_1.Message {
     }
     get has_int32_field() {
         return pb_1.Message.getField(this, 3) != null;
-    }
-    clear_int32_field(): void {
-        this.int32_field = undefined!;
     }
     static fromObject(data?: MessageWithImplicitDefault.AsObjectPartial): MessageWithImplicitDefault {
         if (!data) {
