@@ -1,7 +1,7 @@
 {
   "name": "protoc-gen-ts-strict",
   "description": "Compile protocol buffers descriptors to Typescript. Stricter version.",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "license": "MIT",
   "author": {
     "email": "santalov.stas@gmail.com",
