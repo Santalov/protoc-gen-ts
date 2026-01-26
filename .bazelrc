@@ -1,3 +1,6 @@
+# Disable bzlmod for WORKSPACE-based dependency management (Bazel 6.x)
+common --enable_bzlmod=false
+
 build --nolegacy_external_runfiles
 run --nolegacy_external_runfiles
 test --nolegacy_external_runfiles
