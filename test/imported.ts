@@ -14,7 +14,7 @@ export namespace importdirective {
             if (!Array.isArray(data) && typeof data == "object") { }
         }
         static fromObject(data: {}): Imported {
-            const message = new Imported({});
+            const message = new Imported({} as any);
             return message;
         }
         toObject() {
@@ -69,7 +69,7 @@ export namespace importdirective {
             static fromObject(data: {
                 key?: Imported.SubMessage.MyEnum;
             }): SubMessage {
-                const message = new SubMessage({});
+                const message = new SubMessage({} as any);
                 if (data.key != null) {
                     message.key = data.key;
                 }

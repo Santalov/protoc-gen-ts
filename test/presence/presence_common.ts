@@ -32,7 +32,7 @@ export class PresenceCommonMessage extends pb_1.Message {
     static fromObject(data: {
         message?: string;
     }): PresenceCommonMessage {
-        const message = new PresenceCommonMessage({});
+        const message = new PresenceCommonMessage({} as any);
         if (data.message != null) {
             message.message = data.message;
         }
@@ -129,7 +129,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         int32?: number;
         message?: ReturnType<typeof PresenceCommonMessage.prototype.toObject>;
     }): PresenceCommonMessageOneOf {
-        const message = new PresenceCommonMessageOneOf({});
+        const message = new PresenceCommonMessageOneOf({} as any);
         if (data.int32 != null) {
             message.int32 = data.int32;
         }

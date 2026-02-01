@@ -224,7 +224,7 @@ export class PresenceMessageV3 extends pb_1.Message {
             [key: string]: string;
         };
     }): PresenceMessageV3 {
-        const message = new PresenceMessageV3({});
+        const message = new PresenceMessageV3({} as any);
         if (data.int32 != null) {
             message.int32 = data.int32;
         }

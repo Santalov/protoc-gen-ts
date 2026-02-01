@@ -342,7 +342,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
             array_int32: data.array_int32,
             array_message: data.array_message.map(item => dependency_1.DefaultCommonMessage.fromObject(item)),
             bytes: data.bytes
-        });
+        } as any);
         if (data.one_of_int32 != null) {
             message.one_of_int32 = data.one_of_int32;
         }
@@ -887,7 +887,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
             float: data.float,
             double: data.double,
             int_but_string: data.int_but_string
-        });
+        } as any);
         if (data.one_of_int32 != null) {
             message.one_of_int32 = data.one_of_int32;
         }

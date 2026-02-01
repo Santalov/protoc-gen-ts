@@ -73,7 +73,7 @@ export class Version extends pb_1.Message {
         patch?: number;
         suffix?: string;
     }): Version {
-        const message = new Version({});
+        const message = new Version({} as any);
         if (data.major != null) {
             message.major = data.major;
         }
@@ -214,7 +214,7 @@ export class CodeGeneratorRequest extends pb_1.Message {
         const message = new CodeGeneratorRequest({
             file_to_generate: data.file_to_generate,
             proto_file: data.proto_file.map(item => dependency_1.FileDescriptorProto.fromObject(item))
-        });
+        } as any);
         if (data.parameter != null) {
             message.parameter = data.parameter;
         }
@@ -338,7 +338,7 @@ export class CodeGeneratorResponse extends pb_1.Message {
     }): CodeGeneratorResponse {
         const message = new CodeGeneratorResponse({
             file: data.file.map(item => CodeGeneratorResponse.File.fromObject(item))
-        });
+        } as any);
         if (data.error != null) {
             message.error = data.error;
         }
@@ -476,7 +476,7 @@ export namespace CodeGeneratorResponse {
             content?: string;
             generated_code_info?: ReturnType<typeof dependency_1.GeneratedCodeInfo.prototype.toObject>;
         }): File {
-            const message = new File({});
+            const message = new File({} as any);
             if (data.name != null) {
                 message.name = data.name;
             }

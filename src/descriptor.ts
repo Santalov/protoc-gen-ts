@@ -287,7 +287,10 @@ function createFromObject(
             ts.factory.createNewExpression(
               ts.factory.createIdentifier(`${parentName}${messageDescriptor.name}`),
               undefined,
-              [ts.factory.createObjectLiteralExpression(properties, true)],
+              [ts.factory.createAsExpression(
+                ts.factory.createObjectLiteralExpression(properties, true),
+                ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword),
+              )],
             ),
           ),
         ],

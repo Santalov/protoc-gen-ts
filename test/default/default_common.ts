@@ -32,7 +32,7 @@ export class DefaultCommonMessage extends pb_1.Message {
     static fromObject(data: {
         message?: string;
     }): DefaultCommonMessage {
-        const message = new DefaultCommonMessage({});
+        const message = new DefaultCommonMessage({} as any);
         if (data.message != null) {
             message.message = data.message;
         }
@@ -149,7 +149,7 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
         message?: ReturnType<typeof DefaultCommonMessage.prototype.toObject>;
         string?: string;
     }): DefaultCommonMessageOneOf {
-        const message = new DefaultCommonMessageOneOf({});
+        const message = new DefaultCommonMessageOneOf({} as any);
         if (data.int32 != null) {
             message.int32 = data.int32;
         }

@@ -61,7 +61,7 @@ export class SchedulingContext extends pb_1.Message {
         timeout?: number;
         batch?: ReturnType<typeof SchedulingContextBatch.prototype.toObject>;
     }): SchedulingContext {
-        const message = new SchedulingContext({});
+        const message = new SchedulingContext({} as any);
         if (data.env != null) {
             message.env = data.env.map(item => SchedulingContextEnv.fromObject(item));
         }
@@ -163,7 +163,7 @@ export class SchedulingContextEnv extends pb_1.Message {
         key?: string;
         value?: string;
     }): SchedulingContextEnv {
-        const message = new SchedulingContextEnv({});
+        const message = new SchedulingContextEnv({} as any);
         if (data.key != null) {
             message.key = data.key;
         }
@@ -267,7 +267,7 @@ export class SchedulingContextBatch extends pb_1.Message {
         deadline?: number;
         process?: ReturnType<typeof SchedulingContextBatchProcess.prototype.toObject>;
     }): SchedulingContextBatch {
-        const message = new SchedulingContextBatch({});
+        const message = new SchedulingContextBatch({} as any);
         if (data.limit != null) {
             message.limit = data.limit;
         }
@@ -358,7 +358,7 @@ export class SchedulingContextBatchProcess extends pb_1.Message {
     static fromObject(data: {
         id?: string;
     }): SchedulingContextBatchProcess {
-        const message = new SchedulingContextBatchProcess({});
+        const message = new SchedulingContextBatchProcess({} as any);
         if (data.id != null) {
             message.id = data.id;
         }
@@ -461,7 +461,7 @@ export class Target extends pb_1.Message {
         handler?: string;
         context?: ReturnType<typeof SchedulingContext.prototype.toObject>;
     }): Target {
-        const message = new Target({});
+        const message = new Target({} as any);
         if (data.id != null) {
             message.id = data.id;
         }
@@ -589,7 +589,7 @@ export class Event extends pb_1.Message {
         type?: Type;
         target?: ReturnType<typeof Target.prototype.toObject>;
     }): Event {
-        const message = new Event({});
+        const message = new Event({} as any);
         if (data.id != null) {
             message.id = data.id;
         }
@@ -680,7 +680,7 @@ export class Pop extends pb_1.Message {
     static fromObject(data: {
         id?: string;
     }): Pop {
-        const message = new Pop({});
+        const message = new Pop({} as any);
         if (data.id != null) {
             message.id = data.id;
         }
@@ -747,7 +747,7 @@ export class Complete extends pb_1.Message {
     static fromObject(data: {
         id?: string;
     }): Complete {
-        const message = new Complete({});
+        const message = new Complete({} as any);
         if (data.id != null) {
             message.id = data.id;
         }
@@ -800,7 +800,7 @@ export class CompleteResult extends pb_1.Message {
         if (!Array.isArray(data) && typeof data == "object") { }
     }
     static fromObject(data: {}): CompleteResult {
-        const message = new CompleteResult({});
+        const message = new CompleteResult({} as any);
         return message;
     }
     toObject() {

@@ -312,7 +312,7 @@ export class DefaultMessageV3 extends pb_1.Message {
         one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
         bytes?: Uint8Array;
     }): DefaultMessageV3 {
-        const message = new DefaultMessageV3({});
+        const message = new DefaultMessageV3({} as any);
         if (data.message != null) {
             message.message = dependency_1.DefaultCommonMessage.fromObject(data.message);
         }
@@ -1067,7 +1067,7 @@ export class DefaultMessageOptionalV3 extends pb_1.Message {
         int_but_string?: string;
         bytes?: Uint8Array;
     }): DefaultMessageOptionalV3 {
-        const message = new DefaultMessageOptionalV3({});
+        const message = new DefaultMessageOptionalV3({} as any);
         if (data.enum != null) {
             message.enum = data.enum;
         }

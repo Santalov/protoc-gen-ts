@@ -27,7 +27,7 @@ export class MessageFields extends pb_1.Message {
     static fromObject(data: {
         field?: string[];
     }): MessageFields {
-        const message = new MessageFields({});
+        const message = new MessageFields({} as any);
         if (data.field != null) {
             message.field = data.field;
         }

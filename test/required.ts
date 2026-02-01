@@ -43,7 +43,7 @@ export class NoOptionalValues extends pb_1.Message {
         const message = new NoOptionalValues({
             test: data.test,
             test2: data.test2
-        });
+        } as any);
         return message;
     }
     toObject() {

@@ -15,7 +15,7 @@ export namespace main {
             if (!Array.isArray(data) && typeof data == "object") { }
         }
         static fromObject(data: {}): Message {
-            const message = new Message({});
+            const message = new Message({} as any);
             return message;
         }
         toObject() {
@@ -55,7 +55,7 @@ export namespace main {
             if (!Array.isArray(data) && typeof data == "object") { }
         }
         static fromObject(data: {}): MessageResult {
-            const message = new MessageResult({});
+            const message = new MessageResult({} as any);
             return message;
         }
         toObject() {

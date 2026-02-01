@@ -28,7 +28,7 @@ export namespace maps {
         static fromObject(data: {
             link?: string;
         }): Topic {
-            const message = new Topic({});
+            const message = new Topic({} as any);
             if (data.link != null) {
                 message.link = data.link;
             }
@@ -140,7 +140,7 @@ export namespace maps {
                 [key: number]: ReturnType<typeof Topic.prototype.toObject>;
             };
         }): Tags {
-            const message = new Tags({});
+            const message = new Tags({} as any);
             if (data.key != null) {
                 message.key = data.key;
             }

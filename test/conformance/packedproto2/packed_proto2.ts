@@ -44,7 +44,7 @@ export class HydratedQuickReplyButton extends pb_1.Message {
         displayText?: string;
         id?: string;
     }): HydratedQuickReplyButton {
-        const message = new HydratedQuickReplyButton({});
+        const message = new HydratedQuickReplyButton({} as any);
         if (data.displayText != null) {
             message.displayText = data.displayText;
         }
@@ -140,7 +140,7 @@ export class HydratedURLButton extends pb_1.Message {
         displayText?: string;
         url?: string;
     }): HydratedURLButton {
-        const message = new HydratedURLButton({});
+        const message = new HydratedURLButton({} as any);
         if (data.displayText != null) {
             message.displayText = data.displayText;
         }
@@ -236,7 +236,7 @@ export class HydratedCallButton extends pb_1.Message {
         displayText?: string;
         phoneNumber?: string;
     }): HydratedCallButton {
-        const message = new HydratedCallButton({});
+        const message = new HydratedCallButton({} as any);
         if (data.displayText != null) {
             message.displayText = data.displayText;
         }
@@ -380,7 +380,7 @@ export class HydratedTemplateButton extends pb_1.Message {
         urlButton?: ReturnType<typeof HydratedURLButton.prototype.toObject>;
         callButton?: ReturnType<typeof HydratedCallButton.prototype.toObject>;
     }): HydratedTemplateButton {
-        const message = new HydratedTemplateButton({});
+        const message = new HydratedTemplateButton({} as any);
         if (data.index != null) {
             message.index = data.index;
         }
@@ -500,7 +500,7 @@ export class QuickReplyButton extends pb_1.Message {
         displayText?: ReturnType<typeof HighlyStructuredMessage.prototype.toObject>;
         id?: string;
     }): QuickReplyButton {
-        const message = new QuickReplyButton({});
+        const message = new QuickReplyButton({} as any);
         if (data.displayText != null) {
             message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
         }
@@ -596,7 +596,7 @@ export class URLButton extends pb_1.Message {
         displayText?: ReturnType<typeof HighlyStructuredMessage.prototype.toObject>;
         url?: ReturnType<typeof HighlyStructuredMessage.prototype.toObject>;
     }): URLButton {
-        const message = new URLButton({});
+        const message = new URLButton({} as any);
         if (data.displayText != null) {
             message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
         }
@@ -692,7 +692,7 @@ export class CallButton extends pb_1.Message {
         displayText?: ReturnType<typeof HighlyStructuredMessage.prototype.toObject>;
         phoneNumber?: ReturnType<typeof HighlyStructuredMessage.prototype.toObject>;
     }): CallButton {
-        const message = new CallButton({});
+        const message = new CallButton({} as any);
         if (data.displayText != null) {
             message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
         }
@@ -836,7 +836,7 @@ export class TemplateButton extends pb_1.Message {
         urlButton?: ReturnType<typeof URLButton.prototype.toObject>;
         callButton?: ReturnType<typeof CallButton.prototype.toObject>;
     }): TemplateButton {
-        const message = new TemplateButton({});
+        const message = new TemplateButton({} as any);
         if (data.index != null) {
             message.index = data.index;
         }
@@ -970,7 +970,7 @@ export class Location extends pb_1.Message {
         degreesLongitude?: number;
         name?: string;
     }): Location {
-        const message = new Location({});
+        const message = new Location({} as any);
         if (data.degreesLatitude != null) {
             message.degreesLatitude = data.degreesLatitude;
         }
@@ -1106,7 +1106,7 @@ export class Point extends pb_1.Message {
         x?: number;
         y?: number;
     }): Point {
-        const message = new Point({});
+        const message = new Point({} as any);
         if (data.xDeprecated != null) {
             message.xDeprecated = data.xDeprecated;
         }
@@ -1233,7 +1233,7 @@ export class InteractiveAnnotation extends pb_1.Message {
     }): InteractiveAnnotation {
         const message = new InteractiveAnnotation({
             polygonVertices: data.polygonVertices.map(item => Point.fromObject(item))
-        });
+        } as any);
         if (data.location != null) {
             message.location = Location.fromObject(data.location);
         }
@@ -1354,7 +1354,7 @@ export class AdReplyInfo extends pb_1.Message {
         jpegThumbnail?: Uint8Array;
         caption?: string;
     }): AdReplyInfo {
-        const message = new AdReplyInfo({});
+        const message = new AdReplyInfo({} as any);
         if (data.advertiserName != null) {
             message.advertiserName = data.advertiserName;
         }
@@ -1660,7 +1660,7 @@ export class ContextInfo extends pb_1.Message {
     }): ContextInfo {
         const message = new ContextInfo({
             mentionedJid: data.mentionedJid
-        });
+        } as any);
         if (data.stanzaId != null) {
             message.stanzaId = data.stanzaId;
         }
@@ -1908,7 +1908,7 @@ export class SenderKeyDistributionMessage extends pb_1.Message {
         groupId?: string;
         axolotlSenderKeyDistributionMessage?: Uint8Array;
     }): SenderKeyDistributionMessage {
-        const message = new SenderKeyDistributionMessage({});
+        const message = new SenderKeyDistributionMessage({} as any);
         if (data.groupId != null) {
             message.groupId = data.groupId;
         }
@@ -2263,7 +2263,7 @@ export class ImageMessage extends pb_1.Message {
         const message = new ImageMessage({
             interactiveAnnotations: data.interactiveAnnotations.map(item => InteractiveAnnotation.fromObject(item)),
             scanLengths: data.scanLengths
-        });
+        } as any);
         if (data.url != null) {
             message.url = data.url;
         }
@@ -2594,7 +2594,7 @@ export class ContactMessage extends pb_1.Message {
         vcard?: string;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): ContactMessage {
-        const message = new ContactMessage({});
+        const message = new ContactMessage({} as any);
         if (data.displayName != null) {
             message.displayName = data.displayName;
         }
@@ -2842,7 +2842,7 @@ export class LocationMessage extends pb_1.Message {
         jpegThumbnail?: Uint8Array;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): LocationMessage {
-        const message = new LocationMessage({});
+        const message = new LocationMessage({} as any);
         if (data.degreesLatitude != null) {
             message.degreesLatitude = data.degreesLatitude;
         }
@@ -3198,7 +3198,7 @@ export class ExtendedTextMessage extends pb_1.Message {
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
         doNotPlayInline?: boolean;
     }): ExtendedTextMessage {
-        const message = new ExtendedTextMessage({});
+        const message = new ExtendedTextMessage({} as any);
         if (data.text != null) {
             message.text = data.text;
         }
@@ -3582,7 +3582,7 @@ export class DocumentMessage extends pb_1.Message {
         jpegThumbnail?: Uint8Array;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): DocumentMessage {
-        const message = new DocumentMessage({});
+        const message = new DocumentMessage({} as any);
         if (data.url != null) {
             message.url = data.url;
         }
@@ -3950,7 +3950,7 @@ export class AudioMessage extends pb_1.Message {
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
         streamingSidecar?: Uint8Array;
     }): AudioMessage {
-        const message = new AudioMessage({});
+        const message = new AudioMessage({} as any);
         if (data.url != null) {
             message.url = data.url;
         }
@@ -4387,7 +4387,7 @@ export class VideoMessage extends pb_1.Message {
     }): VideoMessage {
         const message = new VideoMessage({
             interactiveAnnotations: data.interactiveAnnotations.map(item => InteractiveAnnotation.fromObject(item))
-        });
+        } as any);
         if (data.url != null) {
             message.url = data.url;
         }
@@ -4665,7 +4665,7 @@ export class Call extends pb_1.Message {
     static fromObject(data: {
         callKey?: Uint8Array;
     }): Call {
-        const message = new Call({});
+        const message = new Call({} as any);
         if (data.callKey != null) {
             message.callKey = data.callKey;
         }
@@ -4749,7 +4749,7 @@ export class Chat extends pb_1.Message {
         displayName?: string;
         id?: string;
     }): Chat {
-        const message = new Chat({});
+        const message = new Chat({} as any);
         if (data.displayName != null) {
             message.displayName = data.displayName;
         }
@@ -4887,7 +4887,7 @@ export class ProtocolMessage extends pb_1.Message {
         ephemeralSettingTimestamp?: number;
         historySyncNotification?: ReturnType<typeof HistorySyncNotification.prototype.toObject>;
     }): ProtocolMessage {
-        const message = new ProtocolMessage({});
+        const message = new ProtocolMessage({} as any);
         if (data.key != null) {
             message.key = MessageKey.fromObject(data.key);
         }
@@ -5111,7 +5111,7 @@ export class HistorySyncNotification extends pb_1.Message {
         chunkOrder?: number;
         originalMessageId?: string;
     }): HistorySyncNotification {
-        const message = new HistorySyncNotification({});
+        const message = new HistorySyncNotification({} as any);
         if (data.fileSha256 != null) {
             message.fileSha256 = data.fileSha256;
         }
@@ -5299,7 +5299,7 @@ export class ContactsArrayMessage extends pb_1.Message {
     }): ContactsArrayMessage {
         const message = new ContactsArrayMessage({
             contacts: data.contacts.map(item => ContactMessage.fromObject(item))
-        });
+        } as any);
         if (data.displayName != null) {
             message.displayName = data.displayName;
         }
@@ -5404,7 +5404,7 @@ export class HSMCurrency extends pb_1.Message {
         currencyCode?: string;
         amount1000?: number;
     }): HSMCurrency {
-        const message = new HSMCurrency({});
+        const message = new HSMCurrency({} as any);
         if (data.currencyCode != null) {
             message.currencyCode = data.currencyCode;
         }
@@ -5570,7 +5570,7 @@ export class HSMDateTimeComponent extends pb_1.Message {
         minute?: number;
         calendar?: HSMDateTimeComponent.HSM_DATE_TIME_COMPONENT_CALENDARTYPE;
     }): HSMDateTimeComponent {
-        const message = new HSMDateTimeComponent({});
+        const message = new HSMDateTimeComponent({} as any);
         if (data.dayOfWeek != null) {
             message.dayOfWeek = data.dayOfWeek;
         }
@@ -5727,7 +5727,7 @@ export class HSMDateTimeUnixEpoch extends pb_1.Message {
     static fromObject(data: {
         timestamp?: number;
     }): HSMDateTimeUnixEpoch {
-        const message = new HSMDateTimeUnixEpoch({});
+        const message = new HSMDateTimeUnixEpoch({} as any);
         if (data.timestamp != null) {
             message.timestamp = data.timestamp;
         }
@@ -5824,7 +5824,7 @@ export class HSMDateTime extends pb_1.Message {
         component?: ReturnType<typeof HSMDateTimeComponent.prototype.toObject>;
         unixEpoch?: ReturnType<typeof HSMDateTimeUnixEpoch.prototype.toObject>;
     }): HSMDateTime {
-        const message = new HSMDateTime({});
+        const message = new HSMDateTime({} as any);
         if (data.component != null) {
             message.component = HSMDateTimeComponent.fromObject(data.component);
         }
@@ -5948,7 +5948,7 @@ export class HSMLocalizableParameter extends pb_1.Message {
         currency?: ReturnType<typeof HSMCurrency.prototype.toObject>;
         dateTime?: ReturnType<typeof HSMDateTime.prototype.toObject>;
     }): HSMLocalizableParameter {
-        const message = new HSMLocalizableParameter({});
+        const message = new HSMLocalizableParameter({} as any);
         if (data.default != null) {
             message.default = data.default;
         }
@@ -6147,7 +6147,7 @@ export class HighlyStructuredMessage extends pb_1.Message {
         const message = new HighlyStructuredMessage({
             params: data.params,
             localizableParams: data.localizableParams.map(item => HSMLocalizableParameter.fromObject(item))
-        });
+        } as any);
         if (data.namespace != null) {
             message.namespace = data.namespace;
         }
@@ -6320,7 +6320,7 @@ export class SendPaymentMessage extends pb_1.Message {
         noteMessage?: ReturnType<typeof Message.prototype.toObject>;
         requestMessageKey?: ReturnType<typeof MessageKey.prototype.toObject>;
     }): SendPaymentMessage {
-        const message = new SendPaymentMessage({});
+        const message = new SendPaymentMessage({} as any);
         if (data.noteMessage != null) {
             message.noteMessage = Message.fromObject(data.noteMessage);
         }
@@ -6458,7 +6458,7 @@ export class RequestPaymentMessage extends pb_1.Message {
         requestFrom?: string;
         expiryTimestamp?: number;
     }): RequestPaymentMessage {
-        const message = new RequestPaymentMessage({});
+        const message = new RequestPaymentMessage({} as any);
         if (data.noteMessage != null) {
             message.noteMessage = Message.fromObject(data.noteMessage);
         }
@@ -6576,7 +6576,7 @@ export class DeclinePaymentRequestMessage extends pb_1.Message {
     static fromObject(data: {
         key?: ReturnType<typeof MessageKey.prototype.toObject>;
     }): DeclinePaymentRequestMessage {
-        const message = new DeclinePaymentRequestMessage({});
+        const message = new DeclinePaymentRequestMessage({} as any);
         if (data.key != null) {
             message.key = MessageKey.fromObject(data.key);
         }
@@ -6646,7 +6646,7 @@ export class CancelPaymentRequestMessage extends pb_1.Message {
     static fromObject(data: {
         key?: ReturnType<typeof MessageKey.prototype.toObject>;
     }): CancelPaymentRequestMessage {
-        const message = new CancelPaymentRequestMessage({});
+        const message = new CancelPaymentRequestMessage({} as any);
         if (data.key != null) {
             message.key = MessageKey.fromObject(data.key);
         }
@@ -6842,7 +6842,7 @@ export class LiveLocationMessage extends pb_1.Message {
         jpegThumbnail?: Uint8Array;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): LiveLocationMessage {
-        const message = new LiveLocationMessage({});
+        const message = new LiveLocationMessage({} as any);
         if (data.degreesLatitude != null) {
             message.degreesLatitude = data.degreesLatitude;
         }
@@ -7216,7 +7216,7 @@ export class StickerMessage extends pb_1.Message {
         pngThumbnail?: Uint8Array;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): StickerMessage {
-        const message = new StickerMessage({});
+        const message = new StickerMessage({} as any);
         if (data.url != null) {
             message.url = data.url;
         }
@@ -7587,7 +7587,7 @@ export class FourRowTemplate extends pb_1.Message {
     }): FourRowTemplate {
         const message = new FourRowTemplate({
             buttons: data.buttons.map(item => TemplateButton.fromObject(item))
-        });
+        } as any);
         if (data.content != null) {
             message.content = HighlyStructuredMessage.fromObject(data.content);
         }
@@ -7885,7 +7885,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
     }): HydratedFourRowTemplate {
         const message = new HydratedFourRowTemplate({
             hydratedButtons: data.hydratedButtons.map(item => HydratedTemplateButton.fromObject(item))
-        });
+        } as any);
         if (data.hydratedContentText != null) {
             message.hydratedContentText = data.hydratedContentText;
         }
@@ -8104,7 +8104,7 @@ export class TemplateMessage extends pb_1.Message {
         fourRowTemplate?: ReturnType<typeof FourRowTemplate.prototype.toObject>;
         hydratedFourRowTemplate?: ReturnType<typeof HydratedFourRowTemplate.prototype.toObject>;
     }): TemplateMessage {
-        const message = new TemplateMessage({});
+        const message = new TemplateMessage({} as any);
         if (data.contextInfo != null) {
             message.contextInfo = ContextInfo.fromObject(data.contextInfo);
         }
@@ -8252,7 +8252,7 @@ export class TemplateButtonReplyMessage extends pb_1.Message {
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
         selectedIndex?: number;
     }): TemplateButtonReplyMessage {
-        const message = new TemplateButtonReplyMessage({});
+        const message = new TemplateButtonReplyMessage({} as any);
         if (data.selectedId != null) {
             message.selectedId = data.selectedId;
         }
@@ -8386,7 +8386,7 @@ export class CatalogSnapshot extends pb_1.Message {
         title?: string;
         description?: string;
     }): CatalogSnapshot {
-        const message = new CatalogSnapshot({});
+        const message = new CatalogSnapshot({} as any);
         if (data.catalogImage != null) {
             message.catalogImage = ImageMessage.fromObject(data.catalogImage);
         }
@@ -8606,7 +8606,7 @@ export class ProductSnapshot extends pb_1.Message {
         productImageCount?: number;
         firstImageId?: string;
     }): ProductSnapshot {
-        const message = new ProductSnapshot({});
+        const message = new ProductSnapshot({} as any);
         if (data.productImage != null) {
             message.productImage = ImageMessage.fromObject(data.productImage);
         }
@@ -8826,7 +8826,7 @@ export class ProductMessage extends pb_1.Message {
         catalog?: ReturnType<typeof CatalogSnapshot.prototype.toObject>;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): ProductMessage {
-        const message = new ProductMessage({});
+        const message = new ProductMessage({} as any);
         if (data.product != null) {
             message.product = ProductSnapshot.fromObject(data.product);
         }
@@ -9016,7 +9016,7 @@ export class GroupInviteMessage extends pb_1.Message {
         caption?: string;
         contextInfo?: ReturnType<typeof ContextInfo.prototype.toObject>;
     }): GroupInviteMessage {
-        const message = new GroupInviteMessage({});
+        const message = new GroupInviteMessage({} as any);
         if (data.groupJid != null) {
             message.groupJid = data.groupJid;
         }
@@ -9186,7 +9186,7 @@ export class DeviceSentMessage extends pb_1.Message {
         message?: ReturnType<typeof Message.prototype.toObject>;
         phash?: string;
     }): DeviceSentMessage {
-        const message = new DeviceSentMessage({});
+        const message = new DeviceSentMessage({} as any);
         if (data.destinationJid != null) {
             message.destinationJid = data.destinationJid;
         }
@@ -9630,7 +9630,7 @@ export class Message extends pb_1.Message {
         productMessage?: ReturnType<typeof ProductMessage.prototype.toObject>;
         deviceSentMessage?: ReturnType<typeof DeviceSentMessage.prototype.toObject>;
     }): Message {
-        const message = new Message({});
+        const message = new Message({} as any);
         if (data.conversation != null) {
             message.conversation = data.conversation;
         }
@@ -10042,7 +10042,7 @@ export class MessageKey extends pb_1.Message {
         id?: string;
         participant?: string;
     }): MessageKey {
-        const message = new MessageKey({});
+        const message = new MessageKey({} as any);
         if (data.remoteJid != null) {
             message.remoteJid = data.remoteJid;
         }
@@ -10596,7 +10596,7 @@ export class WebFeatures extends pb_1.Message {
         recentStickersV2?: WebFeatures.WEB_FEATURES_FLAG;
         syncdRelease1?: WebFeatures.WEB_FEATURES_FLAG;
     }): WebFeatures {
-        const message = new WebFeatures({});
+        const message = new WebFeatures({} as any);
         if (data.labelsDisplay != null) {
             message.labelsDisplay = data.labelsDisplay;
         }
@@ -11097,7 +11097,7 @@ export class TabletNotificationsInfo extends pb_1.Message {
     }): TabletNotificationsInfo {
         const message = new TabletNotificationsInfo({
             notifyMessage: data.notifyMessage.map(item => NotificationMessageInfo.fromObject(item))
-        });
+        } as any);
         if (data.timestamp != null) {
             message.timestamp = data.timestamp;
         }
@@ -11242,7 +11242,7 @@ export class NotificationMessageInfo extends pb_1.Message {
         messageTimestamp?: number;
         participant?: string;
     }): NotificationMessageInfo {
-        const message = new NotificationMessageInfo({});
+        const message = new NotificationMessageInfo({} as any);
         if (data.key != null) {
             message.key = MessageKey.fromObject(data.key);
         }
@@ -11387,7 +11387,7 @@ export class WebNotificationsInfo extends pb_1.Message {
     }): WebNotificationsInfo {
         const message = new WebNotificationsInfo({
             notifyMessages: data.notifyMessages.map(item => WebMessageInfo.fromObject(item))
-        });
+        } as any);
         if (data.timestamp != null) {
             message.timestamp = data.timestamp;
         }
@@ -11616,7 +11616,7 @@ export class PaymentInfo extends pb_1.Message {
         currency?: string;
         txnStatus?: PaymentInfo.PAYMENT_INFO_TXNSTATUS;
     }): PaymentInfo {
-        const message = new PaymentInfo({});
+        const message = new PaymentInfo({} as any);
         if (data.currencyDeprecated != null) {
             message.currencyDeprecated = data.currencyDeprecated;
         }
@@ -12158,7 +12158,7 @@ export class WebMessageInfo extends pb_1.Message {
             key: MessageKey.fromObject(data.key),
             messageStubParameters: data.messageStubParameters,
             labels: data.labels
-        });
+        } as any);
         if (data.message != null) {
             message.message = Message.fromObject(data.message);
         }

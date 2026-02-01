@@ -87,7 +87,7 @@ export class MessageName extends pb_1.Message {
         me?: string;
         me_deprecated?: string;
     }): MessageName {
-        const message = new MessageName({});
+        const message = new MessageName({} as any);
         if (data.deprecated_field != null) {
             message.deprecated_field = data.deprecated_field;
         }
@@ -165,7 +165,7 @@ export class MessageName2 extends pb_1.Message {
         if (!Array.isArray(data) && typeof data == "object") { }
     }
     static fromObject(data: {}): MessageName2 {
-        const message = new MessageName2({});
+        const message = new MessageName2({} as any);
         return message;
     }
     toObject() {

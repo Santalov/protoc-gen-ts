@@ -27,7 +27,7 @@ export class ExplicitOverrideMessage extends pb_1.Message {
     static fromObject(data: {
         example?: number;
     }): ExplicitOverrideMessage {
-        const message = new ExplicitOverrideMessage({});
+        const message = new ExplicitOverrideMessage({} as any);
         if (data.example != null) {
             message.example = data.example;
         }

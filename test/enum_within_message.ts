@@ -39,7 +39,7 @@ export namespace main {
             language?: Code.Language;
             lines?: number;
         }): Code {
-            const message = new Code({});
+            const message = new Code({} as any);
             if (data.language != null) {
                 message.language = data.language;
             }

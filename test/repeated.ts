@@ -27,7 +27,7 @@ export class Repeated extends pb_1.Message {
     static fromObject(data: {
         indx?: number[];
     }): Repeated {
-        const message = new Repeated({});
+        const message = new Repeated({} as any);
         if (data.indx != null) {
             message.indx = data.indx;
         }

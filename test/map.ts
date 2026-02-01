@@ -28,7 +28,7 @@ export class Topic extends pb_1.Message {
     static fromObject(data: {
         link?: string;
     }): Topic {
-        const message = new Topic({});
+        const message = new Topic({} as any);
         if (data.link != null) {
             message.link = data.link;
         }
@@ -155,7 +155,7 @@ export class Tags extends pb_1.Message {
             [key: number]: dependency_1.importdirective.Imported.SubMessage.MyEnum;
         };
     }): Tags {
-        const message = new Tags({});
+        const message = new Tags({} as any);
         if (data.key != null) {
             message.key = data.key;
         }
