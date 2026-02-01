@@ -13,11 +13,10 @@ function createImport(
 ): ts.ImportDeclaration {
   return ts.factory.createImportDeclaration(
     undefined,
-    undefined,
     ts.factory.createImportClause(
       false,
-      ts.factory.createNamespaceImport(identifier) as any,
       undefined,
+      ts.factory.createNamespaceImport(identifier),
     ),
     ts.factory.createStringLiteral(moduleSpecifier),
   );
@@ -130,17 +129,26 @@ for (const fileDescriptor of request.proto_file) {
     comments.push("@deprecated");
   }
 
-  const doNotEditComment = ts.factory.createJSDocComment(comments.join("\n")) as ts.Statement;
+  const commentText = `*\n * ${comments.join("\n * ")}\n `;
 
   // Wrap statements within the namespace
   if (fileDescriptor.package && !options.no_namespace) {
+    const namespaceDecl = descriptor.createNamespace(fileDescriptor.package, statements);
+    const firstStatement = importStatements.length > 0 ? importStatements[0] : namespaceDecl;
+    ts.addSyntheticLeadingComment(firstStatement, ts.SyntaxKind.MultiLineCommentTrivia, commentText, true);
     statements = [
-      doNotEditComment,
       ...importStatements,
-      descriptor.createNamespace(fileDescriptor.package, statements),
+      ...(importStatements.length > 0 ? [namespaceDecl] : []),
     ];
+    if (importStatements.length === 0) {
+      statements = [namespaceDecl];
+    }
   } else {
-    statements = [doNotEditComment, ...importStatements, ...statements];
+    const firstStatement = importStatements.length > 0 ? importStatements[0] : statements[0];
+    if (firstStatement) {
+      ts.addSyntheticLeadingComment(firstStatement, ts.SyntaxKind.MultiLineCommentTrivia, commentText, true);
+    }
+    statements = [...importStatements, ...statements];
   }
 
   const sourcefile: ts.SourceFile = ts.factory.createSourceFile(

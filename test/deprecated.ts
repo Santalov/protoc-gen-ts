@@ -3,7 +3,8 @@
  * compiler version: 3.19.1
  * source: test/_/deprecated.proto
  * git: https://github.com/thesayyn/protoc-gen-ts
- * @deprecated */
+ * @deprecated
+ */
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export enum EnumName {

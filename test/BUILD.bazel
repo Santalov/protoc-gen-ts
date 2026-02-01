@@ -21,7 +21,7 @@ ts_project(
         "compilerOptions": {
             "target": "ES2020",
             "module": "CommonJS",
-            "noImplicitAny": True
+            "strict": True
         },
     },
     deps = [

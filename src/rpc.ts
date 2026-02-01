@@ -189,7 +189,6 @@ export function createUnimplementedServer(
 ) {
   const members: Array<ts.ClassElement> = [
     ts.factory.createPropertyDeclaration(
-      undefined,
       [ts.factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       "definition",
       undefined,
@@ -197,7 +196,6 @@ export function createUnimplementedServer(
       createServiceDefinition(rootDescriptor, serviceDescriptor),
     ),
     ts.factory.createIndexSignature(
-      undefined,
       undefined,
       [
         createParameter(
@@ -258,7 +256,6 @@ export function createUnimplementedServer(
 
     members.push(
       ts.factory.createMethodDeclaration(
-        undefined,
         [ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword)],
         undefined,
         methodDescriptor.name,
@@ -273,7 +270,6 @@ export function createUnimplementedServer(
 
   return comment.addDeprecatedJsDoc(
     ts.factory.createClassDeclaration(
-      undefined,
       [
         ts.factory.createModifier(ts.SyntaxKind.ExportKeyword),
         ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword),
@@ -438,7 +434,6 @@ function createUnaryRpcPromiseMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcPromiseServiceInterface", [
@@ -484,7 +479,6 @@ function createParameter(
     );
   }
   return ts.factory.createParameterDeclaration(
-    undefined,
     undefined,
     undefined,
     name,
@@ -553,11 +547,10 @@ export function createGrpcInterfaceType(
   // }
   const unaryIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcUnaryServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -595,11 +588,10 @@ export function createGrpcInterfaceType(
   // }
   const promiseIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcPromiseServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -622,11 +614,10 @@ export function createGrpcInterfaceType(
   // }
   const streamIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcStreamServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -651,11 +642,10 @@ export function createGrpcInterfaceType(
   // }
   const writableIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpWritableServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -688,11 +678,10 @@ export function createGrpcInterfaceType(
   // }
   const chunkIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcChunkServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -750,7 +739,6 @@ function createUnaryRpcMethod(
 
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
-      undefined,
       undefined,
       methodDescriptor.name,
       undefined,
@@ -855,7 +843,6 @@ function createClientStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpWritableServiceInterface", [
@@ -943,7 +930,6 @@ function createServerStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcStreamServiceInterface", [
@@ -1025,7 +1011,6 @@ function createBidiStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcChunkServiceInterface", [
@@ -1088,7 +1073,6 @@ export function createServiceClient(
 ) {
   const members: Array<ts.ClassElement> = [
     ts.factory.createConstructorDeclaration(
-      undefined,
       undefined,
       [
         createParameter(
@@ -1182,7 +1166,6 @@ export function createServiceClient(
 
   return comment.addDeprecatedJsDoc(
     ts.factory.createClassDeclaration(
-      undefined,
       [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
       ts.factory.createIdentifier(`${serviceDescriptor.name}Client`),
       undefined,
