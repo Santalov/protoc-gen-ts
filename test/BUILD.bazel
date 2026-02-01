@@ -13,20 +13,17 @@ diff_and_update(
     checked = PROT_SOURCES,
 )
 
-# Allow any subpackages to reference the config
-exports_files(
-    [
-        "tsconfig.json",
-    ],
-    visibility = [":__subpackages__"],
-)
-
 
 ts_project(
     name = "tests",
     srcs = glob(["*.ts"]),
-    tsconfig = {}, # no special options
-    extends = "//test:tsconfig.json",
+    tsconfig = {
+        "compilerOptions": {
+            "target": "ES2020",
+            "module": "CommonJS",
+            "strict": True
+        },
+    },
     deps = [
         "@npm//@types/jasmine",
         "@npm//@types/node",

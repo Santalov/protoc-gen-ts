@@ -3,7 +3,8 @@
  * compiler version: 3.19.1
  * source: test/_/deprecated.proto
  * git: https://github.com/thesayyn/protoc-gen-ts
- * @deprecated */
+ * @deprecated
+ */
 import * as pb_1 from "google-protobuf";
 import * as grpc_1 from "@grpc/grpc-js";
 export enum EnumName {
@@ -54,13 +55,10 @@ export class MessageName extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
     }
     set me(value: string) {
-        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0]!, value);
+        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0], value);
     }
     get has_me() {
         return pb_1.Message.getField(this, 2) != null;
-    }
-    clear_me(): void {
-        this.me = undefined!;
     }
     /** @deprecated*/
     get me_deprecated() {
@@ -68,15 +66,11 @@ export class MessageName extends pb_1.Message {
     }
     /** @deprecated*/
     set me_deprecated(value: string) {
-        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0]!, value);
+        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0], value);
     }
     /** @deprecated*/
     get has_me_deprecated() {
         return pb_1.Message.getField(this, 3) != null;
-    }
-    /** @deprecated*/
-    clear_me_deprecated(): void {
-        this.me_deprecated = undefined!;
     }
     get test() {
         const cases: {
@@ -86,13 +80,14 @@ export class MessageName extends pb_1.Message {
             2: "me",
             3: "me_deprecated"
         };
-        return cases[pb_1.Message.computeOneofCase(this, [2, 3])]!;
+        return cases[pb_1.Message.computeOneofCase(this, [2, 3])];
     }
-    static fromObject(data?: MessageName.AsObjectPartial): MessageName {
-        if (!data) {
-            return new MessageName();
-        }
-        const message = new MessageName({});
+    static fromObject(data: {
+        deprecated_field?: string;
+        me?: string;
+        me_deprecated?: string;
+    }): MessageName {
+        const message = new MessageName({} as any);
         if (data.deprecated_field != null) {
             message.deprecated_field = data.deprecated_field;
         }
@@ -105,11 +100,20 @@ export class MessageName extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: MessageName.AsObject = {
-            deprecated_field: this.deprecated_field,
-            me: this.me,
-            me_deprecated: this.me_deprecated
-        };
+        const data: {
+            deprecated_field?: string;
+            me?: string;
+            me_deprecated?: string;
+        } = {};
+        if (this.deprecated_field != null) {
+            data.deprecated_field = this.deprecated_field;
+        }
+        if (this.me != null) {
+            data.me = this.me;
+        }
+        if (this.me_deprecated != null) {
+            data.me_deprecated = this.me_deprecated;
+        }
         return data;
     }
     serialize(): Uint8Array;
@@ -152,18 +156,6 @@ export class MessageName extends pb_1.Message {
         return MessageName.deserialize(bytes);
     }
 }
-export namespace MessageName {
-    export type AsObject = {
-        deprecated_field: string;
-        me: string;
-        me_deprecated: string;
-    };
-    export type AsObjectPartial = {
-        deprecated_field?: string;
-        me?: string;
-        me_deprecated?: string;
-    };
-}
 /** @deprecated*/
 export class MessageName2 extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -172,15 +164,12 @@ export class MessageName2 extends pb_1.Message {
         pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
         if (!Array.isArray(data) && typeof data == "object") { }
     }
-    static fromObject(data?: MessageName2.AsObjectPartial): MessageName2 {
-        if (!data) {
-            return new MessageName2();
-        }
-        const message = new MessageName2({});
+    static fromObject(data: {}): MessageName2 {
+        const message = new MessageName2({} as any);
         return message;
     }
     toObject() {
-        const data: MessageName2.AsObject = {};
+        const data: {} = {};
         return data;
     }
     serialize(): Uint8Array;
@@ -207,10 +196,6 @@ export class MessageName2 extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): MessageName2 {
         return MessageName2.deserialize(bytes);
     }
-}
-export namespace MessageName2 {
-    export type AsObject = {};
-    export type AsObjectPartial = {};
 }
 interface GrpcUnaryServiceInterface<P, R> {
     (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
@@ -257,7 +242,7 @@ export class ServiceNameClient extends grpc_1.makeGenericClientConstructor(Unimp
     }
     /** @deprecated*/
     MethodName: GrpcUnaryServiceInterface<MessageName, MessageName2> = (message: MessageName, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MessageName2>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MessageName2>, callback?: grpc_1.requestCallback<MessageName2>): grpc_1.ClientUnaryCall => {
-        return super["MethodName"]!(message, metadata, options, callback);
+        return super.MethodName(message, metadata, options, callback);
     };
 }
 /** @deprecated*/
@@ -282,6 +267,6 @@ export class ServiceName2Client extends grpc_1.makeGenericClientConstructor(Unim
         super(address, credentials, options);
     }
     MethodName: GrpcUnaryServiceInterface<MessageName, MessageName2> = (message: MessageName, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<MessageName2>, options?: grpc_1.CallOptions | grpc_1.requestCallback<MessageName2>, callback?: grpc_1.requestCallback<MessageName2>): grpc_1.ClientUnaryCall => {
-        return super["MethodName"]!(message, metadata, options, callback);
+        return super.MethodName(message, metadata, options, callback);
     };
 }
