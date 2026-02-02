@@ -41,7 +41,7 @@ export class OneOfWithoutAnyOtherFields extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 1, "") as string;
     }
     set nickname(value: string) {
-        pb_1.Message.setOneofField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_nickname() {
         return pb_1.Message.getField(this, 1) != null;
@@ -50,7 +50,7 @@ export class OneOfWithoutAnyOtherFields extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
     }
     set realname(value: string) {
-        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_realname() {
         return pb_1.Message.getField(this, 2) != null;
@@ -59,7 +59,7 @@ export class OneOfWithoutAnyOtherFields extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
     }
     set age(value: string) {
-        pb_1.Message.setOneofField(this, 4, this.#one_of_decls[1], value);
+        pb_1.Message.setOneofField(this, 4, this.#one_of_decls[1]!, value);
     }
     get has_age() {
         return pb_1.Message.getField(this, 4) != null;
@@ -68,7 +68,7 @@ export class OneOfWithoutAnyOtherFields extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
     }
     set date_of_birth(value: string) {
-        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[1], value);
+        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[1]!, value);
     }
     get has_date_of_birth() {
         return pb_1.Message.getField(this, 3) != null;
@@ -215,7 +215,7 @@ export class OneOf extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 3, "") as string;
     }
     set date_of_birth(value: string) {
-        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_date_of_birth() {
         return pb_1.Message.getField(this, 3) != null;
@@ -224,7 +224,7 @@ export class OneOf extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 4, "") as string;
     }
     set age(value: string) {
-        pb_1.Message.setOneofField(this, 4, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 4, this.#one_of_decls[0]!, value);
     }
     get has_age() {
         return pb_1.Message.getField(this, 4) != null;

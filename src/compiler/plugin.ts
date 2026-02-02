@@ -219,7 +219,7 @@ export class CodeGeneratorRequest extends pb_1.Message {
             message.parameter = data.parameter;
         }
         if (data.compiler_version != null) {
-            message.compiler_version = Version.fromObject(data.compiler_version);
+            message.compiler_version = Version.fromObject(data.compiler_version ?? {});
         }
         return message;
     }
@@ -487,7 +487,7 @@ export namespace CodeGeneratorResponse {
                 message.content = data.content;
             }
             if (data.generated_code_info != null) {
-                message.generated_code_info = dependency_1.GeneratedCodeInfo.fromObject(data.generated_code_info);
+                message.generated_code_info = dependency_1.GeneratedCodeInfo.fromObject(data.generated_code_info ?? {});
             }
             return message;
         }

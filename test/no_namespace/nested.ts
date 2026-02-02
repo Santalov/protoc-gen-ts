@@ -69,7 +69,7 @@ export class SchedulingContext extends pb_1.Message {
             message.timeout = data.timeout;
         }
         if (data.batch != null) {
-            message.batch = SchedulingContextBatch.fromObject(data.batch);
+            message.batch = SchedulingContextBatch.fromObject(data.batch ?? {});
         }
         return message;
     }
@@ -275,7 +275,7 @@ export class SchedulingContextBatch extends pb_1.Message {
             message.deadline = data.deadline;
         }
         if (data.process != null) {
-            message.process = SchedulingContextBatchProcess.fromObject(data.process);
+            message.process = SchedulingContextBatchProcess.fromObject(data.process ?? {});
         }
         return message;
     }
@@ -472,7 +472,7 @@ export class Target extends pb_1.Message {
             message.handler = data.handler;
         }
         if (data.context != null) {
-            message.context = SchedulingContext.fromObject(data.context);
+            message.context = SchedulingContext.fromObject(data.context ?? {});
         }
         return message;
     }
@@ -597,7 +597,7 @@ export class Event extends pb_1.Message {
             message.type = data.type;
         }
         if (data.target != null) {
-            message.target = Target.fromObject(data.target);
+            message.target = Target.fromObject(data.target ?? {});
         }
         return message;
     }

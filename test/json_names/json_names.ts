@@ -82,7 +82,7 @@ export class JsonNamesMessage extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 5, "") as string;
     }
     set anOptionalString(value: string) {
-        pb_1.Message.setOneofField(this, 5, this.#one_of_decls[1], value);
+        pb_1.Message.setOneofField(this, 5, this.#one_of_decls[1]!, value);
     }
     get hasAnOptionalString() {
         return pb_1.Message.getField(this, 5) != null;
@@ -91,7 +91,7 @@ export class JsonNamesMessage extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 6, "") as string;
     }
     set aSingleString(value: string) {
-        pb_1.Message.setOneofField(this, 6, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 6, this.#one_of_decls[0]!, value);
     }
     get hasASingleString() {
         return pb_1.Message.getField(this, 6) != null;
@@ -100,7 +100,7 @@ export class JsonNamesMessage extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 7, 0) as number;
     }
     set aSingleNumber(value: number) {
-        pb_1.Message.setOneofField(this, 7, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 7, this.#one_of_decls[0]!, value);
     }
     get hasASingleNumber() {
         return pb_1.Message.getField(this, 7) != null;
@@ -141,7 +141,7 @@ export class JsonNamesMessage extends pb_1.Message {
             message.anInteger = data.anInteger;
         }
         if (data.aNestedMessage != null) {
-            message.aNestedMessage = JsonNamesMessage.NestedMessage.fromObject(data.aNestedMessage);
+            message.aNestedMessage = JsonNamesMessage.NestedMessage.fromObject(data.aNestedMessage ?? {});
         }
         if (data.colorSpace != null) {
             message.colorSpace = data.colorSpace;

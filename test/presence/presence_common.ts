@@ -101,7 +101,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 1, 0) as number;
     }
     set int32(value: number) {
-        pb_1.Message.setOneofField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_int32() {
         return pb_1.Message.getField(this, 1) != null;
@@ -110,7 +110,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, PresenceCommonMessage, 2) as PresenceCommonMessage;
     }
     set message(value: PresenceCommonMessage) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_message() {
         return pb_1.Message.getField(this, 2) != null;
@@ -134,7 +134,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
             message.int32 = data.int32;
         }
         if (data.message != null) {
-            message.message = PresenceCommonMessage.fromObject(data.message);
+            message.message = PresenceCommonMessage.fromObject(data.message ?? {});
         }
         return message;
     }

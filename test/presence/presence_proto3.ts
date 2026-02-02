@@ -110,7 +110,7 @@ export class PresenceMessageV3 extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 6, 0) as number;
     }
     set opt_int32(value: number) {
-        pb_1.Message.setOneofField(this, 6, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 6, this.#one_of_decls[0]!, value);
     }
     get has_opt_int32() {
         return pb_1.Message.getField(this, 6) != null;
@@ -119,7 +119,7 @@ export class PresenceMessageV3 extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 7, dependency_1.PresenceCommonEnum.ZERO) as dependency_1.PresenceCommonEnum;
     }
     set opt_enum(value: dependency_1.PresenceCommonEnum) {
-        pb_1.Message.setOneofField(this, 7, this.#one_of_decls[1], value);
+        pb_1.Message.setOneofField(this, 7, this.#one_of_decls[1]!, value);
     }
     get has_opt_enum() {
         return pb_1.Message.getField(this, 7) != null;
@@ -128,7 +128,7 @@ export class PresenceMessageV3 extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 8, "") as string;
     }
     set opt_string(value: string) {
-        pb_1.Message.setOneofField(this, 8, this.#one_of_decls[2], value);
+        pb_1.Message.setOneofField(this, 8, this.#one_of_decls[2]!, value);
     }
     get has_opt_string() {
         return pb_1.Message.getField(this, 8) != null;
@@ -137,7 +137,7 @@ export class PresenceMessageV3 extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessage, 9) as dependency_1.PresenceCommonMessage;
     }
     set opt_message(value: dependency_1.PresenceCommonMessage) {
-        pb_1.Message.setOneofWrapperField(this, 9, this.#one_of_decls[3], value);
+        pb_1.Message.setOneofWrapperField(this, 9, this.#one_of_decls[3]!, value);
     }
     get has_opt_message() {
         return pb_1.Message.getField(this, 9) != null;
@@ -146,7 +146,7 @@ export class PresenceMessageV3 extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessageOneOf, 10) as dependency_1.PresenceCommonMessageOneOf;
     }
     set opt_oneof(value: dependency_1.PresenceCommonMessageOneOf) {
-        pb_1.Message.setOneofWrapperField(this, 10, this.#one_of_decls[4], value);
+        pb_1.Message.setOneofWrapperField(this, 10, this.#one_of_decls[4]!, value);
     }
     get has_opt_oneof() {
         return pb_1.Message.getField(this, 10) != null;
@@ -235,10 +235,10 @@ export class PresenceMessageV3 extends pb_1.Message {
             message.string = data.string;
         }
         if (data.message != null) {
-            message.message = dependency_1.PresenceCommonMessage.fromObject(data.message);
+            message.message = dependency_1.PresenceCommonMessage.fromObject(data.message ?? {});
         }
         if (data.oneof != null) {
-            message.oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.oneof);
+            message.oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.oneof ?? {});
         }
         if (data.opt_int32 != null) {
             message.opt_int32 = data.opt_int32;
@@ -250,16 +250,16 @@ export class PresenceMessageV3 extends pb_1.Message {
             message.opt_string = data.opt_string;
         }
         if (data.opt_message != null) {
-            message.opt_message = dependency_1.PresenceCommonMessage.fromObject(data.opt_message);
+            message.opt_message = dependency_1.PresenceCommonMessage.fromObject(data.opt_message ?? {});
         }
         if (data.opt_oneof != null) {
-            message.opt_oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.opt_oneof);
+            message.opt_oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.opt_oneof ?? {});
         }
         if (data.repeated != null) {
             message.repeated = data.repeated;
         }
         if (typeof data.map == "object") {
-            message.map = new Map(Object.entries(data.map));
+            message.map = new Map(Object.entries(data.map ?? {}));
         }
         return message;
     }

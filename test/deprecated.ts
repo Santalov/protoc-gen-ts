@@ -55,7 +55,7 @@ export class MessageName extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
     }
     set me(value: string) {
-        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_me() {
         return pb_1.Message.getField(this, 2) != null;
@@ -66,7 +66,7 @@ export class MessageName extends pb_1.Message {
     }
     /** @deprecated*/
     set me_deprecated(value: string) {
-        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 3, this.#one_of_decls[0]!, value);
     }
     /** @deprecated*/
     get has_me_deprecated() {

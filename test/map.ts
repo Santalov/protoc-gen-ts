@@ -160,16 +160,16 @@ export class Tags extends pb_1.Message {
             message.key = data.key;
         }
         if (typeof data.keys == "object") {
-            message.keys = new Map(Object.entries(data.keys));
+            message.keys = new Map(Object.entries(data.keys ?? {}));
         }
         if (typeof data.topics == "object") {
-            message.topics = new Map(Object.entries(data.topics).map(([key, value]) => [key, Topic.fromObject(value)]));
+            message.topics = new Map(Object.entries(data.topics ?? {}).map(([key, value]) => [key, Topic.fromObject(value)]));
         }
         if (typeof data.imported == "object") {
-            message.imported = new Map(Object.entries(data.imported).map(([key, value]) => [Number(key), dependency_1.importdirective.Imported.SubMessage.fromObject(value)]));
+            message.imported = new Map(Object.entries(data.imported ?? {}).map(([key, value]) => [Number(key), dependency_1.importdirective.Imported.SubMessage.fromObject(value)]));
         }
         if (typeof data.imported2 == "object") {
-            message.imported2 = new Map(Object.entries(data.imported2).map(([key, value]) => [Number(key), value]));
+            message.imported2 = new Map(Object.entries(data.imported2 ?? {}).map(([key, value]) => [Number(key), value]));
         }
         return message;
     }

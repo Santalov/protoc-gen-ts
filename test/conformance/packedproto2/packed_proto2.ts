@@ -340,7 +340,7 @@ export class HydratedTemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HydratedQuickReplyButton, 1) as HydratedQuickReplyButton;
     }
     set quickReplyButton(value: HydratedQuickReplyButton) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_quickReplyButton() {
         return pb_1.Message.getField(this, 1) != null;
@@ -349,7 +349,7 @@ export class HydratedTemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HydratedURLButton, 2) as HydratedURLButton;
     }
     set urlButton(value: HydratedURLButton) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_urlButton() {
         return pb_1.Message.getField(this, 2) != null;
@@ -358,7 +358,7 @@ export class HydratedTemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HydratedCallButton, 3) as HydratedCallButton;
     }
     set callButton(value: HydratedCallButton) {
-        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_callButton() {
         return pb_1.Message.getField(this, 3) != null;
@@ -385,13 +385,13 @@ export class HydratedTemplateButton extends pb_1.Message {
             message.index = data.index;
         }
         if (data.quickReplyButton != null) {
-            message.quickReplyButton = HydratedQuickReplyButton.fromObject(data.quickReplyButton);
+            message.quickReplyButton = HydratedQuickReplyButton.fromObject(data.quickReplyButton ?? {});
         }
         if (data.urlButton != null) {
-            message.urlButton = HydratedURLButton.fromObject(data.urlButton);
+            message.urlButton = HydratedURLButton.fromObject(data.urlButton ?? {});
         }
         if (data.callButton != null) {
-            message.callButton = HydratedCallButton.fromObject(data.callButton);
+            message.callButton = HydratedCallButton.fromObject(data.callButton ?? {});
         }
         return message;
     }
@@ -502,7 +502,7 @@ export class QuickReplyButton extends pb_1.Message {
     }): QuickReplyButton {
         const message = new QuickReplyButton({} as any);
         if (data.displayText != null) {
-            message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
+            message.displayText = HighlyStructuredMessage.fromObject(data.displayText ?? {});
         }
         if (data.id != null) {
             message.id = data.id;
@@ -598,10 +598,10 @@ export class URLButton extends pb_1.Message {
     }): URLButton {
         const message = new URLButton({} as any);
         if (data.displayText != null) {
-            message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
+            message.displayText = HighlyStructuredMessage.fromObject(data.displayText ?? {});
         }
         if (data.url != null) {
-            message.url = HighlyStructuredMessage.fromObject(data.url);
+            message.url = HighlyStructuredMessage.fromObject(data.url ?? {});
         }
         return message;
     }
@@ -694,10 +694,10 @@ export class CallButton extends pb_1.Message {
     }): CallButton {
         const message = new CallButton({} as any);
         if (data.displayText != null) {
-            message.displayText = HighlyStructuredMessage.fromObject(data.displayText);
+            message.displayText = HighlyStructuredMessage.fromObject(data.displayText ?? {});
         }
         if (data.phoneNumber != null) {
-            message.phoneNumber = HighlyStructuredMessage.fromObject(data.phoneNumber);
+            message.phoneNumber = HighlyStructuredMessage.fromObject(data.phoneNumber ?? {});
         }
         return message;
     }
@@ -796,7 +796,7 @@ export class TemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, QuickReplyButton, 1) as QuickReplyButton;
     }
     set quickReplyButton(value: QuickReplyButton) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_quickReplyButton() {
         return pb_1.Message.getField(this, 1) != null;
@@ -805,7 +805,7 @@ export class TemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, URLButton, 2) as URLButton;
     }
     set urlButton(value: URLButton) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_urlButton() {
         return pb_1.Message.getField(this, 2) != null;
@@ -814,7 +814,7 @@ export class TemplateButton extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, CallButton, 3) as CallButton;
     }
     set callButton(value: CallButton) {
-        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_callButton() {
         return pb_1.Message.getField(this, 3) != null;
@@ -841,13 +841,13 @@ export class TemplateButton extends pb_1.Message {
             message.index = data.index;
         }
         if (data.quickReplyButton != null) {
-            message.quickReplyButton = QuickReplyButton.fromObject(data.quickReplyButton);
+            message.quickReplyButton = QuickReplyButton.fromObject(data.quickReplyButton ?? {});
         }
         if (data.urlButton != null) {
-            message.urlButton = URLButton.fromObject(data.urlButton);
+            message.urlButton = URLButton.fromObject(data.urlButton ?? {});
         }
         if (data.callButton != null) {
-            message.callButton = CallButton.fromObject(data.callButton);
+            message.callButton = CallButton.fromObject(data.callButton ?? {});
         }
         return message;
     }
@@ -1213,7 +1213,7 @@ export class InteractiveAnnotation extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, Location, 2) as Location;
     }
     set location(value: Location) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_location() {
         return pb_1.Message.getField(this, 2) != null;
@@ -1235,7 +1235,7 @@ export class InteractiveAnnotation extends pb_1.Message {
             polygonVertices: data.polygonVertices.map(item => Point.fromObject(item))
         } as any);
         if (data.location != null) {
-            message.location = Location.fromObject(data.location);
+            message.location = Location.fromObject(data.location ?? {});
         }
         return message;
     }
@@ -1668,7 +1668,7 @@ export class ContextInfo extends pb_1.Message {
             message.participant = data.participant;
         }
         if (data.quotedMessage != null) {
-            message.quotedMessage = Message.fromObject(data.quotedMessage);
+            message.quotedMessage = Message.fromObject(data.quotedMessage ?? {});
         }
         if (data.remoteJid != null) {
             message.remoteJid = data.remoteJid;
@@ -1689,10 +1689,10 @@ export class ContextInfo extends pb_1.Message {
             message.isForwarded = data.isForwarded;
         }
         if (data.quotedAd != null) {
-            message.quotedAd = AdReplyInfo.fromObject(data.quotedAd);
+            message.quotedAd = AdReplyInfo.fromObject(data.quotedAd ?? {});
         }
         if (data.placeholderKey != null) {
-            message.placeholderKey = MessageKey.fromObject(data.placeholderKey);
+            message.placeholderKey = MessageKey.fromObject(data.placeholderKey ?? {});
         }
         if (data.expiration != null) {
             message.expiration = data.expiration;
@@ -2301,7 +2301,7 @@ export class ImageMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.firstScanSidecar != null) {
             message.firstScanSidecar = data.firstScanSidecar;
@@ -2602,7 +2602,7 @@ export class ContactMessage extends pb_1.Message {
             message.vcard = data.vcard;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -2877,7 +2877,7 @@ export class LocationMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -3230,7 +3230,7 @@ export class ExtendedTextMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.doNotPlayInline != null) {
             message.doNotPlayInline = data.doNotPlayInline;
@@ -3620,7 +3620,7 @@ export class DocumentMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -3982,7 +3982,7 @@ export class AudioMessage extends pb_1.Message {
             message.mediaKeyTimestamp = data.mediaKeyTimestamp;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.streamingSidecar != null) {
             message.streamingSidecar = data.streamingSidecar;
@@ -4431,7 +4431,7 @@ export class VideoMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.streamingSidecar != null) {
             message.streamingSidecar = data.streamingSidecar;
@@ -4889,7 +4889,7 @@ export class ProtocolMessage extends pb_1.Message {
     }): ProtocolMessage {
         const message = new ProtocolMessage({} as any);
         if (data.key != null) {
-            message.key = MessageKey.fromObject(data.key);
+            message.key = MessageKey.fromObject(data.key ?? {});
         }
         if (data.type != null) {
             message.type = data.type;
@@ -4901,7 +4901,7 @@ export class ProtocolMessage extends pb_1.Message {
             message.ephemeralSettingTimestamp = data.ephemeralSettingTimestamp;
         }
         if (data.historySyncNotification != null) {
-            message.historySyncNotification = HistorySyncNotification.fromObject(data.historySyncNotification);
+            message.historySyncNotification = HistorySyncNotification.fromObject(data.historySyncNotification ?? {});
         }
         return message;
     }
@@ -5304,7 +5304,7 @@ export class ContactsArrayMessage extends pb_1.Message {
             message.displayName = data.displayName;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -5796,7 +5796,7 @@ export class HSMDateTime extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HSMDateTimeComponent, 1) as HSMDateTimeComponent;
     }
     set component(value: HSMDateTimeComponent) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_component() {
         return pb_1.Message.getField(this, 1) != null;
@@ -5805,7 +5805,7 @@ export class HSMDateTime extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HSMDateTimeUnixEpoch, 2) as HSMDateTimeUnixEpoch;
     }
     set unixEpoch(value: HSMDateTimeUnixEpoch) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_unixEpoch() {
         return pb_1.Message.getField(this, 2) != null;
@@ -5826,10 +5826,10 @@ export class HSMDateTime extends pb_1.Message {
     }): HSMDateTime {
         const message = new HSMDateTime({} as any);
         if (data.component != null) {
-            message.component = HSMDateTimeComponent.fromObject(data.component);
+            message.component = HSMDateTimeComponent.fromObject(data.component ?? {});
         }
         if (data.unixEpoch != null) {
-            message.unixEpoch = HSMDateTimeUnixEpoch.fromObject(data.unixEpoch);
+            message.unixEpoch = HSMDateTimeUnixEpoch.fromObject(data.unixEpoch ?? {});
         }
         return message;
     }
@@ -5919,7 +5919,7 @@ export class HSMLocalizableParameter extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HSMCurrency, 2) as HSMCurrency;
     }
     set currency(value: HSMCurrency) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_currency() {
         return pb_1.Message.getField(this, 2) != null;
@@ -5928,7 +5928,7 @@ export class HSMLocalizableParameter extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HSMDateTime, 3) as HSMDateTime;
     }
     set dateTime(value: HSMDateTime) {
-        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_dateTime() {
         return pb_1.Message.getField(this, 3) != null;
@@ -5953,10 +5953,10 @@ export class HSMLocalizableParameter extends pb_1.Message {
             message.default = data.default;
         }
         if (data.currency != null) {
-            message.currency = HSMCurrency.fromObject(data.currency);
+            message.currency = HSMCurrency.fromObject(data.currency ?? {});
         }
         if (data.dateTime != null) {
-            message.dateTime = HSMDateTime.fromObject(data.dateTime);
+            message.dateTime = HSMDateTime.fromObject(data.dateTime ?? {});
         }
         return message;
     }
@@ -6167,7 +6167,7 @@ export class HighlyStructuredMessage extends pb_1.Message {
             message.deterministicLc = data.deterministicLc;
         }
         if (data.hydratedHsm != null) {
-            message.hydratedHsm = TemplateMessage.fromObject(data.hydratedHsm);
+            message.hydratedHsm = TemplateMessage.fromObject(data.hydratedHsm ?? {});
         }
         return message;
     }
@@ -6322,10 +6322,10 @@ export class SendPaymentMessage extends pb_1.Message {
     }): SendPaymentMessage {
         const message = new SendPaymentMessage({} as any);
         if (data.noteMessage != null) {
-            message.noteMessage = Message.fromObject(data.noteMessage);
+            message.noteMessage = Message.fromObject(data.noteMessage ?? {});
         }
         if (data.requestMessageKey != null) {
-            message.requestMessageKey = MessageKey.fromObject(data.requestMessageKey);
+            message.requestMessageKey = MessageKey.fromObject(data.requestMessageKey ?? {});
         }
         return message;
     }
@@ -6460,7 +6460,7 @@ export class RequestPaymentMessage extends pb_1.Message {
     }): RequestPaymentMessage {
         const message = new RequestPaymentMessage({} as any);
         if (data.noteMessage != null) {
-            message.noteMessage = Message.fromObject(data.noteMessage);
+            message.noteMessage = Message.fromObject(data.noteMessage ?? {});
         }
         if (data.currencyCodeIso4217 != null) {
             message.currencyCodeIso4217 = data.currencyCodeIso4217;
@@ -6578,7 +6578,7 @@ export class DeclinePaymentRequestMessage extends pb_1.Message {
     }): DeclinePaymentRequestMessage {
         const message = new DeclinePaymentRequestMessage({} as any);
         if (data.key != null) {
-            message.key = MessageKey.fromObject(data.key);
+            message.key = MessageKey.fromObject(data.key ?? {});
         }
         return message;
     }
@@ -6648,7 +6648,7 @@ export class CancelPaymentRequestMessage extends pb_1.Message {
     }): CancelPaymentRequestMessage {
         const message = new CancelPaymentRequestMessage({} as any);
         if (data.key != null) {
-            message.key = MessageKey.fromObject(data.key);
+            message.key = MessageKey.fromObject(data.key ?? {});
         }
         return message;
     }
@@ -6871,7 +6871,7 @@ export class LiveLocationMessage extends pb_1.Message {
             message.jpegThumbnail = data.jpegThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -7260,7 +7260,7 @@ export class StickerMessage extends pb_1.Message {
             message.pngThumbnail = data.pngThumbnail;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -7521,7 +7521,7 @@ export class FourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, DocumentMessage, 1) as DocumentMessage;
     }
     set documentMessage(value: DocumentMessage) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_documentMessage() {
         return pb_1.Message.getField(this, 1) != null;
@@ -7530,7 +7530,7 @@ export class FourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HighlyStructuredMessage, 2) as HighlyStructuredMessage;
     }
     set highlyStructuredMessage(value: HighlyStructuredMessage) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_highlyStructuredMessage() {
         return pb_1.Message.getField(this, 2) != null;
@@ -7539,7 +7539,7 @@ export class FourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, ImageMessage, 3) as ImageMessage;
     }
     set imageMessage(value: ImageMessage) {
-        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_imageMessage() {
         return pb_1.Message.getField(this, 3) != null;
@@ -7548,7 +7548,7 @@ export class FourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, VideoMessage, 4) as VideoMessage;
     }
     set videoMessage(value: VideoMessage) {
-        pb_1.Message.setOneofWrapperField(this, 4, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 4, this.#one_of_decls[0]!, value);
     }
     get has_videoMessage() {
         return pb_1.Message.getField(this, 4) != null;
@@ -7557,7 +7557,7 @@ export class FourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, LocationMessage, 5) as LocationMessage;
     }
     set locationMessage(value: LocationMessage) {
-        pb_1.Message.setOneofWrapperField(this, 5, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 5, this.#one_of_decls[0]!, value);
     }
     get has_locationMessage() {
         return pb_1.Message.getField(this, 5) != null;
@@ -7589,25 +7589,25 @@ export class FourRowTemplate extends pb_1.Message {
             buttons: data.buttons.map(item => TemplateButton.fromObject(item))
         } as any);
         if (data.content != null) {
-            message.content = HighlyStructuredMessage.fromObject(data.content);
+            message.content = HighlyStructuredMessage.fromObject(data.content ?? {});
         }
         if (data.footer != null) {
-            message.footer = HighlyStructuredMessage.fromObject(data.footer);
+            message.footer = HighlyStructuredMessage.fromObject(data.footer ?? {});
         }
         if (data.documentMessage != null) {
-            message.documentMessage = DocumentMessage.fromObject(data.documentMessage);
+            message.documentMessage = DocumentMessage.fromObject(data.documentMessage ?? {});
         }
         if (data.highlyStructuredMessage != null) {
-            message.highlyStructuredMessage = HighlyStructuredMessage.fromObject(data.highlyStructuredMessage);
+            message.highlyStructuredMessage = HighlyStructuredMessage.fromObject(data.highlyStructuredMessage ?? {});
         }
         if (data.imageMessage != null) {
-            message.imageMessage = ImageMessage.fromObject(data.imageMessage);
+            message.imageMessage = ImageMessage.fromObject(data.imageMessage ?? {});
         }
         if (data.videoMessage != null) {
-            message.videoMessage = VideoMessage.fromObject(data.videoMessage);
+            message.videoMessage = VideoMessage.fromObject(data.videoMessage ?? {});
         }
         if (data.locationMessage != null) {
-            message.locationMessage = LocationMessage.fromObject(data.locationMessage);
+            message.locationMessage = LocationMessage.fromObject(data.locationMessage ?? {});
         }
         return message;
     }
@@ -7818,7 +7818,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, DocumentMessage, 1) as DocumentMessage;
     }
     set documentMessage(value: DocumentMessage) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_documentMessage() {
         return pb_1.Message.getField(this, 1) != null;
@@ -7827,7 +7827,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 2, "") as string;
     }
     set hydratedTitleText(value: string) {
-        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_hydratedTitleText() {
         return pb_1.Message.getField(this, 2) != null;
@@ -7836,7 +7836,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, ImageMessage, 3) as ImageMessage;
     }
     set imageMessage(value: ImageMessage) {
-        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 3, this.#one_of_decls[0]!, value);
     }
     get has_imageMessage() {
         return pb_1.Message.getField(this, 3) != null;
@@ -7845,7 +7845,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, VideoMessage, 4) as VideoMessage;
     }
     set videoMessage(value: VideoMessage) {
-        pb_1.Message.setOneofWrapperField(this, 4, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 4, this.#one_of_decls[0]!, value);
     }
     get has_videoMessage() {
         return pb_1.Message.getField(this, 4) != null;
@@ -7854,7 +7854,7 @@ export class HydratedFourRowTemplate extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, LocationMessage, 5) as LocationMessage;
     }
     set locationMessage(value: LocationMessage) {
-        pb_1.Message.setOneofWrapperField(this, 5, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 5, this.#one_of_decls[0]!, value);
     }
     get has_locationMessage() {
         return pb_1.Message.getField(this, 5) != null;
@@ -7896,19 +7896,19 @@ export class HydratedFourRowTemplate extends pb_1.Message {
             message.templateId = data.templateId;
         }
         if (data.documentMessage != null) {
-            message.documentMessage = DocumentMessage.fromObject(data.documentMessage);
+            message.documentMessage = DocumentMessage.fromObject(data.documentMessage ?? {});
         }
         if (data.hydratedTitleText != null) {
             message.hydratedTitleText = data.hydratedTitleText;
         }
         if (data.imageMessage != null) {
-            message.imageMessage = ImageMessage.fromObject(data.imageMessage);
+            message.imageMessage = ImageMessage.fromObject(data.imageMessage ?? {});
         }
         if (data.videoMessage != null) {
-            message.videoMessage = VideoMessage.fromObject(data.videoMessage);
+            message.videoMessage = VideoMessage.fromObject(data.videoMessage ?? {});
         }
         if (data.locationMessage != null) {
-            message.locationMessage = LocationMessage.fromObject(data.locationMessage);
+            message.locationMessage = LocationMessage.fromObject(data.locationMessage ?? {});
         }
         return message;
     }
@@ -8074,7 +8074,7 @@ export class TemplateMessage extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, FourRowTemplate, 1) as FourRowTemplate;
     }
     set fourRowTemplate(value: FourRowTemplate) {
-        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 1, this.#one_of_decls[0]!, value);
     }
     get has_fourRowTemplate() {
         return pb_1.Message.getField(this, 1) != null;
@@ -8083,7 +8083,7 @@ export class TemplateMessage extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, HydratedFourRowTemplate, 2) as HydratedFourRowTemplate;
     }
     set hydratedFourRowTemplate(value: HydratedFourRowTemplate) {
-        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0]!, value);
     }
     get has_hydratedFourRowTemplate() {
         return pb_1.Message.getField(this, 2) != null;
@@ -8106,16 +8106,16 @@ export class TemplateMessage extends pb_1.Message {
     }): TemplateMessage {
         const message = new TemplateMessage({} as any);
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.hydratedTemplate != null) {
-            message.hydratedTemplate = HydratedFourRowTemplate.fromObject(data.hydratedTemplate);
+            message.hydratedTemplate = HydratedFourRowTemplate.fromObject(data.hydratedTemplate ?? {});
         }
         if (data.fourRowTemplate != null) {
-            message.fourRowTemplate = FourRowTemplate.fromObject(data.fourRowTemplate);
+            message.fourRowTemplate = FourRowTemplate.fromObject(data.fourRowTemplate ?? {});
         }
         if (data.hydratedFourRowTemplate != null) {
-            message.hydratedFourRowTemplate = HydratedFourRowTemplate.fromObject(data.hydratedFourRowTemplate);
+            message.hydratedFourRowTemplate = HydratedFourRowTemplate.fromObject(data.hydratedFourRowTemplate ?? {});
         }
         return message;
     }
@@ -8260,7 +8260,7 @@ export class TemplateButtonReplyMessage extends pb_1.Message {
             message.selectedDisplayText = data.selectedDisplayText;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         if (data.selectedIndex != null) {
             message.selectedIndex = data.selectedIndex;
@@ -8388,7 +8388,7 @@ export class CatalogSnapshot extends pb_1.Message {
     }): CatalogSnapshot {
         const message = new CatalogSnapshot({} as any);
         if (data.catalogImage != null) {
-            message.catalogImage = ImageMessage.fromObject(data.catalogImage);
+            message.catalogImage = ImageMessage.fromObject(data.catalogImage ?? {});
         }
         if (data.title != null) {
             message.title = data.title;
@@ -8608,7 +8608,7 @@ export class ProductSnapshot extends pb_1.Message {
     }): ProductSnapshot {
         const message = new ProductSnapshot({} as any);
         if (data.productImage != null) {
-            message.productImage = ImageMessage.fromObject(data.productImage);
+            message.productImage = ImageMessage.fromObject(data.productImage ?? {});
         }
         if (data.productId != null) {
             message.productId = data.productId;
@@ -8828,16 +8828,16 @@ export class ProductMessage extends pb_1.Message {
     }): ProductMessage {
         const message = new ProductMessage({} as any);
         if (data.product != null) {
-            message.product = ProductSnapshot.fromObject(data.product);
+            message.product = ProductSnapshot.fromObject(data.product ?? {});
         }
         if (data.businessOwnerJid != null) {
             message.businessOwnerJid = data.businessOwnerJid;
         }
         if (data.catalog != null) {
-            message.catalog = CatalogSnapshot.fromObject(data.catalog);
+            message.catalog = CatalogSnapshot.fromObject(data.catalog ?? {});
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -9036,7 +9036,7 @@ export class GroupInviteMessage extends pb_1.Message {
             message.caption = data.caption;
         }
         if (data.contextInfo != null) {
-            message.contextInfo = ContextInfo.fromObject(data.contextInfo);
+            message.contextInfo = ContextInfo.fromObject(data.contextInfo ?? {});
         }
         return message;
     }
@@ -9191,7 +9191,7 @@ export class DeviceSentMessage extends pb_1.Message {
             message.destinationJid = data.destinationJid;
         }
         if (data.message != null) {
-            message.message = Message.fromObject(data.message);
+            message.message = Message.fromObject(data.message ?? {});
         }
         if (data.phash != null) {
             message.phash = data.phash;
@@ -9635,79 +9635,79 @@ export class Message extends pb_1.Message {
             message.conversation = data.conversation;
         }
         if (data.senderKeyDistributionMessage != null) {
-            message.senderKeyDistributionMessage = SenderKeyDistributionMessage.fromObject(data.senderKeyDistributionMessage);
+            message.senderKeyDistributionMessage = SenderKeyDistributionMessage.fromObject(data.senderKeyDistributionMessage ?? {});
         }
         if (data.imageMessage != null) {
-            message.imageMessage = ImageMessage.fromObject(data.imageMessage);
+            message.imageMessage = ImageMessage.fromObject(data.imageMessage ?? {});
         }
         if (data.contactMessage != null) {
-            message.contactMessage = ContactMessage.fromObject(data.contactMessage);
+            message.contactMessage = ContactMessage.fromObject(data.contactMessage ?? {});
         }
         if (data.locationMessage != null) {
-            message.locationMessage = LocationMessage.fromObject(data.locationMessage);
+            message.locationMessage = LocationMessage.fromObject(data.locationMessage ?? {});
         }
         if (data.extendedTextMessage != null) {
-            message.extendedTextMessage = ExtendedTextMessage.fromObject(data.extendedTextMessage);
+            message.extendedTextMessage = ExtendedTextMessage.fromObject(data.extendedTextMessage ?? {});
         }
         if (data.documentMessage != null) {
-            message.documentMessage = DocumentMessage.fromObject(data.documentMessage);
+            message.documentMessage = DocumentMessage.fromObject(data.documentMessage ?? {});
         }
         if (data.audioMessage != null) {
-            message.audioMessage = AudioMessage.fromObject(data.audioMessage);
+            message.audioMessage = AudioMessage.fromObject(data.audioMessage ?? {});
         }
         if (data.videoMessage != null) {
-            message.videoMessage = VideoMessage.fromObject(data.videoMessage);
+            message.videoMessage = VideoMessage.fromObject(data.videoMessage ?? {});
         }
         if (data.call != null) {
-            message.call = Call.fromObject(data.call);
+            message.call = Call.fromObject(data.call ?? {});
         }
         if (data.chat != null) {
-            message.chat = Chat.fromObject(data.chat);
+            message.chat = Chat.fromObject(data.chat ?? {});
         }
         if (data.protocolMessage != null) {
-            message.protocolMessage = ProtocolMessage.fromObject(data.protocolMessage);
+            message.protocolMessage = ProtocolMessage.fromObject(data.protocolMessage ?? {});
         }
         if (data.contactsArrayMessage != null) {
-            message.contactsArrayMessage = ContactsArrayMessage.fromObject(data.contactsArrayMessage);
+            message.contactsArrayMessage = ContactsArrayMessage.fromObject(data.contactsArrayMessage ?? {});
         }
         if (data.highlyStructuredMessage != null) {
-            message.highlyStructuredMessage = HighlyStructuredMessage.fromObject(data.highlyStructuredMessage);
+            message.highlyStructuredMessage = HighlyStructuredMessage.fromObject(data.highlyStructuredMessage ?? {});
         }
         if (data.fastRatchetKeySenderKeyDistributionMessage != null) {
-            message.fastRatchetKeySenderKeyDistributionMessage = SenderKeyDistributionMessage.fromObject(data.fastRatchetKeySenderKeyDistributionMessage);
+            message.fastRatchetKeySenderKeyDistributionMessage = SenderKeyDistributionMessage.fromObject(data.fastRatchetKeySenderKeyDistributionMessage ?? {});
         }
         if (data.sendPaymentMessage != null) {
-            message.sendPaymentMessage = SendPaymentMessage.fromObject(data.sendPaymentMessage);
+            message.sendPaymentMessage = SendPaymentMessage.fromObject(data.sendPaymentMessage ?? {});
         }
         if (data.liveLocationMessage != null) {
-            message.liveLocationMessage = LiveLocationMessage.fromObject(data.liveLocationMessage);
+            message.liveLocationMessage = LiveLocationMessage.fromObject(data.liveLocationMessage ?? {});
         }
         if (data.requestPaymentMessage != null) {
-            message.requestPaymentMessage = RequestPaymentMessage.fromObject(data.requestPaymentMessage);
+            message.requestPaymentMessage = RequestPaymentMessage.fromObject(data.requestPaymentMessage ?? {});
         }
         if (data.declinePaymentRequestMessage != null) {
-            message.declinePaymentRequestMessage = DeclinePaymentRequestMessage.fromObject(data.declinePaymentRequestMessage);
+            message.declinePaymentRequestMessage = DeclinePaymentRequestMessage.fromObject(data.declinePaymentRequestMessage ?? {});
         }
         if (data.cancelPaymentRequestMessage != null) {
-            message.cancelPaymentRequestMessage = CancelPaymentRequestMessage.fromObject(data.cancelPaymentRequestMessage);
+            message.cancelPaymentRequestMessage = CancelPaymentRequestMessage.fromObject(data.cancelPaymentRequestMessage ?? {});
         }
         if (data.templateMessage != null) {
-            message.templateMessage = TemplateMessage.fromObject(data.templateMessage);
+            message.templateMessage = TemplateMessage.fromObject(data.templateMessage ?? {});
         }
         if (data.stickerMessage != null) {
-            message.stickerMessage = StickerMessage.fromObject(data.stickerMessage);
+            message.stickerMessage = StickerMessage.fromObject(data.stickerMessage ?? {});
         }
         if (data.groupInviteMessage != null) {
-            message.groupInviteMessage = GroupInviteMessage.fromObject(data.groupInviteMessage);
+            message.groupInviteMessage = GroupInviteMessage.fromObject(data.groupInviteMessage ?? {});
         }
         if (data.templateButtonReplyMessage != null) {
-            message.templateButtonReplyMessage = TemplateButtonReplyMessage.fromObject(data.templateButtonReplyMessage);
+            message.templateButtonReplyMessage = TemplateButtonReplyMessage.fromObject(data.templateButtonReplyMessage ?? {});
         }
         if (data.productMessage != null) {
-            message.productMessage = ProductMessage.fromObject(data.productMessage);
+            message.productMessage = ProductMessage.fromObject(data.productMessage ?? {});
         }
         if (data.deviceSentMessage != null) {
-            message.deviceSentMessage = DeviceSentMessage.fromObject(data.deviceSentMessage);
+            message.deviceSentMessage = DeviceSentMessage.fromObject(data.deviceSentMessage ?? {});
         }
         return message;
     }
@@ -11244,10 +11244,10 @@ export class NotificationMessageInfo extends pb_1.Message {
     }): NotificationMessageInfo {
         const message = new NotificationMessageInfo({} as any);
         if (data.key != null) {
-            message.key = MessageKey.fromObject(data.key);
+            message.key = MessageKey.fromObject(data.key ?? {});
         }
         if (data.message != null) {
-            message.message = Message.fromObject(data.message);
+            message.message = Message.fromObject(data.message ?? {});
         }
         if (data.messageTimestamp != null) {
             message.messageTimestamp = data.messageTimestamp;
@@ -11633,7 +11633,7 @@ export class PaymentInfo extends pb_1.Message {
             message.transactionTimestamp = data.transactionTimestamp;
         }
         if (data.requestMessageKey != null) {
-            message.requestMessageKey = MessageKey.fromObject(data.requestMessageKey);
+            message.requestMessageKey = MessageKey.fromObject(data.requestMessageKey ?? {});
         }
         if (data.expiryTimestamp != null) {
             message.expiryTimestamp = data.expiryTimestamp;
@@ -12155,12 +12155,12 @@ export class WebMessageInfo extends pb_1.Message {
         ephemeralOffToOn?: boolean;
     }): WebMessageInfo {
         const message = new WebMessageInfo({
-            key: MessageKey.fromObject(data.key),
+            key: MessageKey.fromObject(data.key ?? {}),
             messageStubParameters: data.messageStubParameters,
             labels: data.labels
         } as any);
         if (data.message != null) {
-            message.message = Message.fromObject(data.message);
+            message.message = Message.fromObject(data.message ?? {});
         }
         if (data.messageTimestamp != null) {
             message.messageTimestamp = data.messageTimestamp;
@@ -12205,13 +12205,13 @@ export class WebMessageInfo extends pb_1.Message {
             message.duration = data.duration;
         }
         if (data.paymentInfo != null) {
-            message.paymentInfo = PaymentInfo.fromObject(data.paymentInfo);
+            message.paymentInfo = PaymentInfo.fromObject(data.paymentInfo ?? {});
         }
         if (data.finalLiveLocation != null) {
-            message.finalLiveLocation = LiveLocationMessage.fromObject(data.finalLiveLocation);
+            message.finalLiveLocation = LiveLocationMessage.fromObject(data.finalLiveLocation ?? {});
         }
         if (data.quotedPaymentInfo != null) {
-            message.quotedPaymentInfo = PaymentInfo.fromObject(data.quotedPaymentInfo);
+            message.quotedPaymentInfo = PaymentInfo.fromObject(data.quotedPaymentInfo ?? {});
         }
         if (data.ephemeralStartTimestamp != null) {
             message.ephemeralStartTimestamp = data.ephemeralStartTimestamp;

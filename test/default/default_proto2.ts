@@ -256,7 +256,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 22, 0) as number;
     }
     set one_of_int32(value: number) {
-        pb_1.Message.setOneofField(this, 22, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 22, this.#one_of_decls[0]!, value);
     }
     get has_one_of_int32() {
         return pb_1.Message.getField(this, 22) != null;
@@ -265,7 +265,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 23) as dependency_1.DefaultCommonMessage;
     }
     set one_of_message(value: dependency_1.DefaultCommonMessage) {
-        pb_1.Message.setOneofWrapperField(this, 23, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 23, this.#one_of_decls[0]!, value);
     }
     get has_one_of_message() {
         return pb_1.Message.getField(this, 23) != null;
@@ -320,7 +320,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         bytes?: Uint8Array;
     }): DefaultMessageV2WithoutDefault {
         const message = new DefaultMessageV2WithoutDefault({
-            message: dependency_1.DefaultCommonMessage.fromObject(data.message),
+            message: dependency_1.DefaultCommonMessage.fromObject(data.message ?? {}),
             enum: data.enum,
             bool: data.bool,
             string: data.string,
@@ -337,8 +337,8 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
             float: data.float,
             double: data.double,
             int_but_string: data.int_but_string,
-            map_string_string: new Map(Object.entries(data.map_string_string)),
-            map_string_message: new Map(Object.entries(data.map_string_message).map(([key, value]) => [key, dependency_1.DefaultCommonMessage.fromObject(value)])),
+            map_string_string: new Map(Object.entries(data.map_string_string ?? {})),
+            map_string_message: new Map(Object.entries(data.map_string_message ?? {}).map(([key, value]) => [key, dependency_1.DefaultCommonMessage.fromObject(value)])),
             array_int32: data.array_int32,
             array_message: data.array_message.map(item => dependency_1.DefaultCommonMessage.fromObject(item)),
             bytes: data.bytes
@@ -347,7 +347,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
             message.one_of_int32 = data.one_of_int32;
         }
         if (data.one_of_message != null) {
-            message.one_of_message = dependency_1.DefaultCommonMessage.fromObject(data.one_of_message);
+            message.one_of_message = dependency_1.DefaultCommonMessage.fromObject(data.one_of_message ?? {});
         }
         return message;
     }
@@ -824,7 +824,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         return pb_1.Message.getFieldWithDefault(this, 18, 18) as number;
     }
     set one_of_int32(value: number) {
-        pb_1.Message.setOneofField(this, 18, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofField(this, 18, this.#one_of_decls[0]!, value);
     }
     get has_one_of_int32() {
         return pb_1.Message.getField(this, 18) != null;
@@ -833,7 +833,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 19) as dependency_1.DefaultCommonMessage;
     }
     set one_of_message(value: dependency_1.DefaultCommonMessage) {
-        pb_1.Message.setOneofWrapperField(this, 19, this.#one_of_decls[0], value);
+        pb_1.Message.setOneofWrapperField(this, 19, this.#one_of_decls[0]!, value);
     }
     get has_one_of_message() {
         return pb_1.Message.getField(this, 19) != null;
@@ -870,7 +870,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
     }): DefaultMessageV2WithDefault {
         const message = new DefaultMessageV2WithDefault({
-            message: dependency_1.DefaultCommonMessage.fromObject(data.message),
+            message: dependency_1.DefaultCommonMessage.fromObject(data.message ?? {}),
             enum: data.enum,
             bool: data.bool,
             string: data.string,
@@ -892,7 +892,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
             message.one_of_int32 = data.one_of_int32;
         }
         if (data.one_of_message != null) {
-            message.one_of_message = dependency_1.DefaultCommonMessage.fromObject(data.one_of_message);
+            message.one_of_message = dependency_1.DefaultCommonMessage.fromObject(data.one_of_message ?? {});
         }
         return message;
     }

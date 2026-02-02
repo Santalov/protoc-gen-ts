@@ -62,13 +62,13 @@ export class NoNamespace extends pb_1.Message {
     }): NoNamespace {
         const message = new NoNamespace({} as any);
         if (data.label != null) {
-            message.label = dependency_1.eventTarget.fromObject(data.label);
+            message.label = dependency_1.eventTarget.fromObject(data.label ?? {});
         }
         if (data.other_fields != null) {
-            message.other_fields = dependency_2.MessageFields.fromObject(data.other_fields);
+            message.other_fields = dependency_2.MessageFields.fromObject(data.other_fields ?? {});
         }
         if (data.batch_fields != null) {
-            message.batch_fields = dependency_1.eventSchedulingContextBatch.fromObject(data.batch_fields);
+            message.batch_fields = dependency_1.eventSchedulingContextBatch.fromObject(data.batch_fields ?? {});
         }
         return message;
     }

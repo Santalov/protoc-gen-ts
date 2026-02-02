@@ -200,7 +200,7 @@ export class Chunk extends pb_1.Message {
             message.data = data.data;
         }
         if (data.range != null) {
-            message.range = Chunk.Range.fromObject(data.range);
+            message.range = Chunk.Range.fromObject(data.range ?? {});
         }
         return message;
     }
@@ -384,7 +384,7 @@ export namespace Chunk {
                 message.id = data.id;
             }
             if (data.range != null) {
-                message.range = Chunk.Range.fromObject(data.range);
+                message.range = Chunk.Range.fromObject(data.range ?? {});
             }
             return message;
         }
@@ -614,7 +614,7 @@ export class Put extends pb_1.Message {
             message.id = data.id;
         }
         if (data.chunk != null) {
-            message.chunk = Chunk.fromObject(data.chunk);
+            message.chunk = Chunk.fromObject(data.chunk ?? {});
         }
         return message;
     }

@@ -229,10 +229,10 @@ export class FileDescriptorProto extends pb_1.Message {
             message.package = data.package;
         }
         if (data.options != null) {
-            message.options = FileOptions.fromObject(data.options);
+            message.options = FileOptions.fromObject(data.options ?? {});
         }
         if (data.source_code_info != null) {
-            message.source_code_info = SourceCodeInfo.fromObject(data.source_code_info);
+            message.source_code_info = SourceCodeInfo.fromObject(data.source_code_info ?? {});
         }
         if (data.syntax != null) {
             message.syntax = data.syntax;
@@ -497,7 +497,7 @@ export class DescriptorProto extends pb_1.Message {
             message.name = data.name;
         }
         if (data.options != null) {
-            message.options = MessageOptions.fromObject(data.options);
+            message.options = MessageOptions.fromObject(data.options ?? {});
         }
         return message;
     }
@@ -682,7 +682,7 @@ export namespace DescriptorProto {
                 message.end = data.end;
             }
             if (data.options != null) {
-                message.options = ExtensionRangeOptions.fromObject(data.options);
+                message.options = ExtensionRangeOptions.fromObject(data.options ?? {});
             }
             return message;
         }
@@ -1098,7 +1098,7 @@ export class FieldDescriptorProto extends pb_1.Message {
             message.json_name = data.json_name;
         }
         if (data.options != null) {
-            message.options = FieldOptions.fromObject(data.options);
+            message.options = FieldOptions.fromObject(data.options ?? {});
         }
         if (data.proto3_optional != null) {
             message.proto3_optional = data.proto3_optional;
@@ -1305,7 +1305,7 @@ export class OneofDescriptorProto extends pb_1.Message {
             message.name = data.name;
         }
         if (data.options != null) {
-            message.options = OneofOptions.fromObject(data.options);
+            message.options = OneofOptions.fromObject(data.options ?? {});
         }
         return message;
     }
@@ -1432,7 +1432,7 @@ export class EnumDescriptorProto extends pb_1.Message {
             message.name = data.name;
         }
         if (data.options != null) {
-            message.options = EnumOptions.fromObject(data.options);
+            message.options = EnumOptions.fromObject(data.options ?? {});
         }
         return message;
     }
@@ -1669,7 +1669,7 @@ export class EnumValueDescriptorProto extends pb_1.Message {
             message.number = data.number;
         }
         if (data.options != null) {
-            message.options = EnumValueOptions.fromObject(data.options);
+            message.options = EnumValueOptions.fromObject(data.options ?? {});
         }
         return message;
     }
@@ -1785,7 +1785,7 @@ export class ServiceDescriptorProto extends pb_1.Message {
             message.name = data.name;
         }
         if (data.options != null) {
-            message.options = ServiceOptions.fromObject(data.options);
+            message.options = ServiceOptions.fromObject(data.options ?? {});
         }
         return message;
     }
@@ -1952,7 +1952,7 @@ export class MethodDescriptorProto extends pb_1.Message {
             message.output_type = data.output_type;
         }
         if (data.options != null) {
-            message.options = MethodOptions.fromObject(data.options);
+            message.options = MethodOptions.fromObject(data.options ?? {});
         }
         if (data.client_streaming != null) {
             message.client_streaming = data.client_streaming;

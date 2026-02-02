@@ -173,10 +173,10 @@ export class PresenceMessageV2 extends pb_1.Message {
             int32: data.int32,
             enum: data.enum,
             string: data.string,
-            message: dependency_1.PresenceCommonMessage.fromObject(data.message),
-            oneof: dependency_1.PresenceCommonMessageOneOf.fromObject(data.oneof),
+            message: dependency_1.PresenceCommonMessage.fromObject(data.message ?? {}),
+            oneof: dependency_1.PresenceCommonMessageOneOf.fromObject(data.oneof ?? {}),
             repeated: data.repeated,
-            map: new Map(Object.entries(data.map))
+            map: new Map(Object.entries(data.map ?? {}))
         } as any);
         if (data.opt_int32 != null) {
             message.opt_int32 = data.opt_int32;
@@ -188,10 +188,10 @@ export class PresenceMessageV2 extends pb_1.Message {
             message.opt_string = data.opt_string;
         }
         if (data.opt_message != null) {
-            message.opt_message = dependency_1.PresenceCommonMessage.fromObject(data.opt_message);
+            message.opt_message = dependency_1.PresenceCommonMessage.fromObject(data.opt_message ?? {});
         }
         if (data.opt_oneof != null) {
-            message.opt_oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.opt_oneof);
+            message.opt_oneof = dependency_1.PresenceCommonMessageOneOf.fromObject(data.opt_oneof ?? {});
         }
         return message;
     }

@@ -60,10 +60,10 @@ export namespace importdirective {
         }): Message {
             const message = new Message({} as any);
             if (data.importedField != null) {
-                message.importedField = dependency_1.importdirective.Imported.fromObject(data.importedField);
+                message.importedField = dependency_1.importdirective.Imported.fromObject(data.importedField ?? {});
             }
             if (data.submessageField != null) {
-                message.submessageField = dependency_1.importdirective.Imported.SubMessage.fromObject(data.submessageField);
+                message.submessageField = dependency_1.importdirective.Imported.SubMessage.fromObject(data.submessageField ?? {});
             }
             if (data.enumField != null) {
                 message.enumField = data.enumField;

@@ -145,13 +145,13 @@ export namespace maps {
                 message.key = data.key;
             }
             if (typeof data.keys == "object") {
-                message.keys = new Map(Object.entries(data.keys));
+                message.keys = new Map(Object.entries(data.keys ?? {}));
             }
             if (typeof data.topics == "object") {
-                message.topics = new Map(Object.entries(data.topics).map(([key, value]) => [key, Topic.fromObject(value)]));
+                message.topics = new Map(Object.entries(data.topics ?? {}).map(([key, value]) => [key, Topic.fromObject(value)]));
             }
             if (typeof data.topics_with_intkeys == "object") {
-                message.topics_with_intkeys = new Map(Object.entries(data.topics_with_intkeys).map(([key, value]) => [Number(key), Topic.fromObject(value)]));
+                message.topics_with_intkeys = new Map(Object.entries(data.topics_with_intkeys ?? {}).map(([key, value]) => [Number(key), Topic.fromObject(value)]));
             }
             return message;
         }

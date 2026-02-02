@@ -100,7 +100,13 @@ function createFromObject(
           "entries",
         ),
         undefined,
-        [assignmentExpr],
+        [
+          ts.factory.createBinaryExpression(
+            assignmentExpr,
+            ts.SyntaxKind.QuestionQuestionToken,
+            ts.factory.createObjectLiteralExpression(),
+          ),
+        ],
       );
 
       let coercer;
@@ -216,9 +222,13 @@ function createFromObject(
           ),
           undefined,
           [
-            ts.factory.createPropertyAccessExpression(
-              dataIdentifier,
-              getFieldName(fieldDescriptor),
+            ts.factory.createBinaryExpression(
+              ts.factory.createPropertyAccessExpression(
+                dataIdentifier,
+                getFieldName(fieldDescriptor),
+              ),
+              ts.SyntaxKind.QuestionQuestionToken,
+              ts.factory.createObjectLiteralExpression(),
             ),
           ],
         );
@@ -1186,12 +1196,14 @@ function createOneOfSetterBlock(
           [
             ts.factory.createThis(),
             ts.factory.createNumericLiteral(fieldDescriptor.number),
-            ts.factory.createElementAccessExpression(
-              ts.factory.createPropertyAccessExpression(
-                ts.factory.createThis(),
-                ts.factory.createPrivateIdentifier("#one_of_decls"),
+            ts.factory.createNonNullExpression(
+              ts.factory.createElementAccessExpression(
+                ts.factory.createPropertyAccessExpression(
+                  ts.factory.createThis(),
+                  ts.factory.createPrivateIdentifier("#one_of_decls"),
+                ),
+                fieldDescriptor.has_oneof_index ? fieldDescriptor.oneof_index : 0,
               ),
-              fieldDescriptor.has_oneof_index ? fieldDescriptor.oneof_index : undefined
             ),
             valueParameter,
           ],
