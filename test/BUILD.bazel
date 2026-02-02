@@ -4,6 +4,8 @@ load("@npm//@bazel/typescript:index.bzl", "ts_project")
 load("//tools:diff_and_update.bzl", "diff_and_update")
 load("//test/_:sources.bzl", "PROT_SOURCES")
 
+exports_files(["tsconfig.json"])
+
 diff_and_update(
     name = "diff",
     srcs = [
