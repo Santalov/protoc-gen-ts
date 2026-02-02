@@ -226,7 +226,7 @@ export class PresenceMessageV2 extends pb_1.Message {
             opt_enum: this.opt_enum,
             opt_string: this.opt_string,
             repeated: this.repeated,
-            map: Object.fromEntries(this.map)
+            map: (Object.fromEntries)(this.map)
         };
         if (this.int32 != null) {
             data.int32 = this.int32;

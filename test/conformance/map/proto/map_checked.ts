@@ -155,9 +155,9 @@ export namespace maps {
         toObject() {
             const data: Tags.AsObject = {
                 key: this.key,
-                keys: Object.fromEntries(this.keys),
-                topics: Object.fromEntries(Array.from(this.topics).map(([key, value]) => [key, value.toObject()])),
-                topics_with_intkeys: Object.fromEntries(Array.from(this.topics_with_intkeys).map(([key, value]) => [key, value.toObject()]))
+                keys: (Object.fromEntries)(this.keys),
+                topics: (Object.fromEntries)((Array.from)(this.topics).map(([key, value]) => [key, value.toObject()])),
+                topics_with_intkeys: (Object.fromEntries)((Array.from)(this.topics_with_intkeys).map(([key, value]) => [key, value.toObject()]))
             };
             return data;
         }

@@ -31,7 +31,7 @@ export function wrapNullableType(type: ts.TypeNode) {
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
  */
 export function getMapType(rootDescriptor: descriptor.FileDescriptorProto, fieldDescriptor: descriptor.FieldDescriptorProto) {
-  const messageDescriptor = type.getMapDescriptor(fieldDescriptor.type_name);
+  const messageDescriptor = type.getMapDescriptor(fieldDescriptor.type_name)!;
   const [keyDescriptor, valueDescriptor] = messageDescriptor.field;
 
   return ts.factory.createTypeReferenceNode("Map", [

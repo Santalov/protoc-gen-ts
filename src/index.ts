@@ -13,11 +13,10 @@ function createImport(
 ): ts.ImportDeclaration {
   return ts.factory.createImportDeclaration(
     undefined,
-    undefined,
     ts.factory.createImportClause(
       false,
-      ts.factory.createNamespaceImport(identifier) as any,
       undefined,
+      ts.factory.createNamespaceImport(identifier),
     ),
     ts.factory.createStringLiteral(moduleSpecifier),
   );
@@ -130,7 +129,7 @@ for (const fileDescriptor of request.proto_file) {
     comments.push("@deprecated");
   }
 
-  const doNotEditComment = ts.factory.createJSDocComment(comments.join("\n")) as ts.Statement;
+  const doNotEditComment = ts.factory.createJSDocComment(comments.join("\n")) as unknown as ts.Statement;
 
   // Wrap statements within the namespace
   if (fileDescriptor.package && !options.no_namespace) {

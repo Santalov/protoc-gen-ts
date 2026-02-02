@@ -170,10 +170,10 @@ export class Tags extends pb_1.Message {
     toObject() {
         const data: Tags.AsObject = {
             key: this.key,
-            keys: Object.fromEntries(this.keys),
-            topics: Object.fromEntries(Array.from(this.topics).map(([key, value]) => [key, value.toObject()])),
-            imported: Object.fromEntries(Array.from(this.imported).map(([key, value]) => [key, value.toObject()])),
-            imported2: Object.fromEntries(this.imported2)
+            keys: (Object.fromEntries)(this.keys),
+            topics: (Object.fromEntries)((Array.from)(this.topics).map(([key, value]) => [key, value.toObject()])),
+            imported: (Object.fromEntries)((Array.from)(this.imported).map(([key, value]) => [key, value.toObject()])),
+            imported2: (Object.fromEntries)(this.imported2)
         };
         return data;
     }

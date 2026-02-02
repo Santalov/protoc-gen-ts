@@ -402,8 +402,8 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
     }
     toObject() {
         const data: DefaultMessageV2WithoutDefault.AsObject = {
-            map_string_string: Object.fromEntries(this.map_string_string),
-            map_string_message: Object.fromEntries(Array.from(this.map_string_message).map(([key, value]) => [key, value.toObject()])),
+            map_string_string: (Object.fromEntries)(this.map_string_string),
+            map_string_message: (Object.fromEntries)((Array.from)(this.map_string_message).map(([key, value]) => [key, value.toObject()])),
             array_int32: this.array_int32,
             array_message: this.array_message.map((item: dependency_1.DefaultCommonMessage) => item.toObject()),
             one_of_int32: this.one_of_int32

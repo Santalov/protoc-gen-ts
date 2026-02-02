@@ -10,14 +10,14 @@ describe("defaults", () => {
       shouldNotHave: (keyof T)[]
     ): void {
         for (const field of shouldHave) {
-            const hasField = "has_" + field;
-            const clearField = "clear_" + field;
+            const hasField = "has_" + String(field);
+            const clearField = "clear_" + String(field);
             expect(typeof (msg as any)[hasField]).toBe("boolean");
             expect(typeof (msg as any)[clearField]).toBe("function");
         }
         for (const field of shouldNotHave) {
-            const hasField = "has_" + field;
-            const clearField = "clear_" + field;
+            const hasField = "has_" + String(field);
+            const clearField = "clear_" + String(field);
             expect(typeof (msg as any)[hasField]).toBe("undefined");
             expect(typeof (msg as any)[clearField]).toBe("undefined");
         }

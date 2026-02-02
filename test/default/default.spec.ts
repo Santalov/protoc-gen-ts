@@ -3,7 +3,7 @@ import { DefaultMessageV2WithDefault, DefaultMessageV2WithoutDefault } from "./d
 import { DefaultMessageOptionalV3, DefaultMessageV3 } from "./default_proto3";
 import { DefaultCommonEnum, DefaultCommonMessage, DefaultCommonMessageOneOf } from "./default_common";
 
-function toObjectPreservingUndefined(message: Object): Object {
+function toObjectPreservingUndefined(message: object): object {
     function correctFieldValue(fieldValue: unknown): unknown {
         return fieldValue instanceof Map ? { ...fieldValue } : fieldValue;
     }
@@ -440,7 +440,7 @@ describe("defaults", () => {
           fromObject(data?: {}): any
         }
 
-        function checkEquality<T>(messageCtor: MessageConstructor<T>){
+        function checkEquality<T extends object>(messageCtor: MessageConstructor<T>){
           const withDefaultFromObject = messageCtor.fromObject();
           const withDefaultConstructed = new messageCtor();
           expect(toObjectPreservingUndefined(withDefaultFromObject))

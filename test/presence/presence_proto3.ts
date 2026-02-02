@@ -280,7 +280,7 @@ export class PresenceMessageV3 extends pb_1.Message {
             opt_enum: this.opt_enum,
             opt_string: this.opt_string,
             repeated: this.repeated,
-            map: Object.fromEntries(this.map)
+            map: (Object.fromEntries)(this.map)
         };
         if (this.message != null) {
             data.message = this.message.toObject();

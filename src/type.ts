@@ -130,7 +130,7 @@ export function addAsObject(name: string, asObject: boolean, partial = false) {
 function removeNamespace(name: string): string {
   if(config.no_namespace)
   {
-    return removeRootParentName(name, packages.find(p => name.startsWith(p))).replace(/\./g, '')
+    return removeRootParentName(name, packages.find(p => name.startsWith(p)) ?? '').replace(/\./g, '')
   }
   return name;
 }

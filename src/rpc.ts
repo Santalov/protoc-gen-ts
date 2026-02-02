@@ -189,7 +189,6 @@ export function createUnimplementedServer(
 ) {
   const members: Array<ts.ClassElement> = [
     ts.factory.createPropertyDeclaration(
-      undefined,
       [ts.factory.createModifier(ts.SyntaxKind.StaticKeyword)],
       "definition",
       undefined,
@@ -197,7 +196,6 @@ export function createUnimplementedServer(
       createServiceDefinition(rootDescriptor, serviceDescriptor),
     ),
     ts.factory.createIndexSignature(
-      undefined,
       undefined,
       [
         createParameter(
@@ -212,8 +210,8 @@ export function createUnimplementedServer(
   ];
 
   for (const methodDescriptor of serviceDescriptor.method) {
-    const parameters = [];
-    let callType: string;
+    const parameters: ts.ParameterDeclaration[] = [];
+    let callType: string = "ServerUnaryCall";
 
     if (isUnary(methodDescriptor)) {
       callType = "ServerUnaryCall";
@@ -258,7 +256,6 @@ export function createUnimplementedServer(
 
     members.push(
       ts.factory.createMethodDeclaration(
-        undefined,
         [ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword)],
         undefined,
         methodDescriptor.name,
@@ -273,7 +270,6 @@ export function createUnimplementedServer(
 
   return comment.addDeprecatedJsDoc(
     ts.factory.createClassDeclaration(
-      undefined,
       [
         ts.factory.createModifier(ts.SyntaxKind.ExportKeyword),
         ts.factory.createModifier(ts.SyntaxKind.AbstractKeyword),
@@ -285,7 +281,7 @@ export function createUnimplementedServer(
       undefined,
       members,
     ),
-    serviceDescriptor.options?.deprecated,
+    serviceDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -440,7 +436,6 @@ function createUnaryRpcPromiseMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcPromiseServiceInterface", [
@@ -456,8 +451,8 @@ function createUnaryRpcPromiseMethod(
           createParameter(
             "metadata",
             ts.factory.createUnionTypeNode([
-              metadataParameter.type,
-              callOptionsParameter.type,
+              metadataParameter.type!,
+              callOptionsParameter.type!,
             ]),
             true,
           ),
@@ -468,7 +463,7 @@ function createUnaryRpcPromiseMethod(
         functionBody,
       ),
     ),
-    methodDescriptor.options?.deprecated,
+    methodDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -486,7 +481,6 @@ function createParameter(
     );
   }
   return ts.factory.createParameterDeclaration(
-    undefined,
     undefined,
     undefined,
     name,
@@ -555,11 +549,10 @@ export function createGrpcInterfaceType(
   // }
   const unaryIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcUnaryServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -597,11 +590,10 @@ export function createGrpcInterfaceType(
   // }
   const promiseIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcPromiseServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -624,11 +616,10 @@ export function createGrpcInterfaceType(
   // }
   const streamIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcStreamServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -653,11 +644,10 @@ export function createGrpcInterfaceType(
   // }
   const writableIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpWritableServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -690,11 +680,10 @@ export function createGrpcInterfaceType(
   // }
   const chunkIface = ts.factory.createInterfaceDeclaration(
     undefined,
-    undefined,
     "GrpcChunkServiceInterface",
     [
-      ts.factory.createTypeParameterDeclaration("P"),
-      ts.factory.createTypeParameterDeclaration("R"),
+      ts.factory.createTypeParameterDeclaration(undefined, "P"),
+      ts.factory.createTypeParameterDeclaration(undefined, "R"),
     ],
     undefined,
     [
@@ -753,7 +742,6 @@ function createUnaryRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcUnaryServiceInterface", [
@@ -768,16 +756,16 @@ function createUnaryRpcMethod(
           createParameter(
             "metadata",
             ts.factory.createUnionTypeNode([
-              metadataParameter.type,
-              callOptionsParameter.type,
-              callbackParameter.type,
+              metadataParameter.type!,
+              callOptionsParameter.type!,
+              callbackParameter.type!,
             ]),
           ),
           createParameter(
             "options",
             ts.factory.createUnionTypeNode([
-              callOptionsParameter.type,
-              callbackParameter.type,
+              callOptionsParameter.type!,
+              callbackParameter.type!,
             ]),
             true,
           ),
@@ -816,7 +804,7 @@ function createUnaryRpcMethod(
         ),
       ),
     ),
-    methodDescriptor.options?.deprecated,
+    methodDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -859,7 +847,6 @@ function createClientStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpWritableServiceInterface", [
@@ -874,22 +861,22 @@ function createClientStreamingRpcMethod(
           createParameter(
             "metadata",
             ts.factory.createUnionTypeNode([
-              metadataParameter.type,
-              callOptionsParameter.type,
-              callbackParameter.type,
+              metadataParameter.type!,
+              callOptionsParameter.type!,
+              callbackParameter.type!,
             ]),
           ),
           createParameter(
             "options",
             ts.factory.createUnionTypeNode([
-              callOptionsParameter.type,
-              callbackParameter.type,
+              callOptionsParameter.type!,
+              callbackParameter.type!,
             ]),
             true,
           ),
           createParameter(
             "callback",
-            ts.factory.createUnionTypeNode([callbackParameter.type]),
+            ts.factory.createUnionTypeNode([callbackParameter.type!]),
             true,
           ),
         ],
@@ -918,7 +905,7 @@ function createClientStreamingRpcMethod(
         ),
       ),
     ),
-    methodDescriptor.options?.deprecated,
+    methodDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -949,7 +936,6 @@ function createServerStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcStreamServiceInterface", [
@@ -965,14 +951,14 @@ function createServerStreamingRpcMethod(
           createParameter(
             "metadata",
             ts.factory.createUnionTypeNode([
-              metadataParameter.type,
-              callOptionsParameter.type,
+              metadataParameter.type!,
+              callOptionsParameter.type!,
             ]),
             true,
           ),
           createParameter(
             "options",
-            ts.factory.createUnionTypeNode([callOptionsParameter.type]),
+            ts.factory.createUnionTypeNode([callOptionsParameter.type!]),
             true,
           ),
         ],
@@ -1001,7 +987,7 @@ function createServerStreamingRpcMethod(
         ),
       ),
     ),
-    methodDescriptor.options?.deprecated,
+    methodDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -1033,7 +1019,6 @@ function createBidiStreamingRpcMethod(
   return comment.addDeprecatedJsDoc(
     ts.factory.createPropertyDeclaration(
       undefined,
-      undefined,
       methodDescriptor.name,
       undefined,
       ts.factory.createTypeReferenceNode("GrpcChunkServiceInterface", [
@@ -1048,14 +1033,14 @@ function createBidiStreamingRpcMethod(
           createParameter(
             "metadata",
             ts.factory.createUnionTypeNode([
-              metadataParameter.type,
-              callOptionsParameter.type,
+              metadataParameter.type!,
+              callOptionsParameter.type!,
             ]),
             true,
           ),
           createParameter(
             "options",
-            ts.factory.createUnionTypeNode([callOptionsParameter.type]),
+            ts.factory.createUnionTypeNode([callOptionsParameter.type!]),
             true,
           ),
         ],
@@ -1083,7 +1068,7 @@ function createBidiStreamingRpcMethod(
         ),
       ),
     ),
-    methodDescriptor.options?.deprecated,
+    methodDescriptor.options?.deprecated ?? false,
   );
 }
 
@@ -1098,7 +1083,6 @@ export function createServiceClient(
 ) {
   const members: Array<ts.ClassElement> = [
     ts.factory.createConstructorDeclaration(
-      undefined,
       undefined,
       [
         createParameter(
@@ -1192,7 +1176,6 @@ export function createServiceClient(
 
   return comment.addDeprecatedJsDoc(
     ts.factory.createClassDeclaration(
-      undefined,
       [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
       ts.factory.createIdentifier(`${serviceDescriptor.name}Client`),
       undefined,
@@ -1222,7 +1205,7 @@ export function createServiceClient(
       ],
       members,
     ),
-    serviceDescriptor.options?.deprecated,
+    serviceDescriptor.options?.deprecated ?? false,
   );
 }
 
