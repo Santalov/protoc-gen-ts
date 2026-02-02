@@ -24,9 +24,7 @@ export namespace dot {
         set name(value: string[]) {
             pb_1.Message.setField(this, 1, value);
         }
-        static fromObject(data: {
-            name?: string[];
-        }): Message {
+        static fromObject(data: Message.AsObjectPartial): Message {
             const message = new Message({});
             if (data.name != null) {
                 message.name = data.name;
@@ -34,12 +32,9 @@ export namespace dot {
             return message;
         }
         toObject() {
-            const data: {
-                name?: string[];
-            } = {};
-            if (this.name != null) {
-                data.name = this.name;
-            }
+            const data: Message.AsObject = {
+                name: this.name
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -71,5 +66,13 @@ export namespace dot {
         static deserializeBinary(bytes: Uint8Array): Message {
             return Message.deserialize(bytes);
         }
+    }
+    export namespace Message {
+        export type AsObject = {
+            name: string[];
+        };
+        export type AsObjectPartial = {
+            name?: string[];
+        };
     }
 }

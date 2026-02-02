@@ -24,9 +24,7 @@ export namespace maps {
         set link(value: string) {
             pb_1.Message.setField(this, 2, value);
         }
-        static fromObject(data: {
-            link?: string;
-        }): Topic {
+        static fromObject(data: Topic.AsObjectPartial): Topic {
             const message = new Topic({});
             if (data.link != null) {
                 message.link = data.link;
@@ -34,12 +32,9 @@ export namespace maps {
             return message;
         }
         toObject() {
-            const data: {
-                link?: string;
-            } = {};
-            if (this.link != null) {
-                data.link = this.link;
-            }
+            const data: Topic.AsObject = {
+                link: this.link
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -71,6 +66,14 @@ export namespace maps {
         static deserializeBinary(bytes: Uint8Array): Topic {
             return Topic.deserialize(bytes);
         }
+    }
+    export namespace Topic {
+        export type AsObject = {
+            link: string;
+        };
+        export type AsObjectPartial = {
+            link?: string;
+        };
     }
     export class Tags extends pb_1.Message {
         #one_of_decls: number[][] = [];
@@ -127,18 +130,7 @@ export namespace maps {
         set topics_with_intkeys(value: Map<number, Topic>) {
             pb_1.Message.setField(this, 4, value as any);
         }
-        static fromObject(data: {
-            key?: string;
-            keys?: {
-                [key: string]: string;
-            };
-            topics?: {
-                [key: string]: ReturnType<typeof Topic.prototype.toObject>;
-            };
-            topics_with_intkeys?: {
-                [key: number]: ReturnType<typeof Topic.prototype.toObject>;
-            };
-        }): Tags {
+        static fromObject(data: Tags.AsObjectPartial): Tags {
             const message = new Tags({});
             if (data.key != null) {
                 message.key = data.key;
@@ -155,30 +147,12 @@ export namespace maps {
             return message;
         }
         toObject() {
-            const data: {
-                key?: string;
-                keys?: {
-                    [key: string]: string;
-                };
-                topics?: {
-                    [key: string]: ReturnType<typeof Topic.prototype.toObject>;
-                };
-                topics_with_intkeys?: {
-                    [key: number]: ReturnType<typeof Topic.prototype.toObject>;
-                };
-            } = {};
-            if (this.key != null) {
-                data.key = this.key;
-            }
-            if (this.keys != null) {
-                data.keys = Object.fromEntries(this.keys);
-            }
-            if (this.topics != null) {
-                data.topics = Object.fromEntries(Array.from(this.topics).map(([key, value]) => [key, value.toObject()]));
-            }
-            if (this.topics_with_intkeys != null) {
-                data.topics_with_intkeys = Object.fromEntries(Array.from(this.topics_with_intkeys).map(([key, value]) => [key, value.toObject()]));
-            }
+            const data: Tags.AsObject = {
+                key: this.key,
+                keys: Object.fromEntries(this.keys),
+                topics: Object.fromEntries(Array.from(this.topics).map(([key, value]) => [key, value.toObject()])),
+                topics_with_intkeys: Object.fromEntries(Array.from(this.topics_with_intkeys).map(([key, value]) => [key, value.toObject()]))
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -196,13 +170,13 @@ export namespace maps {
             for (const [key, value] of this.topics) {
                 writer.writeMessage(3, this.topics, () => {
                     writer.writeString(1, key);
-                    writer.writeMessage(2, value, () => value.serialize(writer));
+                    writer.writeMessage(2, value, () => value!.serialize(writer));
                 });
             }
             for (const [key, value] of this.topics_with_intkeys) {
                 writer.writeMessage(4, this.topics_with_intkeys, () => {
                     writer.writeInt64(1, key);
-                    writer.writeMessage(2, value, () => value.serialize(writer));
+                    writer.writeMessage(2, value, () => value!.serialize(writer));
                 });
             }
             if (!w)
@@ -245,5 +219,31 @@ export namespace maps {
         static deserializeBinary(bytes: Uint8Array): Tags {
             return Tags.deserialize(bytes);
         }
+    }
+    export namespace Tags {
+        export type AsObject = {
+            key: string;
+            keys: {
+                [key: string]: string;
+            };
+            topics: {
+                [key: string]: Topic.AsObject;
+            };
+            topics_with_intkeys: {
+                [key: number]: Topic.AsObject;
+            };
+        };
+        export type AsObjectPartial = {
+            key?: string;
+            keys?: {
+                [key: string]: string;
+            };
+            topics?: {
+                [key: string]: Topic.AsObject;
+            };
+            topics_with_intkeys?: {
+                [key: number]: Topic.AsObject;
+            };
+        };
     }
 }

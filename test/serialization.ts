@@ -23,9 +23,7 @@ export class Serialization extends pb_1.Message {
     set test(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        test?: string;
-    }): Serialization {
+    static fromObject(data: Serialization.AsObjectPartial): Serialization {
         const message = new Serialization({});
         if (data.test != null) {
             message.test = data.test;
@@ -33,12 +31,9 @@ export class Serialization extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            test?: string;
-        } = {};
-        if (this.test != null) {
-            data.test = this.test;
-        }
+        const data: Serialization.AsObject = {
+            test: this.test
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -70,4 +65,12 @@ export class Serialization extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): Serialization {
         return Serialization.deserialize(bytes);
     }
+}
+export namespace Serialization {
+    export type AsObject = {
+        test: string;
+    };
+    export type AsObjectPartial = {
+        test?: string;
+    };
 }

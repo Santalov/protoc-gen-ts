@@ -23,9 +23,7 @@ export class ExplicitOverrideMessage extends pb_1.Message {
     set example(value: number) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        example?: number;
-    }): ExplicitOverrideMessage {
+    static fromObject(data: ExplicitOverrideMessage.AsObjectPartial): ExplicitOverrideMessage {
         const message = new ExplicitOverrideMessage({});
         if (data.example != null) {
             message.example = data.example;
@@ -33,12 +31,9 @@ export class ExplicitOverrideMessage extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            example?: number;
-        } = {};
-        if (this.example != null) {
-            data.example = this.example;
-        }
+        const data: ExplicitOverrideMessage.AsObject = {
+            example: this.example
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -70,4 +65,12 @@ export class ExplicitOverrideMessage extends pb_1.Message {
     static override deserializeBinary(bytes: Uint8Array): ExplicitOverrideMessage {
         return ExplicitOverrideMessage.deserialize(bytes);
     }
+}
+export namespace ExplicitOverrideMessage {
+    export type AsObject = {
+        example: number;
+    };
+    export type AsObjectPartial = {
+        example?: number;
+    };
 }

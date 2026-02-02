@@ -52,11 +52,7 @@ export class MessageWithDefault extends pb_1.Message {
     get has_int32_field() {
         return pb_1.Message.getField(this, 3) != null;
     }
-    static fromObject(data: {
-        bool_field?: boolean;
-        string_field?: string;
-        int32_field?: number;
-    }): MessageWithDefault {
+    static fromObject(data: MessageWithDefault.AsObjectPartial): MessageWithDefault {
         const message = new MessageWithDefault({});
         if (data.bool_field != null) {
             message.bool_field = data.bool_field;
@@ -70,20 +66,11 @@ export class MessageWithDefault extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            bool_field?: boolean;
-            string_field?: string;
-            int32_field?: number;
-        } = {};
-        if (this.bool_field != null) {
-            data.bool_field = this.bool_field;
-        }
-        if (this.string_field != null) {
-            data.string_field = this.string_field;
-        }
-        if (this.int32_field != null) {
-            data.int32_field = this.int32_field;
-        }
+        const data: MessageWithDefault.AsObject = {
+            bool_field: this.bool_field,
+            string_field: this.string_field,
+            int32_field: this.int32_field
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -92,7 +79,7 @@ export class MessageWithDefault extends pb_1.Message {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_bool_field)
             writer.writeBool(1, this.bool_field);
-        if (this.has_string_field && this.string_field.length)
+        if (this.has_string_field && this.string_field!.length)
             writer.writeString(2, this.string_field);
         if (this.has_int32_field)
             writer.writeInt32(3, this.int32_field);
@@ -125,6 +112,18 @@ export class MessageWithDefault extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): MessageWithDefault {
         return MessageWithDefault.deserialize(bytes);
     }
+}
+export namespace MessageWithDefault {
+    export type AsObject = {
+        bool_field: boolean;
+        string_field: string;
+        int32_field: number;
+    };
+    export type AsObjectPartial = {
+        bool_field?: boolean;
+        string_field?: string;
+        int32_field?: number;
+    };
 }
 export class MessageWithImplicitDefault extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -174,11 +173,7 @@ export class MessageWithImplicitDefault extends pb_1.Message {
     get has_int32_field() {
         return pb_1.Message.getField(this, 3) != null;
     }
-    static fromObject(data: {
-        bool_field?: boolean;
-        string_field?: string;
-        int32_field?: number;
-    }): MessageWithImplicitDefault {
+    static fromObject(data: MessageWithImplicitDefault.AsObjectPartial): MessageWithImplicitDefault {
         const message = new MessageWithImplicitDefault({});
         if (data.bool_field != null) {
             message.bool_field = data.bool_field;
@@ -192,20 +187,11 @@ export class MessageWithImplicitDefault extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            bool_field?: boolean;
-            string_field?: string;
-            int32_field?: number;
-        } = {};
-        if (this.bool_field != null) {
-            data.bool_field = this.bool_field;
-        }
-        if (this.string_field != null) {
-            data.string_field = this.string_field;
-        }
-        if (this.int32_field != null) {
-            data.int32_field = this.int32_field;
-        }
+        const data: MessageWithImplicitDefault.AsObject = {
+            bool_field: this.bool_field,
+            string_field: this.string_field,
+            int32_field: this.int32_field
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -214,7 +200,7 @@ export class MessageWithImplicitDefault extends pb_1.Message {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_bool_field)
             writer.writeBool(1, this.bool_field);
-        if (this.has_string_field && this.string_field.length)
+        if (this.has_string_field && this.string_field!.length)
             writer.writeString(2, this.string_field);
         if (this.has_int32_field)
             writer.writeInt32(3, this.int32_field);
@@ -247,4 +233,16 @@ export class MessageWithImplicitDefault extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): MessageWithImplicitDefault {
         return MessageWithImplicitDefault.deserialize(bytes);
     }
+}
+export namespace MessageWithImplicitDefault {
+    export type AsObject = {
+        bool_field: boolean;
+        string_field: string;
+        int32_field: number;
+    };
+    export type AsObjectPartial = {
+        bool_field?: boolean;
+        string_field?: string;
+        int32_field?: number;
+    };
 }

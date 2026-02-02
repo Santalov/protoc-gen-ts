@@ -22,9 +22,9 @@ export class MessageFields extends pb_1.Message {
         }
     }
     get sub_message() {
-        return pb_1.Message.getWrapperField(this, SubMessage, 1) as SubMessage;
+        return pb_1.Message.getWrapperField(this, SubMessage, 1) as SubMessage | undefined;
     }
-    set sub_message(value: SubMessage) {
+    set sub_message(value: SubMessage | undefined) {
         pb_1.Message.setWrapperField(this, 1, value);
     }
     get has_sub_message() {
@@ -36,10 +36,7 @@ export class MessageFields extends pb_1.Message {
     set array_prop(value: SubMessage[]) {
         pb_1.Message.setRepeatedWrapperField(this, 2, value);
     }
-    static fromObject(data: {
-        sub_message?: ReturnType<typeof SubMessage.prototype.toObject>;
-        array_prop?: ReturnType<typeof SubMessage.prototype.toObject>[];
-    }): MessageFields {
+    static fromObject(data: MessageFields.AsObjectPartial): MessageFields {
         const message = new MessageFields({});
         if (data.sub_message != null) {
             message.sub_message = SubMessage.fromObject(data.sub_message);
@@ -50,15 +47,11 @@ export class MessageFields extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            sub_message?: ReturnType<typeof SubMessage.prototype.toObject>;
-            array_prop?: ReturnType<typeof SubMessage.prototype.toObject>[];
-        } = {};
+        const data: MessageFields.AsObject = {
+            array_prop: this.array_prop.map((item: SubMessage) => item.toObject())
+        };
         if (this.sub_message != null) {
             data.sub_message = this.sub_message.toObject();
-        }
-        if (this.array_prop != null) {
-            data.array_prop = this.array_prop.map((item: SubMessage) => item.toObject());
         }
         return data;
     }
@@ -67,9 +60,9 @@ export class MessageFields extends pb_1.Message {
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_sub_message)
-            writer.writeMessage(1, this.sub_message, () => this.sub_message.serialize(writer));
+            writer.writeMessage(1, this.sub_message, () => this.sub_message!.serialize(writer));
         if (this.array_prop.length)
-            writer.writeRepeatedMessage(2, this.array_prop, (item: SubMessage) => item.serialize(writer));
+            writer.writeRepeatedMessage(2, this.array_prop, (item: SubMessage) => item!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -96,6 +89,16 @@ export class MessageFields extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): MessageFields {
         return MessageFields.deserialize(bytes);
     }
+}
+export namespace MessageFields {
+    export type AsObject = {
+        sub_message?: SubMessage.AsObject;
+        array_prop: SubMessage.AsObject[];
+    };
+    export type AsObjectPartial = {
+        sub_message?: SubMessage.AsObjectPartial;
+        array_prop?: SubMessage.AsObjectPartial[];
+    };
 }
 export class SubMessage extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -126,10 +129,7 @@ export class SubMessage extends pb_1.Message {
     set field_2(value: string) {
         pb_1.Message.setField(this, 2, value);
     }
-    static fromObject(data: {
-        field_1?: string;
-        field_2?: string;
-    }): SubMessage {
+    static fromObject(data: SubMessage.AsObjectPartial): SubMessage {
         const message = new SubMessage({});
         if (data.field_1 != null) {
             message.field_1 = data.field_1;
@@ -140,16 +140,10 @@ export class SubMessage extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            field_1?: string;
-            field_2?: string;
-        } = {};
-        if (this.field_1 != null) {
-            data.field_1 = this.field_1;
-        }
-        if (this.field_2 != null) {
-            data.field_2 = this.field_2;
-        }
+        const data: SubMessage.AsObject = {
+            field_1: this.field_1,
+            field_2: this.field_2
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -186,4 +180,14 @@ export class SubMessage extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): SubMessage {
         return SubMessage.deserialize(bytes);
     }
+}
+export namespace SubMessage {
+    export type AsObject = {
+        field_1: string;
+        field_2: string;
+    };
+    export type AsObjectPartial = {
+        field_1?: string;
+        field_2?: string;
+    };
 }

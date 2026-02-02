@@ -12,12 +12,12 @@ export class None extends pb_1.Message {
         pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
         if (!Array.isArray(data) && typeof data == "object") { }
     }
-    static fromObject(data: {}): None {
+    static fromObject(data: None.AsObjectPartial): None {
         const message = new None({});
         return message;
     }
     toObject() {
-        const data: {} = {};
+        const data: None.AsObject = {};
         return data;
     }
     serialize(): Uint8Array;
@@ -44,6 +44,10 @@ export class None extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): None {
         return None.deserialize(bytes);
     }
+}
+export namespace None {
+    export type AsObject = {};
+    export type AsObjectPartial = {};
 }
 export class _Object extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -84,11 +88,7 @@ export class _Object extends pb_1.Message {
     set mimeType(value: string) {
         pb_1.Message.setField(this, 4, value);
     }
-    static fromObject(data: {
-        id?: string;
-        size?: number;
-        mimeType?: string;
-    }): _Object {
+    static fromObject(data: _Object.AsObjectPartial): _Object {
         const message = new _Object({});
         if (data.id != null) {
             message.id = data.id;
@@ -102,20 +102,11 @@ export class _Object extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-            size?: number;
-            mimeType?: string;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
-        if (this.size != null) {
-            data.size = this.size;
-        }
-        if (this.mimeType != null) {
-            data.mimeType = this.mimeType;
-        }
+        const data: _Object.AsObject = {
+            id: this.id,
+            size: this.size,
+            mimeType: this.mimeType
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -158,6 +149,18 @@ export class _Object extends pb_1.Message {
         return _Object.deserialize(bytes);
     }
 }
+export namespace _Object {
+    export type AsObject = {
+        id: string;
+        size: number;
+        mimeType: string;
+    };
+    export type AsObjectPartial = {
+        id?: string;
+        size?: number;
+        mimeType?: string;
+    };
+}
 export class Chunk extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -182,18 +185,15 @@ export class Chunk extends pb_1.Message {
         pb_1.Message.setField(this, 1, value);
     }
     get range() {
-        return pb_1.Message.getWrapperField(this, Chunk.Range, 2) as Chunk.Range;
+        return pb_1.Message.getWrapperField(this, Chunk.Range, 2) as Chunk.Range | undefined;
     }
-    set range(value: Chunk.Range) {
+    set range(value: Chunk.Range | undefined) {
         pb_1.Message.setWrapperField(this, 2, value);
     }
     get has_range() {
         return pb_1.Message.getField(this, 2) != null;
     }
-    static fromObject(data: {
-        data?: Uint8Array;
-        range?: ReturnType<typeof Chunk.Range.prototype.toObject>;
-    }): Chunk {
+    static fromObject(data: Chunk.AsObjectPartial): Chunk {
         const message = new Chunk({});
         if (data.data != null) {
             message.data = data.data;
@@ -204,13 +204,9 @@ export class Chunk extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            data?: Uint8Array;
-            range?: ReturnType<typeof Chunk.Range.prototype.toObject>;
-        } = {};
-        if (this.data != null) {
-            data.data = this.data;
-        }
+        const data: Chunk.AsObject = {
+            data: this.data
+        };
         if (this.range != null) {
             data.range = this.range.toObject();
         }
@@ -223,7 +219,7 @@ export class Chunk extends pb_1.Message {
         if (this.data.length)
             writer.writeBytes(1, this.data);
         if (this.has_range)
-            writer.writeMessage(2, this.range, () => this.range.serialize(writer));
+            writer.writeMessage(2, this.range, () => this.range!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -252,6 +248,14 @@ export class Chunk extends pb_1.Message {
     }
 }
 export namespace Chunk {
+    export type AsObject = {
+        data: Uint8Array;
+        range?: Chunk.Range.AsObject;
+    };
+    export type AsObjectPartial = {
+        data?: Uint8Array;
+        range?: Chunk.Range.AsObjectPartial;
+    };
     export class Range extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -281,10 +285,7 @@ export namespace Chunk {
         set end(value: number) {
             pb_1.Message.setField(this, 2, value);
         }
-        static fromObject(data: {
-            start?: number;
-            end?: number;
-        }): Range {
+        static fromObject(data: Range.AsObjectPartial): Range {
             const message = new Range({});
             if (data.start != null) {
                 message.start = data.start;
@@ -295,16 +296,10 @@ export namespace Chunk {
             return message;
         }
         toObject() {
-            const data: {
-                start?: number;
-                end?: number;
-            } = {};
-            if (this.start != null) {
-                data.start = this.start;
-            }
-            if (this.end != null) {
-                data.end = this.end;
-            }
+            const data: Range.AsObject = {
+                start: this.start,
+                end: this.end
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -342,6 +337,16 @@ export namespace Chunk {
             return Range.deserialize(bytes);
         }
     }
+    export namespace Range {
+        export type AsObject = {
+            start: number;
+            end: number;
+        };
+        export type AsObjectPartial = {
+            start?: number;
+            end?: number;
+        };
+    }
     export class Query extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -366,18 +371,15 @@ export namespace Chunk {
             pb_1.Message.setField(this, 1, value);
         }
         get range() {
-            return pb_1.Message.getWrapperField(this, Chunk.Range, 2) as Chunk.Range;
+            return pb_1.Message.getWrapperField(this, Chunk.Range, 2) as Chunk.Range | undefined;
         }
-        set range(value: Chunk.Range) {
+        set range(value: Chunk.Range | undefined) {
             pb_1.Message.setWrapperField(this, 2, value);
         }
         get has_range() {
             return pb_1.Message.getField(this, 2) != null;
         }
-        static fromObject(data: {
-            id?: string;
-            range?: ReturnType<typeof Chunk.Range.prototype.toObject>;
-        }): Query {
+        static fromObject(data: Query.AsObjectPartial): Query {
             const message = new Query({});
             if (data.id != null) {
                 message.id = data.id;
@@ -388,13 +390,9 @@ export namespace Chunk {
             return message;
         }
         toObject() {
-            const data: {
-                id?: string;
-                range?: ReturnType<typeof Chunk.Range.prototype.toObject>;
-            } = {};
-            if (this.id != null) {
-                data.id = this.id;
-            }
+            const data: Query.AsObject = {
+                id: this.id
+            };
             if (this.range != null) {
                 data.range = this.range.toObject();
             }
@@ -407,7 +405,7 @@ export namespace Chunk {
             if (this.id.length)
                 writer.writeString(1, this.id);
             if (this.has_range)
-                writer.writeMessage(2, this.range, () => this.range.serialize(writer));
+                writer.writeMessage(2, this.range, () => this.range!.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -435,6 +433,16 @@ export namespace Chunk {
             return Query.deserialize(bytes);
         }
     }
+    export namespace Query {
+        export type AsObject = {
+            id: string;
+            range?: Chunk.Range.AsObject;
+        };
+        export type AsObjectPartial = {
+            id?: string;
+            range?: Chunk.Range.AsObjectPartial;
+        };
+    }
 }
 export class Query extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -455,9 +463,7 @@ export class Query extends pb_1.Message {
     set id(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        id?: string;
-    }): Query {
+    static fromObject(data: Query.AsObjectPartial): Query {
         const message = new Query({});
         if (data.id != null) {
             message.id = data.id;
@@ -465,12 +471,9 @@ export class Query extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: Query.AsObject = {
+            id: this.id
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -504,6 +507,12 @@ export class Query extends pb_1.Message {
     }
 }
 export namespace Query {
+    export type AsObject = {
+        id: string;
+    };
+    export type AsObjectPartial = {
+        id?: string;
+    };
     export class Result extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -523,9 +532,7 @@ export namespace Query {
         set objects(value: _Object[]) {
             pb_1.Message.setRepeatedWrapperField(this, 1, value);
         }
-        static fromObject(data: {
-            objects?: ReturnType<typeof _Object.prototype.toObject>[];
-        }): Result {
+        static fromObject(data: Result.AsObjectPartial): Result {
             const message = new Result({});
             if (data.objects != null) {
                 message.objects = data.objects.map(item => _Object.fromObject(item));
@@ -533,12 +540,9 @@ export namespace Query {
             return message;
         }
         toObject() {
-            const data: {
-                objects?: ReturnType<typeof _Object.prototype.toObject>[];
-            } = {};
-            if (this.objects != null) {
-                data.objects = this.objects.map((item: _Object) => item.toObject());
-            }
+            const data: Result.AsObject = {
+                objects: this.objects.map((item: _Object) => item.toObject())
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -546,7 +550,7 @@ export namespace Query {
         serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
             const writer = w || new pb_1.BinaryWriter();
             if (this.objects.length)
-                writer.writeRepeatedMessage(1, this.objects, (item: _Object) => item.serialize(writer));
+                writer.writeRepeatedMessage(1, this.objects, (item: _Object) => item!.serialize(writer));
             if (!w)
                 return writer.getResultBuffer();
         }
@@ -570,6 +574,14 @@ export namespace Query {
         static deserializeBinary(bytes: Uint8Array): Result {
             return Result.deserialize(bytes);
         }
+    }
+    export namespace Result {
+        export type AsObject = {
+            objects: _Object.AsObject[];
+        };
+        export type AsObjectPartial = {
+            objects?: _Object.AsObjectPartial[];
+        };
     }
 }
 export class Put extends pb_1.Message {
@@ -596,18 +608,15 @@ export class Put extends pb_1.Message {
         pb_1.Message.setField(this, 1, value);
     }
     get chunk() {
-        return pb_1.Message.getWrapperField(this, Chunk, 3) as Chunk;
+        return pb_1.Message.getWrapperField(this, Chunk, 3) as Chunk | undefined;
     }
-    set chunk(value: Chunk) {
+    set chunk(value: Chunk | undefined) {
         pb_1.Message.setWrapperField(this, 3, value);
     }
     get has_chunk() {
         return pb_1.Message.getField(this, 3) != null;
     }
-    static fromObject(data: {
-        id?: string;
-        chunk?: ReturnType<typeof Chunk.prototype.toObject>;
-    }): Put {
+    static fromObject(data: Put.AsObjectPartial): Put {
         const message = new Put({});
         if (data.id != null) {
             message.id = data.id;
@@ -618,13 +627,9 @@ export class Put extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-            chunk?: ReturnType<typeof Chunk.prototype.toObject>;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: Put.AsObject = {
+            id: this.id
+        };
         if (this.chunk != null) {
             data.chunk = this.chunk.toObject();
         }
@@ -637,7 +642,7 @@ export class Put extends pb_1.Message {
         if (this.id.length)
             writer.writeString(1, this.id);
         if (this.has_chunk)
-            writer.writeMessage(3, this.chunk, () => this.chunk.serialize(writer));
+            writer.writeMessage(3, this.chunk, () => this.chunk!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -664,6 +669,16 @@ export class Put extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): Put {
         return Put.deserialize(bytes);
     }
+}
+export namespace Put {
+    export type AsObject = {
+        id: string;
+        chunk?: Chunk.AsObject;
+    };
+    export type AsObjectPartial = {
+        id?: string;
+        chunk?: Chunk.AsObjectPartial;
+    };
 }
 interface GrpcUnaryServiceInterface<P, R> {
     (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;

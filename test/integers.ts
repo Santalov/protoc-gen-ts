@@ -93,16 +93,7 @@ export class Integers extends pb_1.Message {
     set fixed64(value: number) {
         pb_1.Message.setField(this, 9, value);
     }
-    static fromObject(data: {
-        int32?: number;
-        int64?: number;
-        sint32?: number;
-        sint64?: number;
-        sfixed32?: number;
-        sfixed64?: number;
-        fixed32?: number;
-        fixed64?: number;
-    }): Integers {
+    static fromObject(data: Integers.AsObjectPartial): Integers {
         const message = new Integers({});
         if (data.int32 != null) {
             message.int32 = data.int32;
@@ -131,40 +122,16 @@ export class Integers extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            int32?: number;
-            int64?: number;
-            sint32?: number;
-            sint64?: number;
-            sfixed32?: number;
-            sfixed64?: number;
-            fixed32?: number;
-            fixed64?: number;
-        } = {};
-        if (this.int32 != null) {
-            data.int32 = this.int32;
-        }
-        if (this.int64 != null) {
-            data.int64 = this.int64;
-        }
-        if (this.sint32 != null) {
-            data.sint32 = this.sint32;
-        }
-        if (this.sint64 != null) {
-            data.sint64 = this.sint64;
-        }
-        if (this.sfixed32 != null) {
-            data.sfixed32 = this.sfixed32;
-        }
-        if (this.sfixed64 != null) {
-            data.sfixed64 = this.sfixed64;
-        }
-        if (this.fixed32 != null) {
-            data.fixed32 = this.fixed32;
-        }
-        if (this.fixed64 != null) {
-            data.fixed64 = this.fixed64;
-        }
+        const data: Integers.AsObject = {
+            int32: this.int32,
+            int64: this.int64,
+            sint32: this.sint32,
+            sint64: this.sint64,
+            sfixed32: this.sfixed32,
+            sfixed64: this.sfixed64,
+            fixed32: this.fixed32,
+            fixed64: this.fixed64
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -231,4 +198,26 @@ export class Integers extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): Integers {
         return Integers.deserialize(bytes);
     }
+}
+export namespace Integers {
+    export type AsObject = {
+        int32: number;
+        int64: number;
+        sint32: number;
+        sint64: number;
+        sfixed32: number;
+        sfixed64: number;
+        fixed32: number;
+        fixed64: number;
+    };
+    export type AsObjectPartial = {
+        int32?: number;
+        int64?: number;
+        sint32?: number;
+        sint64?: number;
+        sfixed32?: number;
+        sfixed64?: number;
+        fixed32?: number;
+        fixed64?: number;
+    };
 }

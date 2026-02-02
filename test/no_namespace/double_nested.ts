@@ -23,9 +23,7 @@ export class MessageFields extends pb_1.Message {
     set field(value: string[]) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        field?: string[];
-    }): MessageFields {
+    static fromObject(data: MessageFieldsAsObjectPartial): MessageFields {
         const message = new MessageFields({});
         if (data.field != null) {
             message.field = data.field;
@@ -33,12 +31,9 @@ export class MessageFields extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            field?: string[];
-        } = {};
-        if (this.field != null) {
-            data.field = this.field;
-        }
+        const data: MessageFieldsAsObject = {
+            field: this.field
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -71,3 +66,9 @@ export class MessageFields extends pb_1.Message {
         return MessageFields.deserialize(bytes);
     }
 }
+export type MessageFieldsAsObject = {
+    field: string[];
+};
+export type MessageFieldsAsObjectPartial = {
+    field?: string[];
+};

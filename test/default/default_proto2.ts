@@ -75,153 +75,153 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
             this.map_string_message = new Map();
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set message(value: dependency_1.DefaultCommonMessage) {
+    set message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setWrapperField(this, 1, value);
     }
     get has_message() {
         return pb_1.Message.getField(this, 1) != null;
     }
     get enum() {
-        return pb_1.Message.getField(this, 2) as dependency_1.DefaultCommonEnum;
+        return pb_1.Message.getField(this, 2) as dependency_1.DefaultCommonEnum | undefined;
     }
-    set enum(value: dependency_1.DefaultCommonEnum) {
+    set enum(value: dependency_1.DefaultCommonEnum | undefined) {
         pb_1.Message.setField(this, 2, value);
     }
     get has_enum() {
         return pb_1.Message.getField(this, 2) != null;
     }
     get bool() {
-        return pb_1.Message.getField(this, 3) as boolean;
+        return pb_1.Message.getField(this, 3) as boolean | undefined;
     }
-    set bool(value: boolean) {
+    set bool(value: boolean | undefined) {
         pb_1.Message.setField(this, 3, value);
     }
     get has_bool() {
         return pb_1.Message.getField(this, 3) != null;
     }
     get string() {
-        return pb_1.Message.getField(this, 4) as string;
+        return pb_1.Message.getField(this, 4) as string | undefined;
     }
-    set string(value: string) {
+    set string(value: string | undefined) {
         pb_1.Message.setField(this, 4, value);
     }
     get has_string() {
         return pb_1.Message.getField(this, 4) != null;
     }
     get int32() {
-        return pb_1.Message.getField(this, 5) as number;
+        return pb_1.Message.getField(this, 5) as number | undefined;
     }
-    set int32(value: number) {
+    set int32(value: number | undefined) {
         pb_1.Message.setField(this, 5, value);
     }
     get has_int32() {
         return pb_1.Message.getField(this, 5) != null;
     }
     get fixed32() {
-        return pb_1.Message.getField(this, 6) as number;
+        return pb_1.Message.getField(this, 6) as number | undefined;
     }
-    set fixed32(value: number) {
+    set fixed32(value: number | undefined) {
         pb_1.Message.setField(this, 6, value);
     }
     get has_fixed32() {
         return pb_1.Message.getField(this, 6) != null;
     }
     get sfixed32() {
-        return pb_1.Message.getField(this, 7) as number;
+        return pb_1.Message.getField(this, 7) as number | undefined;
     }
-    set sfixed32(value: number) {
+    set sfixed32(value: number | undefined) {
         pb_1.Message.setField(this, 7, value);
     }
     get has_sfixed32() {
         return pb_1.Message.getField(this, 7) != null;
     }
     get uint32() {
-        return pb_1.Message.getField(this, 8) as number;
+        return pb_1.Message.getField(this, 8) as number | undefined;
     }
-    set uint32(value: number) {
+    set uint32(value: number | undefined) {
         pb_1.Message.setField(this, 8, value);
     }
     get has_uint32() {
         return pb_1.Message.getField(this, 8) != null;
     }
     get sint32() {
-        return pb_1.Message.getField(this, 9) as number;
+        return pb_1.Message.getField(this, 9) as number | undefined;
     }
-    set sint32(value: number) {
+    set sint32(value: number | undefined) {
         pb_1.Message.setField(this, 9, value);
     }
     get has_sint32() {
         return pb_1.Message.getField(this, 9) != null;
     }
     get int64() {
-        return pb_1.Message.getField(this, 10) as number;
+        return pb_1.Message.getField(this, 10) as number | undefined;
     }
-    set int64(value: number) {
+    set int64(value: number | undefined) {
         pb_1.Message.setField(this, 10, value);
     }
     get has_int64() {
         return pb_1.Message.getField(this, 10) != null;
     }
     get fixed64() {
-        return pb_1.Message.getField(this, 11) as number;
+        return pb_1.Message.getField(this, 11) as number | undefined;
     }
-    set fixed64(value: number) {
+    set fixed64(value: number | undefined) {
         pb_1.Message.setField(this, 11, value);
     }
     get has_fixed64() {
         return pb_1.Message.getField(this, 11) != null;
     }
     get sfixed64() {
-        return pb_1.Message.getField(this, 12) as number;
+        return pb_1.Message.getField(this, 12) as number | undefined;
     }
-    set sfixed64(value: number) {
+    set sfixed64(value: number | undefined) {
         pb_1.Message.setField(this, 12, value);
     }
     get has_sfixed64() {
         return pb_1.Message.getField(this, 12) != null;
     }
     get uint64() {
-        return pb_1.Message.getField(this, 13) as number;
+        return pb_1.Message.getField(this, 13) as number | undefined;
     }
-    set uint64(value: number) {
+    set uint64(value: number | undefined) {
         pb_1.Message.setField(this, 13, value);
     }
     get has_uint64() {
         return pb_1.Message.getField(this, 13) != null;
     }
     get sint64() {
-        return pb_1.Message.getField(this, 14) as number;
+        return pb_1.Message.getField(this, 14) as number | undefined;
     }
-    set sint64(value: number) {
+    set sint64(value: number | undefined) {
         pb_1.Message.setField(this, 14, value);
     }
     get has_sint64() {
         return pb_1.Message.getField(this, 14) != null;
     }
     get float() {
-        return pb_1.Message.getField(this, 15) as number;
+        return pb_1.Message.getField(this, 15) as number | undefined;
     }
-    set float(value: number) {
+    set float(value: number | undefined) {
         pb_1.Message.setField(this, 15, value);
     }
     get has_float() {
         return pb_1.Message.getField(this, 15) != null;
     }
     get double() {
-        return pb_1.Message.getField(this, 16) as number;
+        return pb_1.Message.getField(this, 16) as number | undefined;
     }
-    set double(value: number) {
+    set double(value: number | undefined) {
         pb_1.Message.setField(this, 16, value);
     }
     get has_double() {
         return pb_1.Message.getField(this, 16) != null;
     }
     get int_but_string() {
-        return pb_1.Message.getField(this, 17) as string;
+        return pb_1.Message.getField(this, 17) as string | undefined;
     }
-    set int_but_string(value: string) {
+    set int_but_string(value: string | undefined) {
         pb_1.Message.setField(this, 17, value);
     }
     get has_int_but_string() {
@@ -261,18 +261,18 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         return pb_1.Message.getField(this, 22) != null;
     }
     get one_of_message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 23) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 23) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set one_of_message(value: dependency_1.DefaultCommonMessage) {
+    set one_of_message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setOneofWrapperField(this, 23, this.#one_of_decls[0], value);
     }
     get has_one_of_message() {
         return pb_1.Message.getField(this, 23) != null;
     }
     get bytes() {
-        return pb_1.Message.getField(this, 24) as Uint8Array;
+        return pb_1.Message.getField(this, 24) as Uint8Array | undefined;
     }
-    set bytes(value: Uint8Array) {
+    set bytes(value: Uint8Array | undefined) {
         pb_1.Message.setField(this, 24, value);
     }
     get has_bytes() {
@@ -288,36 +288,7 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [22, 23])];
     }
-    static fromObject(data: {
-        message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        enum?: dependency_1.DefaultCommonEnum;
-        bool?: boolean;
-        string?: string;
-        int32?: number;
-        fixed32?: number;
-        sfixed32?: number;
-        uint32?: number;
-        sint32?: number;
-        int64?: number;
-        fixed64?: number;
-        sfixed64?: number;
-        uint64?: number;
-        sint64?: number;
-        float?: number;
-        double?: number;
-        int_but_string?: string;
-        map_string_string?: {
-            [key: string]: string;
-        };
-        map_string_message?: {
-            [key: string]: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        };
-        array_int32: number[];
-        array_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>[];
-        one_of_int32?: number;
-        one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        bytes?: Uint8Array;
-    }): DefaultMessageV2WithoutDefault {
+    static fromObject(data: DefaultMessageV2WithoutDefault.AsObjectPartial): DefaultMessageV2WithoutDefault {
         const message = new DefaultMessageV2WithoutDefault({
             message: dependency_1.DefaultCommonMessage.fromObject(data.message),
             enum: data.enum,
@@ -351,37 +322,12 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            enum?: dependency_1.DefaultCommonEnum;
-            bool?: boolean;
-            string?: string;
-            int32?: number;
-            fixed32?: number;
-            sfixed32?: number;
-            uint32?: number;
-            sint32?: number;
-            int64?: number;
-            fixed64?: number;
-            sfixed64?: number;
-            uint64?: number;
-            sint64?: number;
-            float?: number;
-            double?: number;
-            int_but_string?: string;
-            map_string_string?: {
-                [key: string]: string;
-            };
-            map_string_message?: {
-                [key: string]: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            };
-            array_int32: number[];
-            array_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>[];
-            one_of_int32?: number;
-            one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            bytes?: Uint8Array;
-        } = {
-            array_int32: this.array_int32
+        const data: DefaultMessageV2WithoutDefault.AsObject = {
+            map_string_string: Object.fromEntries(this.map_string_string),
+            map_string_message: Object.fromEntries(Array.from(this.map_string_message).map(([key, value]) => [key, value.toObject()])),
+            array_int32: this.array_int32,
+            array_message: this.array_message.map((item: dependency_1.DefaultCommonMessage) => item.toObject()),
+            one_of_int32: this.one_of_int32
         };
         if (this.message != null) {
             data.message = this.message.toObject();
@@ -434,18 +380,6 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         if (this.int_but_string != null) {
             data.int_but_string = this.int_but_string;
         }
-        if (this.map_string_string != null) {
-            data.map_string_string = Object.fromEntries(this.map_string_string);
-        }
-        if (this.map_string_message != null) {
-            data.map_string_message = Object.fromEntries(Array.from(this.map_string_message).map(([key, value]) => [key, value.toObject()]));
-        }
-        if (this.array_message != null) {
-            data.array_message = this.array_message.map((item: dependency_1.DefaultCommonMessage) => item.toObject());
-        }
-        if (this.one_of_int32 != null) {
-            data.one_of_int32 = this.one_of_int32;
-        }
         if (this.one_of_message != null) {
             data.one_of_message = this.one_of_message.toObject();
         }
@@ -459,12 +393,12 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_message)
-            writer.writeMessage(1, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(1, this.message, () => this.message!.serialize(writer));
         if (this.has_enum)
             writer.writeEnum(2, this.enum);
         if (this.has_bool)
             writer.writeBool(3, this.bool);
-        if (this.has_string && this.string.length)
+        if (this.has_string && this.string!.length)
             writer.writeString(4, this.string);
         if (this.has_int32)
             writer.writeInt32(5, this.int32);
@@ -501,18 +435,18 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         for (const [key, value] of this.map_string_message) {
             writer.writeMessage(19, this.map_string_message, () => {
                 writer.writeString(1, key);
-                writer.writeMessage(2, value, () => value.serialize(writer));
+                writer.writeMessage(2, value, () => value!.serialize(writer));
             });
         }
         if (this.array_int32.length)
             writer.writeRepeatedInt32(20, this.array_int32);
         if (this.array_message.length)
-            writer.writeRepeatedMessage(21, this.array_message, (item: dependency_1.DefaultCommonMessage) => item.serialize(writer));
+            writer.writeRepeatedMessage(21, this.array_message, (item: dependency_1.DefaultCommonMessage) => item!.serialize(writer));
         if (this.has_one_of_int32)
             writer.writeInt32(22, this.one_of_int32);
         if (this.has_one_of_message)
-            writer.writeMessage(23, this.one_of_message, () => this.one_of_message.serialize(writer));
-        if (this.has_bytes && this.bytes.length)
+            writer.writeMessage(23, this.one_of_message, () => this.one_of_message!.serialize(writer));
+        if (this.has_bytes && this.bytes!.length)
             writer.writeBytes(24, this.bytes);
         if (!w)
             return writer.getResultBuffer();
@@ -611,6 +545,68 @@ export class DefaultMessageV2WithoutDefault extends pb_1.Message {
         return DefaultMessageV2WithoutDefault.deserialize(bytes);
     }
 }
+export namespace DefaultMessageV2WithoutDefault {
+    export type AsObject = {
+        message?: dependency_1.DefaultCommonMessage.AsObject;
+        enum?: dependency_1.DefaultCommonEnum;
+        bool?: boolean;
+        string?: string;
+        int32?: number;
+        fixed32?: number;
+        sfixed32?: number;
+        uint32?: number;
+        sint32?: number;
+        int64?: number;
+        fixed64?: number;
+        sfixed64?: number;
+        uint64?: number;
+        sint64?: number;
+        float?: number;
+        double?: number;
+        int_but_string?: string;
+        map_string_string: {
+            [key: string]: string;
+        };
+        map_string_message: {
+            [key: string]: dependency_1.DefaultCommonMessage.AsObject;
+        };
+        array_int32: number[];
+        array_message: dependency_1.DefaultCommonMessage.AsObject[];
+        one_of_int32: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObject;
+        bytes?: Uint8Array;
+    };
+    export type AsObjectPartial = {
+        message: dependency_1.DefaultCommonMessage.AsObjectPartial;
+        enum: dependency_1.DefaultCommonEnum;
+        bool: boolean;
+        string: string;
+        int32: number;
+        fixed32: number;
+        sfixed32: number;
+        uint32: number;
+        sint32: number;
+        int64: number;
+        fixed64: number;
+        sfixed64: number;
+        uint64: number;
+        sint64: number;
+        float: number;
+        double: number;
+        int_but_string: string;
+        map_string_string: {
+            [key: string]: string;
+        };
+        map_string_message: {
+            [key: string]: dependency_1.DefaultCommonMessage.AsObject;
+        };
+        array_int32: number[];
+        array_message: dependency_1.DefaultCommonMessage.AsObjectPartial[];
+        one_of_int32?: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObjectPartial;
+        bytes: Uint8Array;
+    };
+}
 export class DefaultMessageV2WithDefault extends pb_1.Message {
     #one_of_decls: number[][] = [[18, 19]];
     constructor(data?: any[] | ({
@@ -667,9 +663,9 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         }
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set message(value: dependency_1.DefaultCommonMessage) {
+    set message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setWrapperField(this, 1, value);
     }
     get has_message() {
@@ -829,9 +825,9 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         return pb_1.Message.getField(this, 18) != null;
     }
     get one_of_message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 19) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 19) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set one_of_message(value: dependency_1.DefaultCommonMessage) {
+    set one_of_message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setOneofWrapperField(this, 19, this.#one_of_decls[0], value);
     }
     get has_one_of_message() {
@@ -847,27 +843,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [18, 19])];
     }
-    static fromObject(data: {
-        message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        enum: dependency_1.DefaultCommonEnum;
-        bool: boolean;
-        string: string;
-        int32: number;
-        fixed32: number;
-        sfixed32: number;
-        uint32: number;
-        sint32: number;
-        int64: number;
-        fixed64: number;
-        sfixed64: number;
-        uint64: number;
-        sint64: number;
-        float: number;
-        double: number;
-        int_but_string: string;
-        one_of_int32?: number;
-        one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-    }): DefaultMessageV2WithDefault {
+    static fromObject(data: DefaultMessageV2WithDefault.AsObjectPartial): DefaultMessageV2WithDefault {
         const message = new DefaultMessageV2WithDefault({
             message: dependency_1.DefaultCommonMessage.fromObject(data.message),
             enum: data.enum,
@@ -896,27 +872,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            enum: dependency_1.DefaultCommonEnum;
-            bool: boolean;
-            string: string;
-            int32: number;
-            fixed32: number;
-            sfixed32: number;
-            uint32: number;
-            sint32: number;
-            int64: number;
-            fixed64: number;
-            sfixed64: number;
-            uint64: number;
-            sint64: number;
-            float: number;
-            double: number;
-            int_but_string: string;
-            one_of_int32?: number;
-            one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        } = {
+        const data: DefaultMessageV2WithDefault.AsObject = {
             enum: this.enum,
             bool: this.bool,
             string: this.string,
@@ -932,13 +888,11 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
             sint64: this.sint64,
             float: this.float,
             double: this.double,
-            int_but_string: this.int_but_string
+            int_but_string: this.int_but_string,
+            one_of_int32: this.one_of_int32
         };
         if (this.message != null) {
             data.message = this.message.toObject();
-        }
-        if (this.one_of_int32 != null) {
-            data.one_of_int32 = this.one_of_int32;
         }
         if (this.one_of_message != null) {
             data.one_of_message = this.one_of_message.toObject();
@@ -950,12 +904,12 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_message)
-            writer.writeMessage(1, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(1, this.message, () => this.message!.serialize(writer));
         if (this.has_enum)
             writer.writeEnum(2, this.enum);
         if (this.has_bool)
             writer.writeBool(3, this.bool);
-        if (this.has_string && this.string.length)
+        if (this.has_string && this.string!.length)
             writer.writeString(4, this.string);
         if (this.has_int32)
             writer.writeInt32(5, this.int32);
@@ -986,7 +940,7 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
         if (this.has_one_of_int32)
             writer.writeInt32(18, this.one_of_int32);
         if (this.has_one_of_message)
-            writer.writeMessage(19, this.one_of_message, () => this.one_of_message.serialize(writer));
+            writer.writeMessage(19, this.one_of_message, () => this.one_of_message!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -1064,4 +1018,48 @@ export class DefaultMessageV2WithDefault extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): DefaultMessageV2WithDefault {
         return DefaultMessageV2WithDefault.deserialize(bytes);
     }
+}
+export namespace DefaultMessageV2WithDefault {
+    export type AsObject = {
+        message?: dependency_1.DefaultCommonMessage.AsObject;
+        enum: dependency_1.DefaultCommonEnum;
+        bool: boolean;
+        string: string;
+        int32: number;
+        fixed32: number;
+        sfixed32: number;
+        uint32: number;
+        sint32: number;
+        int64: number;
+        fixed64: number;
+        sfixed64: number;
+        uint64: number;
+        sint64: number;
+        float: number;
+        double: number;
+        int_but_string: string;
+        one_of_int32: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObject;
+    };
+    export type AsObjectPartial = {
+        message: dependency_1.DefaultCommonMessage.AsObjectPartial;
+        enum: dependency_1.DefaultCommonEnum;
+        bool: boolean;
+        string: string;
+        int32: number;
+        fixed32: number;
+        sfixed32: number;
+        uint32: number;
+        sint32: number;
+        int64: number;
+        fixed64: number;
+        sfixed64: number;
+        uint64: number;
+        sint64: number;
+        float: number;
+        double: number;
+        int_but_string: string;
+        one_of_int32?: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObjectPartial;
+    };
 }

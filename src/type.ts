@@ -68,27 +68,41 @@ export function getTypeReferenceExpr(
 export function getTypeReference(
   rootDescriptor: descriptor.FileDescriptorProto,
   typeName: string,
+  asObject = false, // add 'AsObject' to the end of the type reference
+  asObjectPartial = false, // add 'Partial', used with AsObject
 ): ts.TypeReferenceNode {
   const path = symbolMap.get(typeName);
 
   if (!path || !dependencyMap.has(path)) {
     if (config.no_namespace) {
       return ts.factory.createTypeReferenceNode(
-        removeRootParentName(typeName, rootDescriptor.package).replace(/\./g, ''),
+        addAsObject(
+          removeRootParentName(typeName, rootDescriptor.package).replace(/\./g, ""),
+          asObject,
+          asObjectPartial
+        ),
       );
     }
     return ts.factory.createTypeReferenceNode(
-      removeRootParentName(typeName, rootDescriptor.package),
+      addAsObject(
+        removeRootParentName(typeName, rootDescriptor.package),
+        asObject,
+        asObjectPartial
+      ),
     );
   }
 
-  const name = removeNamespace(removeLeadingDot(typeName));
+  const name = addAsObject(
+    removeNamespace(removeLeadingDot(typeName)),
+    asObject,
+    asObjectPartial
+  );
 
   return ts.factory.createTypeReferenceNode(
     ts.factory.createQualifiedName(
-        dependencyMap.get(path)!,
-        name,
-    )
+      dependencyMap.get(path)!,
+      name,
+    ),
   );
 }
 
@@ -104,6 +118,13 @@ function removeRootParentName(name: string, parentName: string): string {
   return removeLeadingDot(
     parentName ? name.replace(`${parentName}.`, "") : name,
   );
+}
+
+export function addAsObject(name: string, asObject: boolean, partial = false) {
+  if (asObject) {
+    return name + (config.no_namespace ? "" : ".") + "AsObject" + (partial ? "Partial" : "");
+  }
+  return name;
 }
 
 function removeNamespace(name: string): string {

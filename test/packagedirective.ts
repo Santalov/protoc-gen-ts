@@ -24,9 +24,7 @@ export namespace pkg.mycompany {
         set field(value: string[]) {
             pb_1.Message.setField(this, 1, value);
         }
-        static fromObject(data: {
-            field?: string[];
-        }): Message {
+        static fromObject(data: Message.AsObjectPartial): Message {
             const message = new Message({});
             if (data.field != null) {
                 message.field = data.field;
@@ -34,12 +32,9 @@ export namespace pkg.mycompany {
             return message;
         }
         toObject() {
-            const data: {
-                field?: string[];
-            } = {};
-            if (this.field != null) {
-                data.field = this.field;
-            }
+            const data: Message.AsObject = {
+                field: this.field
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -71,5 +66,13 @@ export namespace pkg.mycompany {
         static deserializeBinary(bytes: Uint8Array): Message {
             return Message.deserialize(bytes);
         }
+    }
+    export namespace Message {
+        export type AsObject = {
+            field: string[];
+        };
+        export type AsObjectPartial = {
+            field?: string[];
+        };
     }
 }

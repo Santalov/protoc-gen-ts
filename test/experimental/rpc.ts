@@ -24,9 +24,7 @@ export class Chunk extends pb_1.Message {
     set data(value: Uint8Array) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        data?: Uint8Array;
-    }): Chunk {
+    static fromObject(data: Chunk.AsObjectPartial): Chunk {
         const message = new Chunk({});
         if (data.data != null) {
             message.data = data.data;
@@ -34,12 +32,9 @@ export class Chunk extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            data?: Uint8Array;
-        } = {};
-        if (this.data != null) {
-            data.data = this.data;
-        }
+        const data: Chunk.AsObject = {
+            data: this.data
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -72,6 +67,14 @@ export class Chunk extends pb_1.Message {
         return Chunk.deserialize(bytes);
     }
 }
+export namespace Chunk {
+    export type AsObject = {
+        data: Uint8Array;
+    };
+    export type AsObjectPartial = {
+        data?: Uint8Array;
+    };
+}
 export class Result extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -91,9 +94,7 @@ export class Result extends pb_1.Message {
     set id(value: number) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        id?: number;
-    }): Result {
+    static fromObject(data: Result.AsObjectPartial): Result {
         const message = new Result({});
         if (data.id != null) {
             message.id = data.id;
@@ -101,12 +102,9 @@ export class Result extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: number;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: Result.AsObject = {
+            id: this.id
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -138,6 +136,14 @@ export class Result extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): Result {
         return Result.deserialize(bytes);
     }
+}
+export namespace Result {
+    export type AsObject = {
+        id: number;
+    };
+    export type AsObjectPartial = {
+        id?: number;
+    };
 }
 interface GrpcUnaryServiceInterface<P, R> {
     (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;

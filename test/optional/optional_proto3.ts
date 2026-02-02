@@ -46,10 +46,7 @@ export class Optional extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [2])];
     }
-    static fromObject(data: {
-        should_not_be_required?: string[];
-        proto3_optional?: string;
-    }): Optional {
+    static fromObject(data: Optional.AsObjectPartial): Optional {
         const message = new Optional({});
         if (data.should_not_be_required != null) {
             message.should_not_be_required = data.should_not_be_required;
@@ -60,16 +57,10 @@ export class Optional extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            should_not_be_required?: string[];
-            proto3_optional?: string;
-        } = {};
-        if (this.should_not_be_required != null) {
-            data.should_not_be_required = this.should_not_be_required;
-        }
-        if (this.proto3_optional != null) {
-            data.proto3_optional = this.proto3_optional;
-        }
+        const data: Optional.AsObject = {
+            should_not_be_required: this.should_not_be_required,
+            proto3_optional: this.proto3_optional
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -106,4 +97,14 @@ export class Optional extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): Optional {
         return Optional.deserialize(bytes);
     }
+}
+export namespace Optional {
+    export type AsObject = {
+        should_not_be_required: string[];
+        proto3_optional: string;
+    };
+    export type AsObjectPartial = {
+        should_not_be_required?: string[];
+        proto3_optional?: string;
+    };
 }

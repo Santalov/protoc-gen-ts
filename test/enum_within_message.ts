@@ -34,10 +34,7 @@ export namespace main {
         set lines(value: number) {
             pb_1.Message.setField(this, 2, value);
         }
-        static fromObject(data: {
-            language?: Code.Language;
-            lines?: number;
-        }): Code {
+        static fromObject(data: Code.AsObjectPartial): Code {
             const message = new Code({});
             if (data.language != null) {
                 message.language = data.language;
@@ -48,16 +45,10 @@ export namespace main {
             return message;
         }
         toObject() {
-            const data: {
-                language?: Code.Language;
-                lines?: number;
-            } = {};
-            if (this.language != null) {
-                data.language = this.language;
-            }
-            if (this.lines != null) {
-                data.lines = this.lines;
-            }
+            const data: Code.AsObject = {
+                language: this.language,
+                lines: this.lines
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -96,6 +87,14 @@ export namespace main {
         }
     }
     export namespace Code {
+        export type AsObject = {
+            language: Code.Language;
+            lines: number;
+        };
+        export type AsObjectPartial = {
+            language?: Code.Language;
+            lines?: number;
+        };
         export enum Language {
             UNKNOWN = 0,
             C = 1,

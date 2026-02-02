@@ -47,19 +47,15 @@ export class SchedulingContext extends pb_1.Message {
         pb_1.Message.setField(this, 3, value);
     }
     get batch() {
-        return pb_1.Message.getWrapperField(this, SchedulingContextBatch, 4) as SchedulingContextBatch;
+        return pb_1.Message.getWrapperField(this, SchedulingContextBatch, 4) as SchedulingContextBatch | undefined;
     }
-    set batch(value: SchedulingContextBatch) {
+    set batch(value: SchedulingContextBatch | undefined) {
         pb_1.Message.setWrapperField(this, 4, value);
     }
     get has_batch() {
         return pb_1.Message.getField(this, 4) != null;
     }
-    static fromObject(data: {
-        env?: ReturnType<typeof SchedulingContextEnv.prototype.toObject>[];
-        timeout?: number;
-        batch?: ReturnType<typeof SchedulingContextBatch.prototype.toObject>;
-    }): SchedulingContext {
+    static fromObject(data: SchedulingContextAsObjectPartial): SchedulingContext {
         const message = new SchedulingContext({});
         if (data.env != null) {
             message.env = data.env.map(item => SchedulingContextEnv.fromObject(item));
@@ -73,17 +69,10 @@ export class SchedulingContext extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            env?: ReturnType<typeof SchedulingContextEnv.prototype.toObject>[];
-            timeout?: number;
-            batch?: ReturnType<typeof SchedulingContextBatch.prototype.toObject>;
-        } = {};
-        if (this.env != null) {
-            data.env = this.env.map((item: SchedulingContextEnv) => item.toObject());
-        }
-        if (this.timeout != null) {
-            data.timeout = this.timeout;
-        }
+        const data: SchedulingContextAsObject = {
+            env: this.env.map((item: SchedulingContextEnv) => item.toObject()),
+            timeout: this.timeout
+        };
         if (this.batch != null) {
             data.batch = this.batch.toObject();
         }
@@ -94,11 +83,11 @@ export class SchedulingContext extends pb_1.Message {
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
         if (this.env.length)
-            writer.writeRepeatedMessage(2, this.env, (item: SchedulingContextEnv) => item.serialize(writer));
+            writer.writeRepeatedMessage(2, this.env, (item: SchedulingContextEnv) => item!.serialize(writer));
         if (this.timeout != 0)
             writer.writeInt32(3, this.timeout);
         if (this.has_batch)
-            writer.writeMessage(4, this.batch, () => this.batch.serialize(writer));
+            writer.writeMessage(4, this.batch, () => this.batch!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -129,6 +118,16 @@ export class SchedulingContext extends pb_1.Message {
         return SchedulingContext.deserialize(bytes);
     }
 }
+export type SchedulingContextAsObject = {
+    env: SchedulingContextEnvAsObject[];
+    timeout: number;
+    batch?: SchedulingContextBatchAsObject;
+};
+export type SchedulingContextAsObjectPartial = {
+    env?: SchedulingContextEnvAsObjectPartial[];
+    timeout?: number;
+    batch?: SchedulingContextBatchAsObjectPartial;
+};
 export class SchedulingContextEnv extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -158,10 +157,7 @@ export class SchedulingContextEnv extends pb_1.Message {
     set value(value: string) {
         pb_1.Message.setField(this, 2, value);
     }
-    static fromObject(data: {
-        key?: string;
-        value?: string;
-    }): SchedulingContextEnv {
+    static fromObject(data: SchedulingContextEnvAsObjectPartial): SchedulingContextEnv {
         const message = new SchedulingContextEnv({});
         if (data.key != null) {
             message.key = data.key;
@@ -172,16 +168,10 @@ export class SchedulingContextEnv extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            key?: string;
-            value?: string;
-        } = {};
-        if (this.key != null) {
-            data.key = this.key;
-        }
-        if (this.value != null) {
-            data.value = this.value;
-        }
+        const data: SchedulingContextEnvAsObject = {
+            key: this.key,
+            value: this.value
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -219,6 +209,14 @@ export class SchedulingContextEnv extends pb_1.Message {
         return SchedulingContextEnv.deserialize(bytes);
     }
 }
+export type SchedulingContextEnvAsObject = {
+    key: string;
+    value: string;
+};
+export type SchedulingContextEnvAsObjectPartial = {
+    key?: string;
+    value?: string;
+};
 export class SchedulingContextBatch extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -253,19 +251,15 @@ export class SchedulingContextBatch extends pb_1.Message {
         pb_1.Message.setField(this, 2, value);
     }
     get process() {
-        return pb_1.Message.getWrapperField(this, SchedulingContextBatchProcess, 3) as SchedulingContextBatchProcess;
+        return pb_1.Message.getWrapperField(this, SchedulingContextBatchProcess, 3) as SchedulingContextBatchProcess | undefined;
     }
-    set process(value: SchedulingContextBatchProcess) {
+    set process(value: SchedulingContextBatchProcess | undefined) {
         pb_1.Message.setWrapperField(this, 3, value);
     }
     get has_process() {
         return pb_1.Message.getField(this, 3) != null;
     }
-    static fromObject(data: {
-        limit?: number;
-        deadline?: number;
-        process?: ReturnType<typeof SchedulingContextBatchProcess.prototype.toObject>;
-    }): SchedulingContextBatch {
+    static fromObject(data: SchedulingContextBatchAsObjectPartial): SchedulingContextBatch {
         const message = new SchedulingContextBatch({});
         if (data.limit != null) {
             message.limit = data.limit;
@@ -279,17 +273,10 @@ export class SchedulingContextBatch extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            limit?: number;
-            deadline?: number;
-            process?: ReturnType<typeof SchedulingContextBatchProcess.prototype.toObject>;
-        } = {};
-        if (this.limit != null) {
-            data.limit = this.limit;
-        }
-        if (this.deadline != null) {
-            data.deadline = this.deadline;
-        }
+        const data: SchedulingContextBatchAsObject = {
+            limit: this.limit,
+            deadline: this.deadline
+        };
         if (this.process != null) {
             data.process = this.process.toObject();
         }
@@ -304,7 +291,7 @@ export class SchedulingContextBatch extends pb_1.Message {
         if (this.deadline != 0)
             writer.writeUint64(2, this.deadline);
         if (this.has_process)
-            writer.writeMessage(3, this.process, () => this.process.serialize(writer));
+            writer.writeMessage(3, this.process, () => this.process!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -335,6 +322,16 @@ export class SchedulingContextBatch extends pb_1.Message {
         return SchedulingContextBatch.deserialize(bytes);
     }
 }
+export type SchedulingContextBatchAsObject = {
+    limit: number;
+    deadline: number;
+    process?: SchedulingContextBatchProcessAsObject;
+};
+export type SchedulingContextBatchAsObjectPartial = {
+    limit?: number;
+    deadline?: number;
+    process?: SchedulingContextBatchProcessAsObjectPartial;
+};
 export class SchedulingContextBatchProcess extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -354,9 +351,7 @@ export class SchedulingContextBatchProcess extends pb_1.Message {
     set id(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        id?: string;
-    }): SchedulingContextBatchProcess {
+    static fromObject(data: SchedulingContextBatchProcessAsObjectPartial): SchedulingContextBatchProcess {
         const message = new SchedulingContextBatchProcess({});
         if (data.id != null) {
             message.id = data.id;
@@ -364,12 +359,9 @@ export class SchedulingContextBatchProcess extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: SchedulingContextBatchProcessAsObject = {
+            id: this.id
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -402,6 +394,12 @@ export class SchedulingContextBatchProcess extends pb_1.Message {
         return SchedulingContextBatchProcess.deserialize(bytes);
     }
 }
+export type SchedulingContextBatchProcessAsObject = {
+    id: string;
+};
+export type SchedulingContextBatchProcessAsObjectPartial = {
+    id?: string;
+};
 export class Target extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -446,20 +444,15 @@ export class Target extends pb_1.Message {
         pb_1.Message.setField(this, 3, value);
     }
     get context() {
-        return pb_1.Message.getWrapperField(this, SchedulingContext, 4) as SchedulingContext;
+        return pb_1.Message.getWrapperField(this, SchedulingContext, 4) as SchedulingContext | undefined;
     }
-    set context(value: SchedulingContext) {
+    set context(value: SchedulingContext | undefined) {
         pb_1.Message.setWrapperField(this, 4, value);
     }
     get has_context() {
         return pb_1.Message.getField(this, 4) != null;
     }
-    static fromObject(data: {
-        id?: string;
-        cwd?: string;
-        handler?: string;
-        context?: ReturnType<typeof SchedulingContext.prototype.toObject>;
-    }): Target {
+    static fromObject(data: TargetAsObjectPartial): Target {
         const message = new Target({});
         if (data.id != null) {
             message.id = data.id;
@@ -476,21 +469,11 @@ export class Target extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-            cwd?: string;
-            handler?: string;
-            context?: ReturnType<typeof SchedulingContext.prototype.toObject>;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
-        if (this.cwd != null) {
-            data.cwd = this.cwd;
-        }
-        if (this.handler != null) {
-            data.handler = this.handler;
-        }
+        const data: TargetAsObject = {
+            id: this.id,
+            cwd: this.cwd,
+            handler: this.handler
+        };
         if (this.context != null) {
             data.context = this.context.toObject();
         }
@@ -507,7 +490,7 @@ export class Target extends pb_1.Message {
         if (this.handler.length)
             writer.writeString(3, this.handler);
         if (this.has_context)
-            writer.writeMessage(4, this.context, () => this.context.serialize(writer));
+            writer.writeMessage(4, this.context, () => this.context!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -541,6 +524,18 @@ export class Target extends pb_1.Message {
         return Target.deserialize(bytes);
     }
 }
+export type TargetAsObject = {
+    id: string;
+    cwd: string;
+    handler: string;
+    context?: SchedulingContextAsObject;
+};
+export type TargetAsObjectPartial = {
+    id?: string;
+    cwd?: string;
+    handler?: string;
+    context?: SchedulingContextAsObjectPartial;
+};
 export class Event extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -575,19 +570,15 @@ export class Event extends pb_1.Message {
         pb_1.Message.setField(this, 2, value);
     }
     get target() {
-        return pb_1.Message.getWrapperField(this, Target, 3) as Target;
+        return pb_1.Message.getWrapperField(this, Target, 3) as Target | undefined;
     }
-    set target(value: Target) {
+    set target(value: Target | undefined) {
         pb_1.Message.setWrapperField(this, 3, value);
     }
     get has_target() {
         return pb_1.Message.getField(this, 3) != null;
     }
-    static fromObject(data: {
-        id?: string;
-        type?: Type;
-        target?: ReturnType<typeof Target.prototype.toObject>;
-    }): Event {
+    static fromObject(data: EventAsObjectPartial): Event {
         const message = new Event({});
         if (data.id != null) {
             message.id = data.id;
@@ -601,17 +592,10 @@ export class Event extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-            type?: Type;
-            target?: ReturnType<typeof Target.prototype.toObject>;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
-        if (this.type != null) {
-            data.type = this.type;
-        }
+        const data: EventAsObject = {
+            id: this.id,
+            type: this.type
+        };
         if (this.target != null) {
             data.target = this.target.toObject();
         }
@@ -626,7 +610,7 @@ export class Event extends pb_1.Message {
         if (this.type != Type.HTTP)
             writer.writeEnum(2, this.type);
         if (this.has_target)
-            writer.writeMessage(3, this.target, () => this.target.serialize(writer));
+            writer.writeMessage(3, this.target, () => this.target!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -657,6 +641,16 @@ export class Event extends pb_1.Message {
         return Event.deserialize(bytes);
     }
 }
+export type EventAsObject = {
+    id: string;
+    type: Type;
+    target?: TargetAsObject;
+};
+export type EventAsObjectPartial = {
+    id?: string;
+    type?: Type;
+    target?: TargetAsObjectPartial;
+};
 export class Pop extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -676,9 +670,7 @@ export class Pop extends pb_1.Message {
     set id(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        id?: string;
-    }): Pop {
+    static fromObject(data: PopAsObjectPartial): Pop {
         const message = new Pop({});
         if (data.id != null) {
             message.id = data.id;
@@ -686,12 +678,9 @@ export class Pop extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: PopAsObject = {
+            id: this.id
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -724,6 +713,12 @@ export class Pop extends pb_1.Message {
         return Pop.deserialize(bytes);
     }
 }
+export type PopAsObject = {
+    id: string;
+};
+export type PopAsObjectPartial = {
+    id?: string;
+};
 export class Complete extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {
@@ -743,9 +738,7 @@ export class Complete extends pb_1.Message {
     set id(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        id?: string;
-    }): Complete {
+    static fromObject(data: CompleteAsObjectPartial): Complete {
         const message = new Complete({});
         if (data.id != null) {
             message.id = data.id;
@@ -753,12 +746,9 @@ export class Complete extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            id?: string;
-        } = {};
-        if (this.id != null) {
-            data.id = this.id;
-        }
+        const data: CompleteAsObject = {
+            id: this.id
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -791,6 +781,12 @@ export class Complete extends pb_1.Message {
         return Complete.deserialize(bytes);
     }
 }
+export type CompleteAsObject = {
+    id: string;
+};
+export type CompleteAsObjectPartial = {
+    id?: string;
+};
 export class CompleteResult extends pb_1.Message {
     #one_of_decls: number[][] = [];
     constructor(data?: any[] | {}) {
@@ -798,12 +794,12 @@ export class CompleteResult extends pb_1.Message {
         pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
         if (!Array.isArray(data) && typeof data == "object") { }
     }
-    static fromObject(data: {}): CompleteResult {
+    static fromObject(data: CompleteResultAsObjectPartial): CompleteResult {
         const message = new CompleteResult({});
         return message;
     }
     toObject() {
-        const data: {} = {};
+        const data: CompleteResultAsObject = {};
         return data;
     }
     serialize(): Uint8Array;
@@ -831,6 +827,8 @@ export class CompleteResult extends pb_1.Message {
         return CompleteResult.deserialize(bytes);
     }
 }
+export type CompleteResultAsObject = {};
+export type CompleteResultAsObjectPartial = {};
 interface GrpcUnaryServiceInterface<P, R> {
     (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;
     (message: P, metadata: grpc_1.Metadata, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;

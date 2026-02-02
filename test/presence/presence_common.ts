@@ -28,9 +28,7 @@ export class PresenceCommonMessage extends pb_1.Message {
     set message(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        message?: string;
-    }): PresenceCommonMessage {
+    static fromObject(data: PresenceCommonMessage.AsObjectPartial): PresenceCommonMessage {
         const message = new PresenceCommonMessage({});
         if (data.message != null) {
             message.message = data.message;
@@ -38,12 +36,9 @@ export class PresenceCommonMessage extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            message?: string;
-        } = {};
-        if (this.message != null) {
-            data.message = this.message;
-        }
+        const data: PresenceCommonMessage.AsObject = {
+            message: this.message
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -76,6 +71,14 @@ export class PresenceCommonMessage extends pb_1.Message {
         return PresenceCommonMessage.deserialize(bytes);
     }
 }
+export namespace PresenceCommonMessage {
+    export type AsObject = {
+        message: string;
+    };
+    export type AsObjectPartial = {
+        message?: string;
+    };
+}
 export class PresenceCommonMessageOneOf extends pb_1.Message {
     #one_of_decls: number[][] = [[1, 2]];
     constructor(data?: any[] | ({} & (({
@@ -106,9 +109,9 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         return pb_1.Message.getField(this, 1) != null;
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, PresenceCommonMessage, 2) as PresenceCommonMessage;
+        return pb_1.Message.getWrapperField(this, PresenceCommonMessage, 2) as PresenceCommonMessage | undefined;
     }
-    set message(value: PresenceCommonMessage) {
+    set message(value: PresenceCommonMessage | undefined) {
         pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
     }
     get has_message() {
@@ -124,10 +127,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [1, 2])];
     }
-    static fromObject(data: {
-        int32?: number;
-        message?: ReturnType<typeof PresenceCommonMessage.prototype.toObject>;
-    }): PresenceCommonMessageOneOf {
+    static fromObject(data: PresenceCommonMessageOneOf.AsObjectPartial): PresenceCommonMessageOneOf {
         const message = new PresenceCommonMessageOneOf({});
         if (data.int32 != null) {
             message.int32 = data.int32;
@@ -138,13 +138,9 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            int32?: number;
-            message?: ReturnType<typeof PresenceCommonMessage.prototype.toObject>;
-        } = {};
-        if (this.int32 != null) {
-            data.int32 = this.int32;
-        }
+        const data: PresenceCommonMessageOneOf.AsObject = {
+            int32: this.int32
+        };
         if (this.message != null) {
             data.message = this.message.toObject();
         }
@@ -157,7 +153,7 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
         if (this.has_int32)
             writer.writeInt32(1, this.int32);
         if (this.has_message)
-            writer.writeMessage(2, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(2, this.message, () => this.message!.serialize(writer));
         if (!w)
             return writer.getResultBuffer();
     }
@@ -184,4 +180,14 @@ export class PresenceCommonMessageOneOf extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): PresenceCommonMessageOneOf {
         return PresenceCommonMessageOneOf.deserialize(bytes);
     }
+}
+export namespace PresenceCommonMessageOneOf {
+    export type AsObject = {
+        int32: number;
+        message?: PresenceCommonMessage.AsObject;
+    };
+    export type AsObjectPartial = {
+        int32?: number;
+        message?: PresenceCommonMessage.AsObjectPartial;
+    };
 }

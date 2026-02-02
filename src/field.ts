@@ -15,6 +15,18 @@ export function wrapRepeatedType(type: any, fieldDescriptor: descriptor.FieldDes
 }
 
 /**
+ * Given the type T constructs T | undefined.
+ * Null is not added, cos Message.setWrapperField is not accepting null.
+ * @param type
+ */
+export function wrapNullableType(type: ts.TypeNode) {
+  return ts.factory.createUnionTypeNode([
+    type,
+    ts.factory.createKeywordTypeNode(ts.SyntaxKind.UndefinedKeyword),
+  ]);
+}
+
+/**
  * @param {descriptor.FileDescriptorProto} rootDescriptor
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
  */
@@ -31,11 +43,15 @@ export function getMapType(rootDescriptor: descriptor.FileDescriptorProto, field
 /**
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
  * @param {descriptor.FileDescriptorProto} rootDescriptor
+ * @param asObject to return message AsObject type reference
+ * @param asObjectPartial to return AsObjectPartial type referenct
  * @returns {ts.TypeReferenceNode | ts.Identifier | ts.PropertyAccessExpression}
  */
 export function getType(
   fieldDescriptor: descriptor.FieldDescriptorProto,
   rootDescriptor: descriptor.FileDescriptorProto,
+  asObject = false,
+  asObjectPartial = false,
 ): ts.TypeReferenceNode {
   if (isMap(fieldDescriptor)) {
     return getMapType(rootDescriptor, fieldDescriptor);
@@ -64,8 +80,14 @@ export function getType(
     case descriptor.FieldDescriptorProto.Type.TYPE_BYTES:
       return ts.factory.createTypeReferenceNode("Uint8Array");
     case descriptor.FieldDescriptorProto.Type.TYPE_MESSAGE:
+      return type.getTypeReference(
+        rootDescriptor,
+        fieldDescriptor.type_name,
+        asObject,
+        asObjectPartial,
+      );
     case descriptor.FieldDescriptorProto.Type.TYPE_ENUM:
-      return type.getTypeReference(rootDescriptor, fieldDescriptor.type_name)
+      return type.getTypeReference(rootDescriptor, fieldDescriptor.type_name);
     default:
       throw new Error("Unhandled type " + fieldDescriptor.type);
   }
@@ -182,7 +204,7 @@ export function isOptional(
   if (rootDescriptor.syntax == "proto3") {
     return (
       fieldDescriptor.label !=
-        descriptor.FieldDescriptorProto.Label.LABEL_REQUIRED ||
+      descriptor.FieldDescriptorProto.Label.LABEL_REQUIRED ||
       fieldDescriptor.proto3_optional
     );
   }
@@ -191,6 +213,50 @@ export function isOptional(
     descriptor.FieldDescriptorProto.Label.LABEL_OPTIONAL
   );
 }
+
+/**
+ * Function is used to determine, whether the field must be nullable
+ * in the toObject() method return type.
+ * Getters always
+ * Need to be in sync with getters.
+ * @param {descriptor.FileDescriptorProto} rootDescriptor
+ * @param {descriptor.FieldDescriptorProto} fieldDescriptor
+ */
+export function canHaveNullValue(
+  rootDescriptor: descriptor.FileDescriptorProto,
+  fieldDescriptor: descriptor.FieldDescriptorProto,
+): boolean {
+  return (
+    isOptional(rootDescriptor, fieldDescriptor) &&
+    !(
+      isNumber(fieldDescriptor) ||
+      isEnum(fieldDescriptor) ||
+      isRepeated(fieldDescriptor) ||
+      isBytes(fieldDescriptor) ||
+      isString(fieldDescriptor) ||
+      isBoolean(fieldDescriptor) ||
+      isMap(fieldDescriptor)
+    )
+    // isRequiredWithoutExplicitDefault is needed, cos
+    // protoc-gen-ts does not throw an exception when deserializing a message
+    // that does not have some required fields
+    // (neither does Google's javascript implementation).
+    // Thanks to @tomasz-szypenbejl-td for reference.
+  ) || isRequiredWithoutExplicitDefault(rootDescriptor, fieldDescriptor);
+  // Fields that are not optional and have explicit default return that default.
+  // Fields that are optional and are not messages, i.e.:
+  // (
+  //   isNumber(fieldDescriptor) ||
+  //   isEnum(fieldDescriptor) ||
+  //   isRepeated(fieldDescriptor) ||
+  //   isBytes(fieldDescriptor) ||
+  //   isString(fieldDescriptor) ||
+  //   isBoolean(fieldDescriptor) ||
+  //   isMap(fieldDescriptor)
+  // ) === true
+  // return their default value (zero, [], new Unit8Array(), '', false, new Map())
+}
+
 /**
  * @param {descriptor.FileDescriptorProto} rootDescriptor
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
@@ -218,7 +284,7 @@ export function isString(fieldDescriptor: descriptor.FieldDescriptorProto) {
 /**
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
  */
- export function isBytes(fieldDescriptor: descriptor.FieldDescriptorProto) {
+export function isBytes(fieldDescriptor: descriptor.FieldDescriptorProto) {
   return (
     fieldDescriptor.type == descriptor.FieldDescriptorProto.Type.TYPE_BYTES
   );
@@ -273,7 +339,7 @@ export function isPacked(
  * @param {descriptor.FileDescriptorProto} rootDescriptor
  * @param {descriptor.FieldDescriptorProto} fieldDescriptor
  */
- export function hasPresenceGetter(
+export function hasPresenceGetter(
   rootDescriptor: descriptor.FileDescriptorProto,
   fieldDescriptor: descriptor.FieldDescriptorProto,
 ) {

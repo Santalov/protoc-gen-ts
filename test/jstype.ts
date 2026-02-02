@@ -43,11 +43,7 @@ export class JSType extends pb_1.Message {
     set int_and_number(value: number) {
         pb_1.Message.setField(this, 3, value);
     }
-    static fromObject(data: {
-        int_but_string?: string;
-        int_and_normal?: number;
-        int_and_number?: number;
-    }): JSType {
+    static fromObject(data: JSType.AsObjectPartial): JSType {
         const message = new JSType({});
         if (data.int_but_string != null) {
             message.int_but_string = data.int_but_string;
@@ -61,20 +57,11 @@ export class JSType extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            int_but_string?: string;
-            int_and_normal?: number;
-            int_and_number?: number;
-        } = {};
-        if (this.int_but_string != null) {
-            data.int_but_string = this.int_but_string;
-        }
-        if (this.int_and_normal != null) {
-            data.int_and_normal = this.int_and_normal;
-        }
-        if (this.int_and_number != null) {
-            data.int_and_number = this.int_and_number;
-        }
+        const data: JSType.AsObject = {
+            int_but_string: this.int_but_string,
+            int_and_normal: this.int_and_normal,
+            int_and_number: this.int_and_number
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -116,4 +103,16 @@ export class JSType extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): JSType {
         return JSType.deserialize(bytes);
     }
+}
+export namespace JSType {
+    export type AsObject = {
+        int_but_string: string;
+        int_and_normal: number;
+        int_and_number: number;
+    };
+    export type AsObjectPartial = {
+        int_but_string?: string;
+        int_and_normal?: number;
+        int_and_number?: number;
+    };
 }

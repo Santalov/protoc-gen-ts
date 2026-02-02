@@ -12,12 +12,12 @@ export namespace importdirective {
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") { }
         }
-        static fromObject(data: {}): Imported {
+        static fromObject(data: Imported.AsObjectPartial): Imported {
             const message = new Imported({});
             return message;
         }
         toObject() {
-            const data: {} = {};
+            const data: Imported.AsObject = {};
             return data;
         }
         serialize(): Uint8Array;
@@ -46,6 +46,8 @@ export namespace importdirective {
         }
     }
     export namespace Imported {
+        export type AsObject = {};
+        export type AsObjectPartial = {};
         export class SubMessage extends pb_1.Message {
             #one_of_decls: number[][] = [];
             constructor(data?: any[] | {
@@ -65,9 +67,7 @@ export namespace importdirective {
             set key(value: Imported.SubMessage.MyEnum) {
                 pb_1.Message.setField(this, 1, value);
             }
-            static fromObject(data: {
-                key?: Imported.SubMessage.MyEnum;
-            }): SubMessage {
+            static fromObject(data: SubMessage.AsObjectPartial): SubMessage {
                 const message = new SubMessage({});
                 if (data.key != null) {
                     message.key = data.key;
@@ -75,12 +75,9 @@ export namespace importdirective {
                 return message;
             }
             toObject() {
-                const data: {
-                    key?: Imported.SubMessage.MyEnum;
-                } = {};
-                if (this.key != null) {
-                    data.key = this.key;
-                }
+                const data: SubMessage.AsObject = {
+                    key: this.key
+                };
                 return data;
             }
             serialize(): Uint8Array;
@@ -114,6 +111,12 @@ export namespace importdirective {
             }
         }
         export namespace SubMessage {
+            export type AsObject = {
+                key: Imported.SubMessage.MyEnum;
+            };
+            export type AsObjectPartial = {
+                key?: Imported.SubMessage.MyEnum;
+            };
             export enum MyEnum {
                 VALUE = 0,
                 VALUE2 = 1

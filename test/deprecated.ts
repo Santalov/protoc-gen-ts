@@ -81,11 +81,7 @@ export class MessageName extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [2, 3])];
     }
-    static fromObject(data: {
-        deprecated_field?: string;
-        me?: string;
-        me_deprecated?: string;
-    }): MessageName {
+    static fromObject(data: MessageName.AsObjectPartial): MessageName {
         const message = new MessageName({});
         if (data.deprecated_field != null) {
             message.deprecated_field = data.deprecated_field;
@@ -99,20 +95,11 @@ export class MessageName extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            deprecated_field?: string;
-            me?: string;
-            me_deprecated?: string;
-        } = {};
-        if (this.deprecated_field != null) {
-            data.deprecated_field = this.deprecated_field;
-        }
-        if (this.me != null) {
-            data.me = this.me;
-        }
-        if (this.me_deprecated != null) {
-            data.me_deprecated = this.me_deprecated;
-        }
+        const data: MessageName.AsObject = {
+            deprecated_field: this.deprecated_field,
+            me: this.me,
+            me_deprecated: this.me_deprecated
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -155,6 +142,18 @@ export class MessageName extends pb_1.Message {
         return MessageName.deserialize(bytes);
     }
 }
+export namespace MessageName {
+    export type AsObject = {
+        deprecated_field: string;
+        me: string;
+        me_deprecated: string;
+    };
+    export type AsObjectPartial = {
+        deprecated_field?: string;
+        me?: string;
+        me_deprecated?: string;
+    };
+}
 /** @deprecated*/
 export class MessageName2 extends pb_1.Message {
     #one_of_decls: number[][] = [];
@@ -163,12 +162,12 @@ export class MessageName2 extends pb_1.Message {
         pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
         if (!Array.isArray(data) && typeof data == "object") { }
     }
-    static fromObject(data: {}): MessageName2 {
+    static fromObject(data: MessageName2.AsObjectPartial): MessageName2 {
         const message = new MessageName2({});
         return message;
     }
     toObject() {
-        const data: {} = {};
+        const data: MessageName2.AsObject = {};
         return data;
     }
     serialize(): Uint8Array;
@@ -195,6 +194,10 @@ export class MessageName2 extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): MessageName2 {
         return MessageName2.deserialize(bytes);
     }
+}
+export namespace MessageName2 {
+    export type AsObject = {};
+    export type AsObjectPartial = {};
 }
 interface GrpcUnaryServiceInterface<P, R> {
     (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;

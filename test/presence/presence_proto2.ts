@@ -51,45 +51,45 @@ export class PresenceMessageV2 extends pb_1.Message {
             this.map = new Map();
     }
     get int32() {
-        return pb_1.Message.getField(this, 1) as number;
+        return pb_1.Message.getField(this, 1) as number | undefined;
     }
-    set int32(value: number) {
+    set int32(value: number | undefined) {
         pb_1.Message.setField(this, 1, value);
     }
     get has_int32() {
         return pb_1.Message.getField(this, 1) != null;
     }
     get enum() {
-        return pb_1.Message.getField(this, 2) as dependency_1.PresenceCommonEnum;
+        return pb_1.Message.getField(this, 2) as dependency_1.PresenceCommonEnum | undefined;
     }
-    set enum(value: dependency_1.PresenceCommonEnum) {
+    set enum(value: dependency_1.PresenceCommonEnum | undefined) {
         pb_1.Message.setField(this, 2, value);
     }
     get has_enum() {
         return pb_1.Message.getField(this, 2) != null;
     }
     get string() {
-        return pb_1.Message.getField(this, 3) as string;
+        return pb_1.Message.getField(this, 3) as string | undefined;
     }
-    set string(value: string) {
+    set string(value: string | undefined) {
         pb_1.Message.setField(this, 3, value);
     }
     get has_string() {
         return pb_1.Message.getField(this, 3) != null;
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessage, 4) as dependency_1.PresenceCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessage, 4) as dependency_1.PresenceCommonMessage | undefined;
     }
-    set message(value: dependency_1.PresenceCommonMessage) {
+    set message(value: dependency_1.PresenceCommonMessage | undefined) {
         pb_1.Message.setWrapperField(this, 4, value);
     }
     get has_message() {
         return pb_1.Message.getField(this, 4) != null;
     }
     get oneof() {
-        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessageOneOf, 5) as dependency_1.PresenceCommonMessageOneOf;
+        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessageOneOf, 5) as dependency_1.PresenceCommonMessageOneOf | undefined;
     }
-    set oneof(value: dependency_1.PresenceCommonMessageOneOf) {
+    set oneof(value: dependency_1.PresenceCommonMessageOneOf | undefined) {
         pb_1.Message.setWrapperField(this, 5, value);
     }
     get has_oneof() {
@@ -123,18 +123,18 @@ export class PresenceMessageV2 extends pb_1.Message {
         return pb_1.Message.getField(this, 8) != null;
     }
     get opt_message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessage, 9) as dependency_1.PresenceCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessage, 9) as dependency_1.PresenceCommonMessage | undefined;
     }
-    set opt_message(value: dependency_1.PresenceCommonMessage) {
+    set opt_message(value: dependency_1.PresenceCommonMessage | undefined) {
         pb_1.Message.setWrapperField(this, 9, value);
     }
     get has_opt_message() {
         return pb_1.Message.getField(this, 9) != null;
     }
     get opt_oneof() {
-        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessageOneOf, 10) as dependency_1.PresenceCommonMessageOneOf;
+        return pb_1.Message.getWrapperField(this, dependency_1.PresenceCommonMessageOneOf, 10) as dependency_1.PresenceCommonMessageOneOf | undefined;
     }
-    set opt_oneof(value: dependency_1.PresenceCommonMessageOneOf) {
+    set opt_oneof(value: dependency_1.PresenceCommonMessageOneOf | undefined) {
         pb_1.Message.setWrapperField(this, 10, value);
     }
     get has_opt_oneof() {
@@ -152,22 +152,7 @@ export class PresenceMessageV2 extends pb_1.Message {
     set map(value: Map<string, string>) {
         pb_1.Message.setField(this, 12, value as any);
     }
-    static fromObject(data: {
-        int32?: number;
-        enum?: dependency_1.PresenceCommonEnum;
-        string?: string;
-        message?: ReturnType<typeof dependency_1.PresenceCommonMessage.prototype.toObject>;
-        oneof?: ReturnType<typeof dependency_1.PresenceCommonMessageOneOf.prototype.toObject>;
-        opt_int32?: number;
-        opt_enum?: dependency_1.PresenceCommonEnum;
-        opt_string?: string;
-        opt_message?: ReturnType<typeof dependency_1.PresenceCommonMessage.prototype.toObject>;
-        opt_oneof?: ReturnType<typeof dependency_1.PresenceCommonMessageOneOf.prototype.toObject>;
-        repeated: number[];
-        map?: {
-            [key: string]: string;
-        };
-    }): PresenceMessageV2 {
+    static fromObject(data: PresenceMessageV2.AsObjectPartial): PresenceMessageV2 {
         const message = new PresenceMessageV2({
             int32: data.int32,
             enum: data.enum,
@@ -195,23 +180,12 @@ export class PresenceMessageV2 extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            int32?: number;
-            enum?: dependency_1.PresenceCommonEnum;
-            string?: string;
-            message?: ReturnType<typeof dependency_1.PresenceCommonMessage.prototype.toObject>;
-            oneof?: ReturnType<typeof dependency_1.PresenceCommonMessageOneOf.prototype.toObject>;
-            opt_int32?: number;
-            opt_enum?: dependency_1.PresenceCommonEnum;
-            opt_string?: string;
-            opt_message?: ReturnType<typeof dependency_1.PresenceCommonMessage.prototype.toObject>;
-            opt_oneof?: ReturnType<typeof dependency_1.PresenceCommonMessageOneOf.prototype.toObject>;
-            repeated: number[];
-            map?: {
-                [key: string]: string;
-            };
-        } = {
-            repeated: this.repeated
+        const data: PresenceMessageV2.AsObject = {
+            opt_int32: this.opt_int32,
+            opt_enum: this.opt_enum,
+            opt_string: this.opt_string,
+            repeated: this.repeated,
+            map: Object.fromEntries(this.map)
         };
         if (this.int32 != null) {
             data.int32 = this.int32;
@@ -228,23 +202,11 @@ export class PresenceMessageV2 extends pb_1.Message {
         if (this.oneof != null) {
             data.oneof = this.oneof.toObject();
         }
-        if (this.opt_int32 != null) {
-            data.opt_int32 = this.opt_int32;
-        }
-        if (this.opt_enum != null) {
-            data.opt_enum = this.opt_enum;
-        }
-        if (this.opt_string != null) {
-            data.opt_string = this.opt_string;
-        }
         if (this.opt_message != null) {
             data.opt_message = this.opt_message.toObject();
         }
         if (this.opt_oneof != null) {
             data.opt_oneof = this.opt_oneof.toObject();
-        }
-        if (this.map != null) {
-            data.map = Object.fromEntries(this.map);
         }
         return data;
     }
@@ -256,22 +218,22 @@ export class PresenceMessageV2 extends pb_1.Message {
             writer.writeInt32(1, this.int32);
         if (this.has_enum)
             writer.writeEnum(2, this.enum);
-        if (this.has_string && this.string.length)
+        if (this.has_string && this.string!.length)
             writer.writeString(3, this.string);
         if (this.has_message)
-            writer.writeMessage(4, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(4, this.message, () => this.message!.serialize(writer));
         if (this.has_oneof)
-            writer.writeMessage(5, this.oneof, () => this.oneof.serialize(writer));
+            writer.writeMessage(5, this.oneof, () => this.oneof!.serialize(writer));
         if (this.has_opt_int32)
             writer.writeInt32(6, this.opt_int32);
         if (this.has_opt_enum)
             writer.writeEnum(7, this.opt_enum);
-        if (this.has_opt_string && this.opt_string.length)
+        if (this.has_opt_string && this.opt_string!.length)
             writer.writeString(8, this.opt_string);
         if (this.has_opt_message)
-            writer.writeMessage(9, this.opt_message, () => this.opt_message.serialize(writer));
+            writer.writeMessage(9, this.opt_message, () => this.opt_message!.serialize(writer));
         if (this.has_opt_oneof)
-            writer.writeMessage(10, this.opt_oneof, () => this.opt_oneof.serialize(writer));
+            writer.writeMessage(10, this.opt_oneof, () => this.opt_oneof!.serialize(writer));
         if (this.repeated.length)
             writer.writeRepeatedInt32(11, this.repeated);
         for (const [key, value] of this.map) {
@@ -336,4 +298,38 @@ export class PresenceMessageV2 extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): PresenceMessageV2 {
         return PresenceMessageV2.deserialize(bytes);
     }
+}
+export namespace PresenceMessageV2 {
+    export type AsObject = {
+        int32?: number;
+        enum?: dependency_1.PresenceCommonEnum;
+        string?: string;
+        message?: dependency_1.PresenceCommonMessage.AsObject;
+        oneof?: dependency_1.PresenceCommonMessageOneOf.AsObject;
+        opt_int32: number;
+        opt_enum: dependency_1.PresenceCommonEnum;
+        opt_string: string;
+        opt_message?: dependency_1.PresenceCommonMessage.AsObject;
+        opt_oneof?: dependency_1.PresenceCommonMessageOneOf.AsObject;
+        repeated: number[];
+        map: {
+            [key: string]: string;
+        };
+    };
+    export type AsObjectPartial = {
+        int32: number;
+        enum: dependency_1.PresenceCommonEnum;
+        string: string;
+        message: dependency_1.PresenceCommonMessage.AsObjectPartial;
+        oneof: dependency_1.PresenceCommonMessageOneOf.AsObjectPartial;
+        opt_int32?: number;
+        opt_enum?: dependency_1.PresenceCommonEnum;
+        opt_string?: string;
+        opt_message?: dependency_1.PresenceCommonMessage.AsObjectPartial;
+        opt_oneof?: dependency_1.PresenceCommonMessageOneOf.AsObjectPartial;
+        repeated: number[];
+        map: {
+            [key: string]: string;
+        };
+    };
 }

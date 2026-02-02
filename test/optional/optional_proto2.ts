@@ -34,10 +34,7 @@ export class NotOptional extends pb_1.Message {
     get has_should_be_optional() {
         return pb_1.Message.getField(this, 2) != null;
     }
-    static fromObject(data: {
-        should_be_required: string[];
-        should_be_optional?: string;
-    }): NotOptional {
+    static fromObject(data: NotOptional.AsObjectPartial): NotOptional {
         const message = new NotOptional({
             should_be_required: data.should_be_required
         });
@@ -47,15 +44,10 @@ export class NotOptional extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            should_be_required: string[];
-            should_be_optional?: string;
-        } = {
-            should_be_required: this.should_be_required
+        const data: NotOptional.AsObject = {
+            should_be_required: this.should_be_required,
+            should_be_optional: this.should_be_optional
         };
-        if (this.should_be_optional != null) {
-            data.should_be_optional = this.should_be_optional;
-        }
         return data;
     }
     serialize(): Uint8Array;
@@ -64,7 +56,7 @@ export class NotOptional extends pb_1.Message {
         const writer = w || new pb_1.BinaryWriter();
         if (this.should_be_required.length)
             writer.writeRepeatedString(1, this.should_be_required);
-        if (this.has_should_be_optional && this.should_be_optional.length)
+        if (this.has_should_be_optional && this.should_be_optional!.length)
             writer.writeString(2, this.should_be_optional);
         if (!w)
             return writer.getResultBuffer();
@@ -92,4 +84,14 @@ export class NotOptional extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): NotOptional {
         return NotOptional.deserialize(bytes);
     }
+}
+export namespace NotOptional {
+    export type AsObject = {
+        should_be_required: string[];
+        should_be_optional: string;
+    };
+    export type AsObjectPartial = {
+        should_be_required: string[];
+        should_be_optional?: string;
+    };
 }

@@ -13,12 +13,12 @@ export namespace main {
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") { }
         }
-        static fromObject(data: {}): Message {
+        static fromObject(data: Message.AsObjectPartial): Message {
             const message = new Message({});
             return message;
         }
         toObject() {
-            const data: {} = {};
+            const data: Message.AsObject = {};
             return data;
         }
         serialize(): Uint8Array;
@@ -46,6 +46,10 @@ export namespace main {
             return Message.deserialize(bytes);
         }
     }
+    export namespace Message {
+        export type AsObject = {};
+        export type AsObjectPartial = {};
+    }
     export class MessageResult extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {}) {
@@ -53,12 +57,12 @@ export namespace main {
             pb_1.Message.initialize(this, Array.isArray(data) ? data : [], 0, -1, [], this.#one_of_decls);
             if (!Array.isArray(data) && typeof data == "object") { }
         }
-        static fromObject(data: {}): MessageResult {
+        static fromObject(data: MessageResult.AsObjectPartial): MessageResult {
             const message = new MessageResult({});
             return message;
         }
         toObject() {
-            const data: {} = {};
+            const data: MessageResult.AsObject = {};
             return data;
         }
         serialize(): Uint8Array;
@@ -85,6 +89,10 @@ export namespace main {
         static deserializeBinary(bytes: Uint8Array): MessageResult {
             return MessageResult.deserialize(bytes);
         }
+    }
+    export namespace MessageResult {
+        export type AsObject = {};
+        export type AsObjectPartial = {};
     }
     interface GrpcUnaryServiceInterface<P, R> {
         (message: P, metadata: grpc_1.Metadata, options: grpc_1.CallOptions, callback: grpc_1.requestCallback<R>): grpc_1.ClientUnaryCall;

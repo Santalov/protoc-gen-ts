@@ -63,9 +63,9 @@ export class JsonNamesMessage extends pb_1.Message {
         pb_1.Message.setField(this, 2, value);
     }
     get aNestedMessage() {
-        return pb_1.Message.getWrapperField(this, JsonNamesMessage.NestedMessage, 3) as JsonNamesMessage.NestedMessage;
+        return pb_1.Message.getWrapperField(this, JsonNamesMessage.NestedMessage, 3) as JsonNamesMessage.NestedMessage | undefined;
     }
-    set aNestedMessage(value: JsonNamesMessage.NestedMessage) {
+    set aNestedMessage(value: JsonNamesMessage.NestedMessage | undefined) {
         pb_1.Message.setWrapperField(this, 3, value);
     }
     get hasANestedMessage() {
@@ -123,15 +123,7 @@ export class JsonNamesMessage extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [5])];
     }
-    static fromObject(data: {
-        someStrings?: string[];
-        anInteger?: number;
-        aNestedMessage?: ReturnType<typeof JsonNamesMessage.NestedMessage.prototype.toObject>;
-        colorSpace?: ColorSpace;
-        anOptionalString?: string;
-        aSingleString?: string;
-        aSingleNumber?: number;
-    }): JsonNamesMessage {
+    static fromObject(data: JsonNamesMessage.AsObjectPartial): JsonNamesMessage {
         const message = new JsonNamesMessage({});
         if (data.someStrings != null) {
             message.someStrings = data.someStrings;
@@ -157,35 +149,16 @@ export class JsonNamesMessage extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            someStrings?: string[];
-            anInteger?: number;
-            aNestedMessage?: ReturnType<typeof JsonNamesMessage.NestedMessage.prototype.toObject>;
-            colorSpace?: ColorSpace;
-            anOptionalString?: string;
-            aSingleString?: string;
-            aSingleNumber?: number;
-        } = {};
-        if (this.someStrings != null) {
-            data.someStrings = this.someStrings;
-        }
-        if (this.anInteger != null) {
-            data.anInteger = this.anInteger;
-        }
+        const data: JsonNamesMessage.AsObject = {
+            someStrings: this.someStrings,
+            anInteger: this.anInteger,
+            colorSpace: this.colorSpace,
+            anOptionalString: this.anOptionalString,
+            aSingleString: this.aSingleString,
+            aSingleNumber: this.aSingleNumber
+        };
         if (this.aNestedMessage != null) {
             data.aNestedMessage = this.aNestedMessage.toObject();
-        }
-        if (this.colorSpace != null) {
-            data.colorSpace = this.colorSpace;
-        }
-        if (this.anOptionalString != null) {
-            data.anOptionalString = this.anOptionalString;
-        }
-        if (this.aSingleString != null) {
-            data.aSingleString = this.aSingleString;
-        }
-        if (this.aSingleNumber != null) {
-            data.aSingleNumber = this.aSingleNumber;
         }
         return data;
     }
@@ -198,7 +171,7 @@ export class JsonNamesMessage extends pb_1.Message {
         if (this.anInteger != 0)
             writer.writeInt32(2, this.anInteger);
         if (this.hasANestedMessage)
-            writer.writeMessage(3, this.aNestedMessage, () => this.aNestedMessage.serialize(writer));
+            writer.writeMessage(3, this.aNestedMessage, () => this.aNestedMessage!.serialize(writer));
         if (this.colorSpace != ColorSpace.RED_GREEN_BLUE)
             writer.writeEnum(4, this.colorSpace);
         if (this.hasAnOptionalString)
@@ -250,6 +223,24 @@ export class JsonNamesMessage extends pb_1.Message {
     }
 }
 export namespace JsonNamesMessage {
+    export type AsObject = {
+        someStrings: string[];
+        anInteger: number;
+        aNestedMessage?: JsonNamesMessage.NestedMessage.AsObject;
+        colorSpace: ColorSpace;
+        anOptionalString: string;
+        aSingleString: string;
+        aSingleNumber: number;
+    };
+    export type AsObjectPartial = {
+        someStrings?: string[];
+        anInteger?: number;
+        aNestedMessage?: JsonNamesMessage.NestedMessage.AsObjectPartial;
+        colorSpace?: ColorSpace;
+        anOptionalString?: string;
+        aSingleString?: string;
+        aSingleNumber?: number;
+    };
     export class NestedMessage extends pb_1.Message {
         #one_of_decls: number[][] = [];
         constructor(data?: any[] | {
@@ -269,9 +260,7 @@ export namespace JsonNamesMessage {
         set aNestedInteger(value: number) {
             pb_1.Message.setField(this, 1, value);
         }
-        static fromObject(data: {
-            aNestedInteger?: number;
-        }): NestedMessage {
+        static fromObject(data: NestedMessage.AsObjectPartial): NestedMessage {
             const message = new NestedMessage({});
             if (data.aNestedInteger != null) {
                 message.aNestedInteger = data.aNestedInteger;
@@ -279,12 +268,9 @@ export namespace JsonNamesMessage {
             return message;
         }
         toObject() {
-            const data: {
-                aNestedInteger?: number;
-            } = {};
-            if (this.aNestedInteger != null) {
-                data.aNestedInteger = this.aNestedInteger;
-            }
+            const data: NestedMessage.AsObject = {
+                aNestedInteger: this.aNestedInteger
+            };
             return data;
         }
         serialize(): Uint8Array;
@@ -316,5 +302,13 @@ export namespace JsonNamesMessage {
         static deserializeBinary(bytes: Uint8Array): NestedMessage {
             return NestedMessage.deserialize(bytes);
         }
+    }
+    export namespace NestedMessage {
+        export type AsObject = {
+            aNestedInteger: number;
+        };
+        export type AsObjectPartial = {
+            aNestedInteger?: number;
+        };
     }
 }

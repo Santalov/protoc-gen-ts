@@ -10,7 +10,7 @@ function toObjectPreservingUndefined(message: Object): Object {
     const classPropertyDescriptors = Object.getOwnPropertyDescriptors(message.constructor.prototype);
     const getters = Object.keys(classPropertyDescriptors)
         .filter((k) => classPropertyDescriptors[k].get != null && classPropertyDescriptors[k].set != null);
-    return Object.fromEntries(getters.map((g) => [g, correctFieldValue(message[g])]));
+    return Object.fromEntries(getters.map((g) => [g, correctFieldValue((message as any)[g])]));
 }
 
 describe("defaults", () => {
@@ -433,4 +433,39 @@ describe("defaults", () => {
         expect(explicitlyProvidedDefaults16.serialize().length).toBeGreaterThan(0);
         expect(explicitlyProvidedDefaults17.serialize().length).toBeGreaterThan(0);
     });
+    it('should create message from empty object via constructor and fromObject', () => {
+        // test the existence of AsObjectPartial type
+        const withDefaultBlank: MessageWithDefault.AsObjectPartial = {}
+        const withDefaultFromObject = MessageWithDefault.fromObject(withDefaultBlank)
+        // if there are no nested messages, AsObjectPartial can be used in the constructor
+        const withDefaultConstructed = new MessageWithDefault(withDefaultBlank);
+        // test the existence of AsObject type
+        const withDefaultObject: MessageWithDefault.AsObject = {
+            bool_field: true,
+            string_field: 'default value',
+            int32_field: 12
+        }
+        expect(withDefaultFromObject.toObject())
+          .toEqual(withDefaultObject)
+        expect(withDefaultConstructed.toObject())
+          .toEqual(withDefaultObject)
+
+        const withImplicitDefaultBlank: MessageWithImplicitDefault.AsObjectPartial = {}
+        const withImplicitDefaultFromObject = MessageWithImplicitDefault.fromObject(
+          withImplicitDefaultBlank
+        );
+        // if there are no nested messages, AsObjectPartial can be used in the constructor
+        const withImplicitDefaultConstructed = new MessageWithImplicitDefault(
+          withDefaultBlank
+        );
+        const withImplicitDefaultObject: MessageWithDefault.AsObject = {
+            bool_field: false,
+            string_field: '',
+            int32_field: 0,
+        }
+        expect(withImplicitDefaultFromObject.toObject())
+          .toEqual(withImplicitDefaultObject)
+        expect(withImplicitDefaultConstructed.toObject())
+          .toEqual(withImplicitDefaultObject)
+    })
 });

@@ -7,9 +7,8 @@ import * as op from "./option.js";
 
 let config: op.Options;
 
-export function initialize(configParameters: op.Options): void
-{
-    config = configParameters;
+export function initialize(configParameters: op.Options): void {
+  config = configParameters;
 }
 
 function getFieldName(fieldDescriptor: descriptor.FieldDescriptorProto): string {
@@ -34,7 +33,7 @@ function getPrefixedFieldName(prefix: string, fieldDescriptor: descriptor.FieldD
  */
 export function createEnum(
   enumDescriptor: descriptor.EnumDescriptorProto,
-  parentName: string = ''
+  parentName: string = "",
 ): ts.EnumDeclaration {
   const values = [];
 
@@ -302,7 +301,15 @@ function createFromObject(
         undefined,
         dataIdentifier,
         undefined,
-        createPrimitiveMessageSignature(rootDescriptor, messageDescriptor),
+          ts.factory.createTypeReferenceNode(
+            ts.factory.createIdentifier(
+              type.addAsObject(
+                `${parentName}${messageDescriptor.name}`,
+                true,
+                true,
+              )
+            )
+        ),
       ),
     ],
     ts.factory.createTypeReferenceNode(
@@ -316,6 +323,7 @@ function createFromObject(
 function createToObject(
   rootDescriptor: descriptor.FileDescriptorProto,
   messageDescriptor: descriptor.DescriptorProto,
+  parentName: string = ''
 ): ts.MethodDeclaration {
   const statements = [];
   const properties = [];
@@ -438,11 +446,8 @@ function createToObject(
       }
     }
 
-    if (
-      field.isOptional(rootDescriptor, fieldDescriptor) ||
-      field.isMessage(fieldDescriptor) ||
-      field.isRequiredWithoutExplicitDefault(rootDescriptor, fieldDescriptor)
-    ) {
+    // matches AsObject typing
+    if (field.canHaveNullValue(rootDescriptor, fieldDescriptor)) {
       const propertyAccessor = ts.factory.createPropertyAccessExpression(
         ts.factory.createThis(),
         getFieldName(fieldDescriptor),
@@ -488,7 +493,14 @@ function createToObject(
           ts.factory.createVariableDeclaration(
             "data",
             undefined,
-            createPrimitiveMessageSignature(rootDescriptor, messageDescriptor),
+            ts.factory.createTypeReferenceNode(
+              ts.factory.createIdentifier(
+                type.addAsObject(
+                  `${parentName}${messageDescriptor.name}`,
+                  true
+                )
+              )
+            ),
             ts.factory.createObjectLiteralExpression(properties, true),
           ),
         ],
@@ -622,34 +634,19 @@ function createMessageSignature(
 function createPrimitiveMessageSignature(
   rootDescriptor: descriptor.FileDescriptorProto,
   messageDescriptor: descriptor.DescriptorProto,
+  partial: boolean, // make all field types nullable
 ) {
   const fieldSignatures = [];
 
-  const wrapMessageType = (
-    fieldType: ts.TypeReferenceNode,
-  ): ts.TypeReferenceNode => {
-    const type = ts.factory.createTypeQueryNode(
-      ts.factory.createQualifiedName(
-        ts.factory.createQualifiedName(fieldType.typeName, "prototype"),
-        "toObject",
-      ),
-    );
-    return ts.factory.createTypeReferenceNode("ReturnType", [type]);
-  };
-
   for (const fieldDescriptor of messageDescriptor.field) {
-    let fieldType: ts.TypeNode = field.getType(fieldDescriptor, rootDescriptor);
+    let fieldType: ts.TypeNode = field.getType(fieldDescriptor, rootDescriptor, true, partial);
 
     if (field.isMap(fieldDescriptor)) {
       const [keyDescriptor, valueDescriptor] = type.getMapDescriptor(
         fieldDescriptor.type_name,
       ).field;
 
-      let valueType = field.getType(valueDescriptor, rootDescriptor);
-
-      if (field.isMessage(valueDescriptor)) {
-        valueType = wrapMessageType(valueType);
-      }
+      let valueType = field.getType(valueDescriptor, rootDescriptor, true);
 
       fieldType = ts.factory.createTypeLiteralNode([
         ts.factory.createIndexSignature(
@@ -668,8 +665,6 @@ function createPrimitiveMessageSignature(
           valueType as ts.TypeNode,
         ),
       ]);
-    } else if (field.isMessage(fieldDescriptor)) {
-      fieldType = wrapMessageType(fieldType as ts.TypeReferenceNode);
     }
 
     fieldSignatures.push(
@@ -677,9 +672,9 @@ function createPrimitiveMessageSignature(
         undefined,
         getFieldName(fieldDescriptor),
         (
-          field.isOptional(rootDescriptor, fieldDescriptor) ||
-          field.isMessage(fieldDescriptor) ||
-          field.isRequiredWithoutExplicitDefault(rootDescriptor, fieldDescriptor)
+          partial
+            ? field.isOptional(rootDescriptor, fieldDescriptor)
+            : field.canHaveNullValue(rootDescriptor, fieldDescriptor)
         )
           ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
           : undefined,
@@ -689,6 +684,33 @@ function createPrimitiveMessageSignature(
   }
 
   return ts.factory.createTypeLiteralNode(fieldSignatures);
+}
+
+/**
+ * Creates AsObject or AsObjectPartial type export, for example:
+ * ```typescript
+ *   export type AsObject = {
+ *     id: number;
+ *   }
+ * ```
+ * @param {descriptor.FileDescriptorProto} rootDescriptor
+ * @param {descriptor.DescriptorProto} messageDescriptor
+ * @param partial make all field types nullable. Used in fromObject method.
+ * @param parentName a string to become a prefix
+ */
+function createAsObjectType(
+  rootDescriptor: descriptor.FileDescriptorProto,
+  messageDescriptor: descriptor.DescriptorProto,
+  partial: boolean,
+  parentName: string = '',
+) {
+  return ts.factory.createTypeAliasDeclaration(
+    undefined,
+    [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+    ts.factory.createIdentifier(`${parentName}AsObject${partial ? 'Partial' : ''}`),
+    undefined,
+    createPrimitiveMessageSignature(rootDescriptor, messageDescriptor, partial),
+  )
 }
 
 function getPivot(descriptor: descriptor.DescriptorProto) {
@@ -899,10 +921,13 @@ function createGetter(
   pbIdentifier: ts.Identifier,
   parentName: string = '',
 ): ts.GetAccessorDeclaration {
-  const getterType = field.wrapRepeatedType(
+  let getterType = field.wrapRepeatedType(
     field.getType(fieldDescriptor, rootDescriptor) as ts.TypeNode,
     fieldDescriptor,
   );
+  if (field.canHaveNullValue(rootDescriptor, fieldDescriptor)) {
+    getterType = field.wrapNullableType(getterType)
+  }
   let getterExpr: ts.Expression = createGetterCall(
     rootDescriptor,
     fieldDescriptor,
@@ -943,6 +968,9 @@ function createGetterCall(
   pbIdentifier: ts.Identifier,
   parentName: string = '',
 ): ts.CallExpression {
+  // if you update the default value, returned by the getter,
+  // do not forget to update the field.alwaysHasValue function,
+  // so toObject() return type is synced with the getters
   let args: ts.Expression[];
   let getterMethod = "getField";
 
@@ -1130,10 +1158,17 @@ function createSetter(
   fieldDescriptor: descriptor.FieldDescriptorProto,
   pbIdentifier: ts.Identifier,
 ) {
-  const type = field.wrapRepeatedType(
+  let type = field.wrapRepeatedType(
     field.getType(fieldDescriptor, rootDescriptor),
     fieldDescriptor,
   );
+  // isOptional here matches getter typing.
+  // Actually, it should match the constructor's typings, but
+  // typescript doesn't allow different types for getter and setter.
+  // For fields that are optional, the clear_field method should be generated.
+  if (field.canHaveNullValue(rootDescriptor, fieldDescriptor)) {
+    type = field.wrapNullableType(type)
+  }
   const valueParameter = ts.factory.createIdentifier("value");
 
   let block: ts.Block;
@@ -1364,7 +1399,9 @@ function createSerialize(
             ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
             ts.factory.createCallExpression(
               ts.factory.createPropertyAccessExpression(
-                ts.factory.createIdentifier("value"),
+                ts.factory.createNonNullExpression(
+                  ts.factory.createIdentifier("value")
+                ),
                 "serialize",
               ),
               undefined,
@@ -1484,7 +1521,9 @@ function createSerialize(
               ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
               ts.factory.createCallExpression(
                 ts.factory.createPropertyAccessExpression(
-                  ts.factory.createIdentifier("item"),
+                  ts.factory.createNonNullExpression(
+                    ts.factory.createIdentifier("item")
+                  ),
                   "serialize",
                 ),
                 undefined,
@@ -1502,9 +1541,11 @@ function createSerialize(
               ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
               ts.factory.createCallExpression(
                 ts.factory.createPropertyAccessExpression(
-                  ts.factory.createPropertyAccessExpression(
-                    ts.factory.createThis(),
-                    getFieldName(fieldDescriptor),
+                  ts.factory.createNonNullExpression(
+                    ts.factory.createPropertyAccessExpression(
+                      ts.factory.createThis(),
+                      getFieldName(fieldDescriptor),
+                    )
                   ),
                   "serialize",
                 ),
@@ -1581,7 +1622,12 @@ function createSerialize(
           ? ts.factory.createBinaryExpression(
               hasFieldCondition,
               ts.factory.createToken(ts.SyntaxKind.AmpersandAmpersandToken),
-              ts.factory.createPropertyAccessExpression(propAccessor, "length"),
+              ts.factory.createPropertyAccessExpression(
+                ts.factory.createNonNullExpression(
+                  propAccessor
+                ),
+                "length"
+              ),
             )
           : ts.factory.createPropertyAccessExpression(propAccessor, "length");
       }
@@ -2243,7 +2289,7 @@ function createMessage(
     // Create fromObject method
     createFromObject(rootDescriptor, messageDescriptor, parentName),
     // Create toObject method
-    createToObject(rootDescriptor, messageDescriptor),
+    createToObject(rootDescriptor, messageDescriptor, parentName),
   );
 
   statements.push(
@@ -2297,6 +2343,18 @@ export function processDescriptorRecursively(
 
   const namespacedStatements: ts.Statement[] = [];
 
+  const createAsObjectAll = (parentName = '') =>
+    [false, true].map(partial => createAsObjectType(rootDescriptor, descriptor, partial, parentName));
+
+  if (no_namespace) {
+    statements.push(
+      ...createAsObjectAll(`${parentName}${descriptor.name}`)
+    )
+  } else {
+    namespacedStatements.push(
+      ...createAsObjectAll()
+    )
+  }
 
   for (const _enum of descriptor.enum_type) {
     if (no_namespace) {

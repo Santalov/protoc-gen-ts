@@ -119,9 +119,9 @@ export class DefaultMessageV3 extends pb_1.Message {
             this.map_string_message = new Map();
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 1) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set message(value: dependency_1.DefaultCommonMessage) {
+    set message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setWrapperField(this, 1, value);
     }
     get has_message() {
@@ -257,9 +257,9 @@ export class DefaultMessageV3 extends pb_1.Message {
         return pb_1.Message.getField(this, 22) != null;
     }
     get one_of_message() {
-        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 23) as dependency_1.DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, dependency_1.DefaultCommonMessage, 23) as dependency_1.DefaultCommonMessage | undefined;
     }
-    set one_of_message(value: dependency_1.DefaultCommonMessage) {
+    set one_of_message(value: dependency_1.DefaultCommonMessage | undefined) {
         pb_1.Message.setOneofWrapperField(this, 23, this.#one_of_decls[0], value);
     }
     get has_one_of_message() {
@@ -281,36 +281,7 @@ export class DefaultMessageV3 extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [22, 23])];
     }
-    static fromObject(data: {
-        message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        enum?: dependency_1.DefaultCommonEnum;
-        bool?: boolean;
-        string?: string;
-        int32?: number;
-        fixed32?: number;
-        sfixed32?: number;
-        uint32?: number;
-        sint32?: number;
-        int64?: number;
-        fixed64?: number;
-        sfixed64?: number;
-        uint64?: number;
-        sint64?: number;
-        float?: number;
-        double?: number;
-        int_but_string?: string;
-        map_string_string?: {
-            [key: string]: string;
-        };
-        map_string_message?: {
-            [key: string]: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        };
-        array_int32?: number[];
-        array_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>[];
-        one_of_int32?: number;
-        one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-        bytes?: Uint8Array;
-    }): DefaultMessageV3 {
+    static fromObject(data: DefaultMessageV3.AsObjectPartial): DefaultMessageV3 {
         const message = new DefaultMessageV3({});
         if (data.message != null) {
             message.message = dependency_1.DefaultCommonMessage.fromObject(data.message);
@@ -387,107 +358,35 @@ export class DefaultMessageV3 extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            enum?: dependency_1.DefaultCommonEnum;
-            bool?: boolean;
-            string?: string;
-            int32?: number;
-            fixed32?: number;
-            sfixed32?: number;
-            uint32?: number;
-            sint32?: number;
-            int64?: number;
-            fixed64?: number;
-            sfixed64?: number;
-            uint64?: number;
-            sint64?: number;
-            float?: number;
-            double?: number;
-            int_but_string?: string;
-            map_string_string?: {
-                [key: string]: string;
-            };
-            map_string_message?: {
-                [key: string]: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            };
-            array_int32?: number[];
-            array_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>[];
-            one_of_int32?: number;
-            one_of_message?: ReturnType<typeof dependency_1.DefaultCommonMessage.prototype.toObject>;
-            bytes?: Uint8Array;
-        } = {};
+        const data: DefaultMessageV3.AsObject = {
+            enum: this.enum,
+            bool: this.bool,
+            string: this.string,
+            int32: this.int32,
+            fixed32: this.fixed32,
+            sfixed32: this.sfixed32,
+            uint32: this.uint32,
+            sint32: this.sint32,
+            int64: this.int64,
+            fixed64: this.fixed64,
+            sfixed64: this.sfixed64,
+            uint64: this.uint64,
+            sint64: this.sint64,
+            float: this.float,
+            double: this.double,
+            int_but_string: this.int_but_string,
+            map_string_string: Object.fromEntries(this.map_string_string),
+            map_string_message: Object.fromEntries(Array.from(this.map_string_message).map(([key, value]) => [key, value.toObject()])),
+            array_int32: this.array_int32,
+            array_message: this.array_message.map((item: dependency_1.DefaultCommonMessage) => item.toObject()),
+            one_of_int32: this.one_of_int32,
+            bytes: this.bytes
+        };
         if (this.message != null) {
             data.message = this.message.toObject();
         }
-        if (this.enum != null) {
-            data.enum = this.enum;
-        }
-        if (this.bool != null) {
-            data.bool = this.bool;
-        }
-        if (this.string != null) {
-            data.string = this.string;
-        }
-        if (this.int32 != null) {
-            data.int32 = this.int32;
-        }
-        if (this.fixed32 != null) {
-            data.fixed32 = this.fixed32;
-        }
-        if (this.sfixed32 != null) {
-            data.sfixed32 = this.sfixed32;
-        }
-        if (this.uint32 != null) {
-            data.uint32 = this.uint32;
-        }
-        if (this.sint32 != null) {
-            data.sint32 = this.sint32;
-        }
-        if (this.int64 != null) {
-            data.int64 = this.int64;
-        }
-        if (this.fixed64 != null) {
-            data.fixed64 = this.fixed64;
-        }
-        if (this.sfixed64 != null) {
-            data.sfixed64 = this.sfixed64;
-        }
-        if (this.uint64 != null) {
-            data.uint64 = this.uint64;
-        }
-        if (this.sint64 != null) {
-            data.sint64 = this.sint64;
-        }
-        if (this.float != null) {
-            data.float = this.float;
-        }
-        if (this.double != null) {
-            data.double = this.double;
-        }
-        if (this.int_but_string != null) {
-            data.int_but_string = this.int_but_string;
-        }
-        if (this.map_string_string != null) {
-            data.map_string_string = Object.fromEntries(this.map_string_string);
-        }
-        if (this.map_string_message != null) {
-            data.map_string_message = Object.fromEntries(Array.from(this.map_string_message).map(([key, value]) => [key, value.toObject()]));
-        }
-        if (this.array_int32 != null) {
-            data.array_int32 = this.array_int32;
-        }
-        if (this.array_message != null) {
-            data.array_message = this.array_message.map((item: dependency_1.DefaultCommonMessage) => item.toObject());
-        }
-        if (this.one_of_int32 != null) {
-            data.one_of_int32 = this.one_of_int32;
-        }
         if (this.one_of_message != null) {
             data.one_of_message = this.one_of_message.toObject();
-        }
-        if (this.bytes != null) {
-            data.bytes = this.bytes;
         }
         return data;
     }
@@ -496,7 +395,7 @@ export class DefaultMessageV3 extends pb_1.Message {
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
         if (this.has_message)
-            writer.writeMessage(1, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(1, this.message, () => this.message!.serialize(writer));
         if (this.enum != dependency_1.DefaultCommonEnum.ZERO)
             writer.writeEnum(2, this.enum);
         if (this.bool != false)
@@ -538,17 +437,17 @@ export class DefaultMessageV3 extends pb_1.Message {
         for (const [key, value] of this.map_string_message) {
             writer.writeMessage(19, this.map_string_message, () => {
                 writer.writeString(1, key);
-                writer.writeMessage(2, value, () => value.serialize(writer));
+                writer.writeMessage(2, value, () => value!.serialize(writer));
             });
         }
         if (this.array_int32.length)
             writer.writePackedInt32(20, this.array_int32);
         if (this.array_message.length)
-            writer.writeRepeatedMessage(21, this.array_message, (item: dependency_1.DefaultCommonMessage) => item.serialize(writer));
+            writer.writeRepeatedMessage(21, this.array_message, (item: dependency_1.DefaultCommonMessage) => item!.serialize(writer));
         if (this.has_one_of_int32)
             writer.writeInt32(22, this.one_of_int32);
         if (this.has_one_of_message)
-            writer.writeMessage(23, this.one_of_message, () => this.one_of_message.serialize(writer));
+            writer.writeMessage(23, this.one_of_message, () => this.one_of_message!.serialize(writer));
         if (this.bytes.length)
             writer.writeBytes(24, this.bytes);
         if (!w)
@@ -647,6 +546,68 @@ export class DefaultMessageV3 extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): DefaultMessageV3 {
         return DefaultMessageV3.deserialize(bytes);
     }
+}
+export namespace DefaultMessageV3 {
+    export type AsObject = {
+        message?: dependency_1.DefaultCommonMessage.AsObject;
+        enum: dependency_1.DefaultCommonEnum;
+        bool: boolean;
+        string: string;
+        int32: number;
+        fixed32: number;
+        sfixed32: number;
+        uint32: number;
+        sint32: number;
+        int64: number;
+        fixed64: number;
+        sfixed64: number;
+        uint64: number;
+        sint64: number;
+        float: number;
+        double: number;
+        int_but_string: string;
+        map_string_string: {
+            [key: string]: string;
+        };
+        map_string_message: {
+            [key: string]: dependency_1.DefaultCommonMessage.AsObject;
+        };
+        array_int32: number[];
+        array_message: dependency_1.DefaultCommonMessage.AsObject[];
+        one_of_int32: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObject;
+        bytes: Uint8Array;
+    };
+    export type AsObjectPartial = {
+        message?: dependency_1.DefaultCommonMessage.AsObjectPartial;
+        enum?: dependency_1.DefaultCommonEnum;
+        bool?: boolean;
+        string?: string;
+        int32?: number;
+        fixed32?: number;
+        sfixed32?: number;
+        uint32?: number;
+        sint32?: number;
+        int64?: number;
+        fixed64?: number;
+        sfixed64?: number;
+        uint64?: number;
+        sint64?: number;
+        float?: number;
+        double?: number;
+        int_but_string?: string;
+        map_string_string?: {
+            [key: string]: string;
+        };
+        map_string_message?: {
+            [key: string]: dependency_1.DefaultCommonMessage.AsObject;
+        };
+        array_int32?: number[];
+        array_message?: dependency_1.DefaultCommonMessage.AsObjectPartial[];
+        one_of_int32?: number;
+        one_of_message?: dependency_1.DefaultCommonMessage.AsObjectPartial;
+        bytes?: Uint8Array;
+    };
 }
 export class DefaultMessageOptionalV3 extends pb_1.Message {
     #one_of_decls: number[][] = [[2], [3], [4], [5], [6], [7], [8], [9], [10], [11], [12], [13], [14], [15], [16], [17], [24]];
@@ -1047,25 +1008,7 @@ export class DefaultMessageOptionalV3 extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [24])];
     }
-    static fromObject(data: {
-        enum?: dependency_1.DefaultCommonEnum;
-        bool?: boolean;
-        string?: string;
-        int32?: number;
-        fixed32?: number;
-        sfixed32?: number;
-        uint32?: number;
-        sint32?: number;
-        int64?: number;
-        fixed64?: number;
-        sfixed64?: number;
-        uint64?: number;
-        sint64?: number;
-        float?: number;
-        double?: number;
-        int_but_string?: string;
-        bytes?: Uint8Array;
-    }): DefaultMessageOptionalV3 {
+    static fromObject(data: DefaultMessageOptionalV3.AsObjectPartial): DefaultMessageOptionalV3 {
         const message = new DefaultMessageOptionalV3({});
         if (data.enum != null) {
             message.enum = data.enum;
@@ -1121,76 +1064,25 @@ export class DefaultMessageOptionalV3 extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            enum?: dependency_1.DefaultCommonEnum;
-            bool?: boolean;
-            string?: string;
-            int32?: number;
-            fixed32?: number;
-            sfixed32?: number;
-            uint32?: number;
-            sint32?: number;
-            int64?: number;
-            fixed64?: number;
-            sfixed64?: number;
-            uint64?: number;
-            sint64?: number;
-            float?: number;
-            double?: number;
-            int_but_string?: string;
-            bytes?: Uint8Array;
-        } = {};
-        if (this.enum != null) {
-            data.enum = this.enum;
-        }
-        if (this.bool != null) {
-            data.bool = this.bool;
-        }
-        if (this.string != null) {
-            data.string = this.string;
-        }
-        if (this.int32 != null) {
-            data.int32 = this.int32;
-        }
-        if (this.fixed32 != null) {
-            data.fixed32 = this.fixed32;
-        }
-        if (this.sfixed32 != null) {
-            data.sfixed32 = this.sfixed32;
-        }
-        if (this.uint32 != null) {
-            data.uint32 = this.uint32;
-        }
-        if (this.sint32 != null) {
-            data.sint32 = this.sint32;
-        }
-        if (this.int64 != null) {
-            data.int64 = this.int64;
-        }
-        if (this.fixed64 != null) {
-            data.fixed64 = this.fixed64;
-        }
-        if (this.sfixed64 != null) {
-            data.sfixed64 = this.sfixed64;
-        }
-        if (this.uint64 != null) {
-            data.uint64 = this.uint64;
-        }
-        if (this.sint64 != null) {
-            data.sint64 = this.sint64;
-        }
-        if (this.float != null) {
-            data.float = this.float;
-        }
-        if (this.double != null) {
-            data.double = this.double;
-        }
-        if (this.int_but_string != null) {
-            data.int_but_string = this.int_but_string;
-        }
-        if (this.bytes != null) {
-            data.bytes = this.bytes;
-        }
+        const data: DefaultMessageOptionalV3.AsObject = {
+            enum: this.enum,
+            bool: this.bool,
+            string: this.string,
+            int32: this.int32,
+            fixed32: this.fixed32,
+            sfixed32: this.sfixed32,
+            uint32: this.uint32,
+            sint32: this.sint32,
+            int64: this.int64,
+            fixed64: this.fixed64,
+            sfixed64: this.sfixed64,
+            uint64: this.uint64,
+            sint64: this.sint64,
+            float: this.float,
+            double: this.double,
+            int_but_string: this.int_but_string,
+            bytes: this.bytes
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -1302,4 +1194,44 @@ export class DefaultMessageOptionalV3 extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): DefaultMessageOptionalV3 {
         return DefaultMessageOptionalV3.deserialize(bytes);
     }
+}
+export namespace DefaultMessageOptionalV3 {
+    export type AsObject = {
+        enum: dependency_1.DefaultCommonEnum;
+        bool: boolean;
+        string: string;
+        int32: number;
+        fixed32: number;
+        sfixed32: number;
+        uint32: number;
+        sint32: number;
+        int64: number;
+        fixed64: number;
+        sfixed64: number;
+        uint64: number;
+        sint64: number;
+        float: number;
+        double: number;
+        int_but_string: string;
+        bytes: Uint8Array;
+    };
+    export type AsObjectPartial = {
+        enum?: dependency_1.DefaultCommonEnum;
+        bool?: boolean;
+        string?: string;
+        int32?: number;
+        fixed32?: number;
+        sfixed32?: number;
+        uint32?: number;
+        sint32?: number;
+        int64?: number;
+        fixed64?: number;
+        sfixed64?: number;
+        uint64?: number;
+        sint64?: number;
+        float?: number;
+        double?: number;
+        int_but_string?: string;
+        bytes?: Uint8Array;
+    };
 }

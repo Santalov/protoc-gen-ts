@@ -28,9 +28,7 @@ export class DefaultCommonMessage extends pb_1.Message {
     set message(value: string) {
         pb_1.Message.setField(this, 1, value);
     }
-    static fromObject(data: {
-        message?: string;
-    }): DefaultCommonMessage {
+    static fromObject(data: DefaultCommonMessage.AsObjectPartial): DefaultCommonMessage {
         const message = new DefaultCommonMessage({});
         if (data.message != null) {
             message.message = data.message;
@@ -38,12 +36,9 @@ export class DefaultCommonMessage extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            message?: string;
-        } = {};
-        if (this.message != null) {
-            data.message = this.message;
-        }
+        const data: DefaultCommonMessage.AsObject = {
+            message: this.message
+        };
         return data;
     }
     serialize(): Uint8Array;
@@ -75,6 +70,14 @@ export class DefaultCommonMessage extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): DefaultCommonMessage {
         return DefaultCommonMessage.deserialize(bytes);
     }
+}
+export namespace DefaultCommonMessage {
+    export type AsObject = {
+        message: string;
+    };
+    export type AsObjectPartial = {
+        message?: string;
+    };
 }
 export class DefaultCommonMessageOneOf extends pb_1.Message {
     #one_of_decls: number[][] = [[1, 2, 3]];
@@ -115,9 +118,9 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
         return pb_1.Message.getField(this, 1) != null;
     }
     get message() {
-        return pb_1.Message.getWrapperField(this, DefaultCommonMessage, 2) as DefaultCommonMessage;
+        return pb_1.Message.getWrapperField(this, DefaultCommonMessage, 2) as DefaultCommonMessage | undefined;
     }
-    set message(value: DefaultCommonMessage) {
+    set message(value: DefaultCommonMessage | undefined) {
         pb_1.Message.setOneofWrapperField(this, 2, this.#one_of_decls[0], value);
     }
     get has_message() {
@@ -143,11 +146,7 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
         };
         return cases[pb_1.Message.computeOneofCase(this, [1, 2, 3])];
     }
-    static fromObject(data: {
-        int32?: number;
-        message?: ReturnType<typeof DefaultCommonMessage.prototype.toObject>;
-        string?: string;
-    }): DefaultCommonMessageOneOf {
+    static fromObject(data: DefaultCommonMessageOneOf.AsObjectPartial): DefaultCommonMessageOneOf {
         const message = new DefaultCommonMessageOneOf({});
         if (data.int32 != null) {
             message.int32 = data.int32;
@@ -161,19 +160,12 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
         return message;
     }
     toObject() {
-        const data: {
-            int32?: number;
-            message?: ReturnType<typeof DefaultCommonMessage.prototype.toObject>;
-            string?: string;
-        } = {};
-        if (this.int32 != null) {
-            data.int32 = this.int32;
-        }
+        const data: DefaultCommonMessageOneOf.AsObject = {
+            int32: this.int32,
+            string: this.string
+        };
         if (this.message != null) {
             data.message = this.message.toObject();
-        }
-        if (this.string != null) {
-            data.string = this.string;
         }
         return data;
     }
@@ -184,7 +176,7 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
         if (this.has_int32)
             writer.writeInt32(1, this.int32);
         if (this.has_message)
-            writer.writeMessage(2, this.message, () => this.message.serialize(writer));
+            writer.writeMessage(2, this.message, () => this.message!.serialize(writer));
         if (this.has_string)
             writer.writeString(3, this.string);
         if (!w)
@@ -216,4 +208,16 @@ export class DefaultCommonMessageOneOf extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): DefaultCommonMessageOneOf {
         return DefaultCommonMessageOneOf.deserialize(bytes);
     }
+}
+export namespace DefaultCommonMessageOneOf {
+    export type AsObject = {
+        int32: number;
+        message?: DefaultCommonMessage.AsObject;
+        string: string;
+    };
+    export type AsObjectPartial = {
+        int32?: number;
+        message?: DefaultCommonMessage.AsObjectPartial;
+        string?: string;
+    };
 }
