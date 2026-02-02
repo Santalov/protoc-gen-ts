@@ -4,7 +4,7 @@ package(default_visibility = ["//visibility:public"])
 
 pkg_npm(
     name = "package",
-    package_name = "protoc-gen-ts",
+    package_name = "protoc-gen-ts-strict",
     srcs = [
         "//bin:protoc-gen-ts.js",
         "index.bzl",
