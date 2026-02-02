@@ -154,26 +154,26 @@ describe("defaults", () => {
 
         expect(serializedDefaults.length).toBe(0);
 
-        expect(transferredDefaults.message).toBe(undefined);
-        expect(transferredDefaults.enum).toBe(undefined);
+        expect(transferredDefaults.message).toBeUndefined();
+        expect(transferredDefaults.enum).toBeUndefined();
 
-        expect(transferredDefaults.bool).toBe(undefined);
-        expect(transferredDefaults.string).toBe(undefined);
+        expect(transferredDefaults.bool).toBeUndefined();
+        expect(transferredDefaults.string).toBeUndefined();
 
-        expect(transferredDefaults.int32).toBe(undefined);
-        expect(transferredDefaults.fixed32).toBe(undefined);
-        expect(transferredDefaults.sfixed32).toBe(undefined);
-        expect(transferredDefaults.uint32).toBe(undefined);
-        expect(transferredDefaults.sint32).toBe(undefined);
-        expect(transferredDefaults.int64).toBe(undefined);
-        expect(transferredDefaults.fixed64).toBe(undefined);
-        expect(transferredDefaults.sfixed64).toBe(undefined);
-        expect(transferredDefaults.uint64).toBe(undefined);
-        expect(transferredDefaults.sint64).toBe(undefined);
-        expect(transferredDefaults.float).toBe(undefined);
-        expect(transferredDefaults.double).toBe(undefined);
+        expect(transferredDefaults.int32).toBeUndefined();
+        expect(transferredDefaults.fixed32).toBeUndefined();
+        expect(transferredDefaults.sfixed32).toBeUndefined();
+        expect(transferredDefaults.uint32).toBeUndefined();
+        expect(transferredDefaults.sint32).toBeUndefined();
+        expect(transferredDefaults.int64).toBeUndefined();
+        expect(transferredDefaults.fixed64).toBeUndefined();
+        expect(transferredDefaults.sfixed64).toBeUndefined();
+        expect(transferredDefaults.uint64).toBeUndefined();
+        expect(transferredDefaults.sint64).toBeUndefined();
+        expect(transferredDefaults.float).toBeUndefined();
+        expect(transferredDefaults.double).toBeUndefined();
 
-        expect(transferredDefaults.int_but_string).toBe(undefined);
+        expect(transferredDefaults.int_but_string).toBeUndefined();
 
         expect(transferredDefaults.map_string_string.values.length).toBe(0);
         expect(transferredDefaults.map_string_message.values.length).toBe(0);
@@ -182,9 +182,9 @@ describe("defaults", () => {
         expect(transferredDefaults.array_message).toEqual([]);
 
         expect(transferredDefaults.one_of_int32).toBe(0); // scalar oneof fields have implicit defaults
-        expect(transferredDefaults.one_of_message).toBe(undefined);
+        expect(transferredDefaults.one_of_message).toBeUndefined();
 
-        expect(transferredDefaults.bytes).toEqual(undefined);
+        expect(transferredDefaults.bytes).toBeUndefined();
     });
 
     it("should not serialize required fields that have not been set, even when they have explicit default values (v2)", () => {
@@ -195,7 +195,7 @@ describe("defaults", () => {
         expect(serializedDefaults.length).toBe(0);
 
         // below values are just defaults of DefaultMessageV2WithDefault message, not something that arrived over the wire
-        expect(transferredDefaults.message).toBe(undefined);
+        expect(transferredDefaults.message).toBeUndefined();
         expect(transferredDefaults.enum).toBe(DefaultCommonEnum.TWO);
 
         expect(transferredDefaults.bool).toBe(true);
@@ -217,7 +217,7 @@ describe("defaults", () => {
         expect(transferredDefaults.int_but_string).toBe("17");
 
         expect(transferredDefaults.one_of_int32).toBe(18);
-        expect(transferredDefaults.one_of_message).toBe(undefined);
+        expect(transferredDefaults.one_of_message).toBeUndefined();
     });
 
     it("should return defaults (v3)", () => {
@@ -296,7 +296,7 @@ describe("defaults", () => {
         expect(serializedDefaults.length).toBe(0);
 
         // below values are just the defaults in transferredDefaults message, not something that arrived over the wire
-        expect(transferredDefaults.message).toBe(undefined);
+        expect(transferredDefaults.message).toBeUndefined();
         expect(transferredDefaults.enum).toBe(DefaultCommonEnum.ZERO);
 
         expect(transferredDefaults.bool).toBe(false);
@@ -324,7 +324,7 @@ describe("defaults", () => {
         expect(transferredDefaults.array_message).toEqual([]);
 
         expect(transferredDefaults.one_of_int32).toBe(0);
-        expect(transferredDefaults.one_of_message).toBe(undefined);
+        expect(transferredDefaults.one_of_message).toBeUndefined();
 
         expect(transferredDefaults.bytes).toEqual(new Uint8Array(0));
     });
@@ -440,11 +440,11 @@ describe("defaults", () => {
           fromObject(data?: {}): any
         }
 
-        function checkEquality<T>(messageCtor: MessageConstructor<T>){
+        function checkEquality<T extends Object>(messageCtor: MessageConstructor<T>){
           const withDefaultFromObject = messageCtor.fromObject();
           const withDefaultConstructed = new messageCtor();
-          expect(toObjectPreservingUndefined(withDefaultFromObject))
-            .toEqual(toObjectPreservingUndefined(withDefaultConstructed));
+          expect(toObjectPreservingUndefined(withDefaultFromObject) as any)
+            .toEqual(toObjectPreservingUndefined(withDefaultConstructed) as any);
         }
 
         checkEquality(MessageWithDefault);
