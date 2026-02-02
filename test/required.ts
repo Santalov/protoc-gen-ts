@@ -19,38 +19,41 @@ export class NoOptionalValues extends pb_1.Message {
         }
     }
     get test() {
-        return pb_1.Message.getField(this, 1) as string;
+        return pb_1.Message.getField(this, 1) as string | undefined;
     }
-    set test(value: string) {
+    set test(value: string | undefined) {
         pb_1.Message.setField(this, 1, value);
     }
     get has_test() {
         return pb_1.Message.getField(this, 1) != null;
     }
-    get test2() {
-        return pb_1.Message.getField(this, 2) as string;
+    clear_test(): void {
+        this.test = undefined!;
     }
-    set test2(value: string) {
+    get test2() {
+        return pb_1.Message.getField(this, 2) as string | undefined;
+    }
+    set test2(value: string | undefined) {
         pb_1.Message.setField(this, 2, value);
     }
     get has_test2() {
         return pb_1.Message.getField(this, 2) != null;
     }
-    static fromObject(data: {
-        test?: string;
-        test2?: string;
-    }): NoOptionalValues {
+    clear_test2(): void {
+        this.test2 = undefined!;
+    }
+    static fromObject(data?: NoOptionalValues.AsObjectPartial): NoOptionalValues {
+        if (!data) {
+            return new NoOptionalValues();
+        }
         const message = new NoOptionalValues({
             test: data.test,
             test2: data.test2
-        });
+        } as any);
         return message;
     }
     toObject() {
-        const data: {
-            test?: string;
-            test2?: string;
-        } = {};
+        const data: NoOptionalValues.AsObject = {};
         if (this.test != null) {
             data.test = this.test;
         }
@@ -63,9 +66,9 @@ export class NoOptionalValues extends pb_1.Message {
     serialize(w: pb_1.BinaryWriter): void;
     serialize(w?: pb_1.BinaryWriter): Uint8Array | void {
         const writer = w || new pb_1.BinaryWriter();
-        if (this.has_test && this.test.length)
+        if (this.has_test && this.test!.length)
             writer.writeString(1, this.test);
-        if (this.has_test2 && this.test2.length)
+        if (this.has_test2 && this.test2!.length)
             writer.writeString(2, this.test2);
         if (!w)
             return writer.getResultBuffer();
@@ -93,4 +96,14 @@ export class NoOptionalValues extends pb_1.Message {
     static deserializeBinary(bytes: Uint8Array): NoOptionalValues {
         return NoOptionalValues.deserialize(bytes);
     }
+}
+export namespace NoOptionalValues {
+    export type AsObject = {
+        test?: string;
+        test2?: string;
+    };
+    export type AsObjectPartial = {
+        test: string;
+        test2: string;
+    };
 }

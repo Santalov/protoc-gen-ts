@@ -20,9 +20,8 @@ function createNumericLiteral(value: number): ts.Expression {
   return ts.factory.createNumericLiteral(value);
 }
 
-export function initialize(configParameters: op.Options): void
-{
-    config = configParameters;
+export function initialize(configParameters: op.Options): void {
+  config = configParameters;
 }
 
 function getFieldName(fieldDescriptor: descriptor.FieldDescriptorProto): string {
@@ -287,7 +286,10 @@ function createFromObject(
             ts.factory.createNewExpression(
               ts.factory.createIdentifier(`${parentName}${messageDescriptor.name}`),
               undefined,
-              [ts.factory.createObjectLiteralExpression(properties, true)],
+              [ts.factory.createAsExpression(
+                ts.factory.createObjectLiteralExpression(properties, true),
+                ts.factory.createKeywordTypeNode(ts.SyntaxKind.AnyKeyword),
+              )],
             ),
           ),
         ],
@@ -579,7 +581,7 @@ function createMessageSignature(
               fieldType,
             ),
             fieldDescriptor.options?.deprecated &&
-              fieldDescriptor == currentFieldDescriptor,
+            fieldDescriptor == currentFieldDescriptor,
           ),
         );
       }
@@ -1214,9 +1216,9 @@ function createSetterBlock(
 
   const parameter: ts.Expression = field.isMap(fieldDescriptor)
     ? ts.factory.createAsExpression(
-        valueParameter,
-        ts.factory.createToken(ts.SyntaxKind.AnyKeyword),
-      )
+      valueParameter,
+      ts.factory.createToken(ts.SyntaxKind.AnyKeyword),
+    )
     : valueParameter;
 
   return ts.factory.createBlock(
@@ -1332,9 +1334,9 @@ function createSerialize(
 
     const hasFieldCondition = field.hasPresenceGetter(rootDescriptor, fieldDescriptor)
       ? ts.factory.createPropertyAccessExpression(
-          ts.factory.createThis(),
-          getPrefixedFieldName("has", fieldDescriptor),
-        )
+        ts.factory.createThis(),
+        getPrefixedFieldName("has", fieldDescriptor),
+      )
       : undefined;
 
     if (field.isMap(fieldDescriptor)) {
@@ -1571,10 +1573,10 @@ function createSerialize(
       ) {
         condition = hasFieldCondition
           ? ts.factory.createBinaryExpression(
-              hasFieldCondition,
-              ts.factory.createToken(ts.SyntaxKind.AmpersandAmpersandToken),
-              ts.factory.createPropertyAccessExpression(propAccessor, "length"),
-            )
+            hasFieldCondition,
+            ts.factory.createToken(ts.SyntaxKind.AmpersandAmpersandToken),
+            ts.factory.createPropertyAccessExpression(propAccessor, "length"),
+          )
           : ts.factory.createPropertyAccessExpression(propAccessor, "length");
       }
 
@@ -1914,32 +1916,32 @@ function createDeserialize(
                 ts.factory.createToken(ts.SyntaxKind.EqualsGreaterThanToken),
                 field.isRepeated(fieldDescriptor)
                   ? ts.factory.createCallExpression(
+                    ts.factory.createPropertyAccessExpression(
                       ts.factory.createPropertyAccessExpression(
-                        ts.factory.createPropertyAccessExpression(
-                          pbIdentifier,
-                          "Message",
-                        ),
-                        "addToRepeatedWrapperField",
+                        pbIdentifier,
+                        "Message",
                       ),
-                      undefined,
-                      [
-                        ts.factory.createIdentifier("message"),
-                        ts.factory.createNumericLiteral(fieldDescriptor.number),
-                        readCall,
-                        type.getTypeReferenceExpr(
-                          rootDescriptor,
-                          fieldDescriptor.type_name,
-                        ),
-                      ],
-                    )
-                  : ts.factory.createBinaryExpression(
-                      ts.factory.createPropertyAccessExpression(
-                        ts.factory.createIdentifier("message"),
-                        getFieldName(fieldDescriptor),
-                      ),
-                      ts.SyntaxKind.EqualsToken,
-                      readCall,
+                      "addToRepeatedWrapperField",
                     ),
+                    undefined,
+                    [
+                      ts.factory.createIdentifier("message"),
+                      ts.factory.createNumericLiteral(fieldDescriptor.number),
+                      readCall,
+                      type.getTypeReferenceExpr(
+                        rootDescriptor,
+                        fieldDescriptor.type_name,
+                      ),
+                    ],
+                  )
+                  : ts.factory.createBinaryExpression(
+                    ts.factory.createPropertyAccessExpression(
+                      ts.factory.createIdentifier("message"),
+                      getFieldName(fieldDescriptor),
+                    ),
+                    ts.SyntaxKind.EqualsToken,
+                    readCall,
+                  ),
               ),
             ],
           ),

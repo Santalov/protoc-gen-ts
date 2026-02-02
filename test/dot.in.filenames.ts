@@ -28,7 +28,7 @@ export namespace dot {
         static fromObject(data: {
             name?: string[];
         }): Message {
-            const message = new Message({});
+            const message = new Message({} as any);
             if (data.name != null) {
                 message.name = data.name;
             }

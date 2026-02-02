@@ -49,7 +49,7 @@ export class JSType extends pb_1.Message {
         int_and_normal?: number;
         int_and_number?: number;
     }): JSType {
-        const message = new JSType({});
+        const message = new JSType({} as any);
         if (data.int_but_string != null) {
             message.int_but_string = data.int_but_string;
         }

@@ -12,7 +12,7 @@ proto_library(
 
 ts_proto_library(
     name = "codegen",
-    outs = ["proto/map.ts"],
+    outs = ["proto/repeated.ts"],
     deps = [
         ":protos",
     ],
@@ -20,8 +20,8 @@ ts_proto_library(
 
 diff_and_update(
     name = "diff",
-    srcs = [":proto/map.ts"],
-    checked = ["proto/map_checked.ts"],
+    srcs = [":proto/repeated.ts"],
+    checked = ["proto/repeated_checked.ts"],
 )
 
 ts_project(

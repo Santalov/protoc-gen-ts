@@ -14,8 +14,8 @@ describe("SubMessages", () => {
         const deserializedMessage = MessageFields.deserialize(mymsg.serialize());
 
         expect(deserializedMessage.sub_message instanceof SubMessage).toBe(true);
-        expect(deserializedMessage.sub_message.field_1).toBe("field_1_value");
-        expect(deserializedMessage.sub_message.field_2).toBe("field_2_value");
+        expect(deserializedMessage.sub_message!.field_1).toBe("field_1_value");
+        expect(deserializedMessage.sub_message!.field_2).toBe("field_2_value");
     })
 
     it("should be converted to plain object", () => {
@@ -112,16 +112,16 @@ describe("SubMessages", () => {
         });
 
         expect(message.array_prop[0] instanceof SubMessage).toBeTrue();
-        expect(message.array_prop[0].field_1).toBe("test");
-        expect(message.array_prop[0].field_2).toBe("test");
+        expect(message.array_prop[0]!.field_1).toBe("test");
+        expect(message.array_prop[0]!.field_2).toBe("test");
         
         expect(message.array_prop[1] instanceof SubMessage).toBeTrue();
-        expect(message.array_prop[1].field_1).not.toBeTruthy();
-        expect(message.array_prop[1].field_2).toBe("test");
+        expect(message.array_prop[1]!.field_1).not.toBeTruthy();
+        expect(message.array_prop[1]!.field_2).toBe("test");
 
         expect(message.sub_message instanceof SubMessage).toBeTrue();
-        expect(message.sub_message.field_2).not.toBeTruthy();
-        expect(message.sub_message.field_1).not.toBeTruthy();
+        expect(message.sub_message!.field_2).not.toBeTruthy();
+        expect(message.sub_message!.field_1).not.toBeTruthy();
     })
 
 })

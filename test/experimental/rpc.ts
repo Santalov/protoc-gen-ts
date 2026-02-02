@@ -28,7 +28,7 @@ export class Chunk extends pb_1.Message {
     static fromObject(data: {
         data?: Uint8Array;
     }): Chunk {
-        const message = new Chunk({});
+        const message = new Chunk({} as any);
         if (data.data != null) {
             message.data = data.data;
         }
@@ -95,7 +95,7 @@ export class Result extends pb_1.Message {
     static fromObject(data: {
         id?: number;
     }): Result {
-        const message = new Result({});
+        const message = new Result({} as any);
         if (data.id != null) {
             message.id = data.id;
         }

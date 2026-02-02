@@ -304,9 +304,11 @@ function createUnaryRpcPromiseMethod(
   //   }
   // }
   const promiseBody = ts.factory.createCallExpression(
-    ts.factory.createPropertyAccessExpression(
-      ts.factory.createSuper(),
-      methodDescriptor.name,
+    ts.factory.createNonNullExpression(
+      ts.factory.createElementAccessExpression(
+        ts.factory.createSuper(),
+        ts.factory.createStringLiteral(methodDescriptor.name),
+      )
     ),
     undefined,
     [
@@ -782,9 +784,11 @@ function createUnaryRpcMethod(
           [
             ts.factory.createReturnStatement(
               ts.factory.createCallExpression(
-                ts.factory.createPropertyAccessExpression(
-                  ts.factory.createSuper(),
-                  methodDescriptor.name,
+                ts.factory.createNonNullExpression(
+                  ts.factory.createElementAccessExpression(
+                    ts.factory.createSuper(),
+                    ts.factory.createStringLiteral(methodDescriptor.name),
+                  )
                 ),
                 undefined,
                 [
@@ -882,9 +886,11 @@ function createClientStreamingRpcMethod(
           [
             ts.factory.createReturnStatement(
               ts.factory.createCallExpression(
-                ts.factory.createPropertyAccessExpression(
-                  ts.factory.createSuper(),
-                  methodDescriptor.name,
+                ts.factory.createNonNullExpression(
+                  ts.factory.createElementAccessExpression(
+                    ts.factory.createSuper(),
+                    ts.factory.createStringLiteral(methodDescriptor.name),
+                  )
                 ),
                 undefined,
                 [
@@ -962,9 +968,11 @@ function createServerStreamingRpcMethod(
           [
             ts.factory.createReturnStatement(
               ts.factory.createCallExpression(
-                ts.factory.createPropertyAccessExpression(
-                  ts.factory.createSuper(),
-                  methodDescriptor.name,
+                ts.factory.createNonNullExpression(
+                  ts.factory.createElementAccessExpression(
+                    ts.factory.createSuper(),
+                    ts.factory.createStringLiteral(methodDescriptor.name),
+                  )
                 ),
                 undefined,
                 [
@@ -1042,9 +1050,11 @@ function createBidiStreamingRpcMethod(
           [
             ts.factory.createReturnStatement(
               ts.factory.createCallExpression(
-                ts.factory.createPropertyAccessExpression(
-                  ts.factory.createSuper(),
-                  methodDescriptor.name,
+                ts.factory.createNonNullExpression(
+                  ts.factory.createElementAccessExpression(
+                    ts.factory.createSuper(),
+                    ts.factory.createStringLiteral(methodDescriptor.name),
+                  )
                 ),
                 undefined,
                 [

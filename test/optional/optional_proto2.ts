@@ -41,7 +41,7 @@ export class NotOptional extends pb_1.Message {
     }): NotOptional {
         const message = new NotOptional({
             should_be_required: data.should_be_required
-        });
+        } as any);
         if (data.should_be_optional != null) {
             message.should_be_optional = data.should_be_optional;
         }

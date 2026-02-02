@@ -177,7 +177,7 @@ export class PresenceMessageV2 extends pb_1.Message {
             oneof: dependency_1.PresenceCommonMessageOneOf.fromObject(data.oneof),
             repeated: data.repeated,
             map: new Map(Object.entries(data.map))
-        });
+        } as any);
         if (data.opt_int32 != null) {
             message.opt_int32 = data.opt_int32;
         }

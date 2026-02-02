@@ -133,7 +133,7 @@ export class JsonNamesMessage extends pb_1.Message {
         aSingleString?: string;
         aSingleNumber?: number;
     }): JsonNamesMessage {
-        const message = new JsonNamesMessage({});
+        const message = new JsonNamesMessage({} as any);
         if (data.someStrings != null) {
             message.someStrings = data.someStrings;
         }
@@ -273,7 +273,7 @@ export namespace JsonNamesMessage {
         static fromObject(data: {
             aNestedInteger?: number;
         }): NestedMessage {
-            const message = new NestedMessage({});
+            const message = new NestedMessage({} as any);
             if (data.aNestedInteger != null) {
                 message.aNestedInteger = data.aNestedInteger;
             }

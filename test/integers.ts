@@ -104,7 +104,7 @@ export class Integers extends pb_1.Message {
         fixed32?: number;
         fixed64?: number;
     }): Integers {
-        const message = new Integers({});
+        const message = new Integers({} as any);
         if (data.int32 != null) {
             message.int32 = data.int32;
         }

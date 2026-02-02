@@ -27,7 +27,7 @@ export class FileDescriptorSet extends pb_1.Message {
     }): FileDescriptorSet {
         const message = new FileDescriptorSet({
             file: data.file.map(item => FileDescriptorProto.fromObject(item))
-        });
+        } as any);
         return message;
     }
     toObject() {
@@ -221,7 +221,7 @@ export class FileDescriptorProto extends pb_1.Message {
             enum_type: data.enum_type.map(item => EnumDescriptorProto.fromObject(item)),
             service: data.service.map(item => ServiceDescriptorProto.fromObject(item)),
             extension: data.extension.map(item => FieldDescriptorProto.fromObject(item))
-        });
+        } as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -492,7 +492,7 @@ export class DescriptorProto extends pb_1.Message {
             oneof_decl: data.oneof_decl.map(item => OneofDescriptorProto.fromObject(item)),
             reserved_range: data.reserved_range.map(item => DescriptorProto.ReservedRange.fromObject(item)),
             reserved_name: data.reserved_name
-        });
+        } as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -674,7 +674,7 @@ export namespace DescriptorProto {
             end?: number;
             options?: ReturnType<typeof ExtensionRangeOptions.prototype.toObject>;
         }): ExtensionRange {
-            const message = new ExtensionRange({});
+            const message = new ExtensionRange({} as any);
             if (data.start != null) {
                 message.start = data.start;
             }
@@ -782,7 +782,7 @@ export namespace DescriptorProto {
             start?: number;
             end?: number;
         }): ReservedRange {
-            const message = new ReservedRange({});
+            const message = new ReservedRange({} as any);
             if (data.start != null) {
                 message.start = data.start;
             }
@@ -862,7 +862,7 @@ export class ExtensionRangeOptions extends pb_1.Message {
     }): ExtensionRangeOptions {
         const message = new ExtensionRangeOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         return message;
     }
     toObject() {
@@ -1069,7 +1069,7 @@ export class FieldDescriptorProto extends pb_1.Message {
         options?: ReturnType<typeof FieldOptions.prototype.toObject>;
         proto3_optional?: boolean;
     }): FieldDescriptorProto {
-        const message = new FieldDescriptorProto({});
+        const message = new FieldDescriptorProto({} as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -1300,7 +1300,7 @@ export class OneofDescriptorProto extends pb_1.Message {
         name?: string;
         options?: ReturnType<typeof OneofOptions.prototype.toObject>;
     }): OneofDescriptorProto {
-        const message = new OneofDescriptorProto({});
+        const message = new OneofDescriptorProto({} as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -1427,7 +1427,7 @@ export class EnumDescriptorProto extends pb_1.Message {
             value: data.value.map(item => EnumValueDescriptorProto.fromObject(item)),
             reserved_range: data.reserved_range.map(item => EnumDescriptorProto.EnumReservedRange.fromObject(item)),
             reserved_name: data.reserved_name
-        });
+        } as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -1550,7 +1550,7 @@ export namespace EnumDescriptorProto {
             start?: number;
             end?: number;
         }): EnumReservedRange {
-            const message = new EnumReservedRange({});
+            const message = new EnumReservedRange({} as any);
             if (data.start != null) {
                 message.start = data.start;
             }
@@ -1661,7 +1661,7 @@ export class EnumValueDescriptorProto extends pb_1.Message {
         number?: number;
         options?: ReturnType<typeof EnumValueOptions.prototype.toObject>;
     }): EnumValueDescriptorProto {
-        const message = new EnumValueDescriptorProto({});
+        const message = new EnumValueDescriptorProto({} as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -1780,7 +1780,7 @@ export class ServiceDescriptorProto extends pb_1.Message {
     }): ServiceDescriptorProto {
         const message = new ServiceDescriptorProto({
             method: data.method.map(item => MethodDescriptorProto.fromObject(item))
-        });
+        } as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -1941,7 +1941,7 @@ export class MethodDescriptorProto extends pb_1.Message {
         client_streaming?: boolean;
         server_streaming?: boolean;
     }): MethodDescriptorProto {
-        const message = new MethodDescriptorProto({});
+        const message = new MethodDescriptorProto({} as any);
         if (data.name != null) {
             message.name = data.name;
         }
@@ -2352,7 +2352,7 @@ export class FileOptions extends pb_1.Message {
     }): FileOptions {
         const message = new FileOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.java_package != null) {
             message.java_package = data.java_package;
         }
@@ -2719,7 +2719,7 @@ export class MessageOptions extends pb_1.Message {
     }): MessageOptions {
         const message = new MessageOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.message_set_wire_format != null) {
             message.message_set_wire_format = data.message_set_wire_format;
         }
@@ -2915,7 +2915,7 @@ export class FieldOptions extends pb_1.Message {
     }): FieldOptions {
         const message = new FieldOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.ctype != null) {
             message.ctype = data.ctype;
         }
@@ -3063,7 +3063,7 @@ export class OneofOptions extends pb_1.Message {
     }): OneofOptions {
         const message = new OneofOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         return message;
     }
     toObject() {
@@ -3155,7 +3155,7 @@ export class EnumOptions extends pb_1.Message {
     }): EnumOptions {
         const message = new EnumOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.allow_alias != null) {
             message.allow_alias = data.allow_alias;
         }
@@ -3257,7 +3257,7 @@ export class EnumValueOptions extends pb_1.Message {
     }): EnumValueOptions {
         const message = new EnumValueOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.deprecated != null) {
             message.deprecated = data.deprecated;
         }
@@ -3347,7 +3347,7 @@ export class ServiceOptions extends pb_1.Message {
     }): ServiceOptions {
         const message = new ServiceOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.deprecated != null) {
             message.deprecated = data.deprecated;
         }
@@ -3451,7 +3451,7 @@ export class MethodOptions extends pb_1.Message {
     }): MethodOptions {
         const message = new MethodOptions({
             uninterpreted_option: data.uninterpreted_option.map(item => UninterpretedOption.fromObject(item))
-        });
+        } as any);
         if (data.deprecated != null) {
             message.deprecated = data.deprecated;
         }
@@ -3630,7 +3630,7 @@ export class UninterpretedOption extends pb_1.Message {
     }): UninterpretedOption {
         const message = new UninterpretedOption({
             name: data.name.map(item => UninterpretedOption.NamePart.fromObject(item))
-        });
+        } as any);
         if (data.identifier_value != null) {
             message.identifier_value = data.identifier_value;
         }
@@ -3783,7 +3783,7 @@ export namespace UninterpretedOption {
             const message = new NamePart({
                 name_part: data.name_part,
                 is_extension: data.is_extension
-            });
+            } as any);
             return message;
         }
         toObject() {
@@ -3857,7 +3857,7 @@ export class SourceCodeInfo extends pb_1.Message {
     }): SourceCodeInfo {
         const message = new SourceCodeInfo({
             location: data.location.map(item => SourceCodeInfo.Location.fromObject(item))
-        });
+        } as any);
         return message;
     }
     toObject() {
@@ -3970,7 +3970,7 @@ export namespace SourceCodeInfo {
                 path: data.path,
                 span: data.span,
                 leading_detached_comments: data.leading_detached_comments
-            });
+            } as any);
             if (data.leading_comments != null) {
                 message.leading_comments = data.leading_comments;
             }
@@ -4072,7 +4072,7 @@ export class GeneratedCodeInfo extends pb_1.Message {
     }): GeneratedCodeInfo {
         const message = new GeneratedCodeInfo({
             annotation: data.annotation.map(item => GeneratedCodeInfo.Annotation.fromObject(item))
-        });
+        } as any);
         return message;
     }
     toObject() {
@@ -4179,7 +4179,7 @@ export namespace GeneratedCodeInfo {
         }): Annotation {
             const message = new Annotation({
                 path: data.path
-            });
+            } as any);
             if (data.source_file != null) {
                 message.source_file = data.source_file;
             }
