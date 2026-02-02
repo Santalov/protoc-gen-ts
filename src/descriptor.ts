@@ -66,6 +66,9 @@ function createFromObject(
 ): ts.MethodDeclaration {
   const dataIdentifier = ts.factory.createIdentifier("data");
   const messageIdentifier = ts.factory.createIdentifier("message");
+  const messageTypeIdentifier = ts.factory.createIdentifier(
+    `${parentName}${messageDescriptor.name}`
+  );
 
   const statements: ts.Statement[] = [];
   const properties: ts.PropertyAssignment[] = [];
@@ -274,7 +277,7 @@ function createFromObject(
             undefined,
             undefined,
             ts.factory.createNewExpression(
-              ts.factory.createIdentifier(`${parentName}${messageDescriptor.name}`),
+              messageTypeIdentifier,
               undefined,
               [ts.factory.createObjectLiteralExpression(properties, true)],
             ),
@@ -285,7 +288,35 @@ function createFromObject(
     ),
   );
 
-  statements.push(ts.factory.createReturnStatement(messageIdentifier));
+  // if (!data) {
+  //   return new Message({})
+  // }
+  statements.unshift(
+    ts.factory.createIfStatement(
+      ts.factory.createPrefixUnaryExpression(
+        ts.SyntaxKind.ExclamationToken,
+        dataIdentifier,
+      ),
+      ts.factory.createBlock(
+        [
+          ts.factory.createReturnStatement(
+            ts.factory.createNewExpression(
+              messageTypeIdentifier,
+              undefined,
+              []
+            )
+          )
+        ],
+        true
+      )
+    )
+  )
+
+  statements.push(
+    ts.factory.createReturnStatement(
+      messageIdentifier,
+    ),
+  );
 
   return ts.factory.createMethodDeclaration(
     undefined,
@@ -300,21 +331,21 @@ function createFromObject(
         undefined,
         undefined,
         dataIdentifier,
-        undefined,
-          ts.factory.createTypeReferenceNode(
-            ts.factory.createIdentifier(
-              type.addAsObject(
-                `${parentName}${messageDescriptor.name}`,
-                true,
-                true,
-              )
-            )
+        ts.factory.createToken(ts.SyntaxKind.QuestionToken),
+        ts.factory.createTypeReferenceNode(
+          ts.factory.createIdentifier(
+            type.addAsObject(
+              `${parentName}${messageDescriptor.name}`,
+              true,
+              true,
+            ),
+          ),
         ),
       ),
     ],
     ts.factory.createTypeReferenceNode(
-      ts.factory.createIdentifier(`${parentName}${messageDescriptor.name}`),
-      undefined
+      messageTypeIdentifier,
+      undefined,
     ),
     ts.factory.createBlock(statements, true),
   );
