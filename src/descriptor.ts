@@ -705,6 +705,148 @@ function createPrimitiveMessageSignature(
   return ts.factory.createTypeLiteralNode(fieldSignatures);
 }
 
+/**
+ * Creates the AsObject type alias for a message
+ * AsObject represents the plain object form returned by toObject()
+ */
+function createAsObjectTypeAlias(
+  rootDescriptor: descriptor.FileDescriptorProto,
+  messageDescriptor: descriptor.DescriptorProto,
+): ts.TypeAliasDeclaration {
+  const fieldSignatures = [];
+
+  const wrapMessageType = (
+    fieldDescriptor: descriptor.FieldDescriptorProto,
+  ): ts.TypeNode => {
+    return type.getTypeReference(rootDescriptor, fieldDescriptor.type_name, true, false);
+  };
+
+  for (const fieldDescriptor of messageDescriptor.field) {
+    let fieldType: ts.TypeNode = field.getType(fieldDescriptor, rootDescriptor);
+
+    if (field.isMap(fieldDescriptor)) {
+      const [keyDescriptor, valueDescriptor] = type.getMapDescriptor(
+        fieldDescriptor.type_name,
+      )!.field;
+
+      let valueType = field.getType(valueDescriptor, rootDescriptor);
+
+      if (field.isMessage(valueDescriptor)) {
+        valueType = type.getTypeReference(rootDescriptor, valueDescriptor.type_name, true, false);
+      }
+
+      fieldType = ts.factory.createTypeLiteralNode([
+        ts.factory.createIndexSignature(
+          undefined,
+          [
+            ts.factory.createParameterDeclaration(
+              undefined,
+              undefined,
+              "key",
+              undefined,
+              field.getType(keyDescriptor, rootDescriptor),
+            ),
+          ],
+          valueType as ts.TypeNode,
+        ),
+      ]);
+    } else if (field.isMessage(fieldDescriptor)) {
+      fieldType = wrapMessageType(fieldDescriptor);
+    }
+
+    const isOptionalField = field.isOptional(rootDescriptor, fieldDescriptor) ||
+      field.isMessage(fieldDescriptor) ||
+      field.isRequiredWithoutExplicitDefault(rootDescriptor, fieldDescriptor);
+
+    fieldSignatures.push(
+      ts.factory.createPropertySignature(
+        undefined,
+        getFieldName(fieldDescriptor),
+        isOptionalField
+          ? ts.factory.createToken(ts.SyntaxKind.QuestionToken)
+          : undefined,
+        field.wrapRepeatedType(fieldType as ts.TypeNode, fieldDescriptor),
+      ),
+    );
+  }
+
+  return ts.factory.createTypeAliasDeclaration(
+    [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+    "AsObject",
+    undefined,
+    ts.factory.createTypeLiteralNode(fieldSignatures),
+  );
+}
+
+/**
+ * Creates the AsObjectPartial type alias for a message
+ * AsObjectPartial represents the input to fromObject() with all fields optional
+ */
+function createAsObjectPartialTypeAlias(
+  rootDescriptor: descriptor.FileDescriptorProto,
+  messageDescriptor: descriptor.DescriptorProto,
+): ts.TypeAliasDeclaration {
+  const fieldSignatures = [];
+
+  const wrapMessageType = (
+    fieldDescriptor: descriptor.FieldDescriptorProto,
+  ): ts.TypeNode => {
+    // Use AsObjectPartial for nested messages
+    return type.getTypeReference(rootDescriptor, fieldDescriptor.type_name, true, true);
+  };
+
+  for (const fieldDescriptor of messageDescriptor.field) {
+    let fieldType: ts.TypeNode = field.getType(fieldDescriptor, rootDescriptor);
+
+    if (field.isMap(fieldDescriptor)) {
+      const [keyDescriptor, valueDescriptor] = type.getMapDescriptor(
+        fieldDescriptor.type_name,
+      )!.field;
+
+      let valueType = field.getType(valueDescriptor, rootDescriptor);
+
+      if (field.isMessage(valueDescriptor)) {
+        valueType = type.getTypeReference(rootDescriptor, valueDescriptor.type_name, true, true);
+      }
+
+      fieldType = ts.factory.createTypeLiteralNode([
+        ts.factory.createIndexSignature(
+          undefined,
+          [
+            ts.factory.createParameterDeclaration(
+              undefined,
+              undefined,
+              "key",
+              undefined,
+              field.getType(keyDescriptor, rootDescriptor),
+            ),
+          ],
+          valueType as ts.TypeNode,
+        ),
+      ]);
+    } else if (field.isMessage(fieldDescriptor)) {
+      fieldType = wrapMessageType(fieldDescriptor);
+    }
+
+    // All fields are optional in AsObjectPartial
+    fieldSignatures.push(
+      ts.factory.createPropertySignature(
+        undefined,
+        getFieldName(fieldDescriptor),
+        ts.factory.createToken(ts.SyntaxKind.QuestionToken),
+        field.wrapRepeatedType(fieldType as ts.TypeNode, fieldDescriptor),
+      ),
+    );
+  }
+
+  return ts.factory.createTypeAliasDeclaration(
+    [ts.factory.createModifier(ts.SyntaxKind.ExportKeyword)],
+    "AsObjectPartial",
+    undefined,
+    ts.factory.createTypeLiteralNode(fieldSignatures),
+  );
+}
+
 function getPivot(descriptor: descriptor.DescriptorProto) {
   const kDefaultPivot = 500;
   let max_field_number = 0;
@@ -2310,7 +2452,12 @@ export function processDescriptorRecursively(
     }
   }
 
-  if (namespacedStatements.length) {
+  // Always add AsObject and AsObjectPartial type aliases when not in no_namespace mode
+  if (!no_namespace) {
+    namespacedStatements.unshift(
+      createAsObjectTypeAlias(rootDescriptor, descriptor),
+      createAsObjectPartialTypeAlias(rootDescriptor, descriptor),
+    );
     statements.push(createNamespace(descriptor.name, namespacedStatements));
   }
 
