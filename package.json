@@ -1,7 +1,7 @@
 {
   "name": "protoc-gen-ts-strict",
   "description": "Compile protocol buffers descriptors to Typescript. Stricter version.",
-  "version": "0.9.0",
+  "version": "0.9.1",
   "license": "MIT",
   "author": {
     "email": "santalov.stas@gmail.com",
@@ -13,15 +13,21 @@
     "url": "https://github.com/Santalov/protoc-gen-ts"
   },
   "scripts": {
+    "build": "tsc",
     "test": "bazel test //...",
     "update_checked_in": "bazel query --noshow_progress 'attr(tags, \"checked_in_update\", //...)' | xargs -n 1 bazel run --ui_event_filters=-info,-stderr --noshow_progress",
     "update_checked_in_test": "bazel query --noshow_progress 'attr(tags, \"checked_in_update\", //test/...)' | xargs -n 1 bazel run --ui_event_filters=-info,-stderr --noshow_progress",
     "update_checked_in_src": "bazel query --noshow_progress 'attr(tags, \"checked_in_update\", //src/...)' | xargs -n 1 bazel run --ui_event_filters=-info,-stderr --noshow_progress",
-    "release": "bazel run //:package.publish -- --access public --tag latest --registry https://registry.npmjs.org"
+    "release": "bazel run //:package.publish -- --access public --tag latest --registry https://registry.npmjs.org",
+    "prepublishOnly": "tsc"
   },
   "bin": {
     "protoc-gen-ts": "./bin/protoc-gen-ts.js"
   },
+  "files": [
+    "dist",
+    "bin"
+  ],
   "peerDependencies": {
     "google-protobuf": "^3.13.0",
     "typescript": ">=5"
